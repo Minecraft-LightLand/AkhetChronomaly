@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "akhet_chronomaly:item/rank/3",
+    "layer1": "akhet_chronomaly:item/random"
+  }
+}
