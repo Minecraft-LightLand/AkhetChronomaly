@@ -1,7 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.set.core;
 
 import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.network.chat.Component;
@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	public SetEffect() {
-		super(ArtifactTypeRegistry.SET_EFFECT);
+		super(ACTypeRegistry.SET_EFFECT);
 	}
 
 	/**

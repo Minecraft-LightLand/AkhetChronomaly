@@ -14,7 +14,7 @@ import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2serial.util.Wrappers;
@@ -38,8 +38,8 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	private SimpleEntry<ArtifactSlot>[] slots;
 	private ItemEntry<BaseArtifact>[][] items;
 
-	public SetBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank) {
-		super(owner, parent, name, callback, ArtifactTypeRegistry.SET.key());
+	public SetBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank) {
+		super(owner, parent, name, callback, ACTypeRegistry.SET.key());
 		this.sup = sup;
 		this.min_rank = min_rank;
 		this.max_rank = max_rank;
@@ -53,7 +53,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	public SetBuilder<T, I, P> buildConfig(Consumer<ArtifactSetConfig.SetBuilder> builder) {
-		getOwner().addDataGenerator(ProviderType.DATA_MAP, (e) -> e.builder(ArtifactTypeRegistry.ARTIFACT_SETS.reg())
+		getOwner().addDataGenerator(ProviderType.DATA_MAP, (e) -> e.builder(ACTypeRegistry.ARTIFACT_SETS.reg())
 				.add(DataGenContext.from(this).getId(), ArtifactSetConfig.construct(builder), false));
 		return this;
 	}

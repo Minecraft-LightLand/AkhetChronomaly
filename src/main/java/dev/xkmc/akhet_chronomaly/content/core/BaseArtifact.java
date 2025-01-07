@@ -3,8 +3,8 @@ package dev.xkmc.akhet_chronomaly.content.core;
 import com.google.common.collect.Multimap;
 import dev.xkmc.akhet_chronomaly.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactLang;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactItems;
+import dev.xkmc.akhet_chronomaly.init.data.ACLang;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.ChatFormatting;
@@ -31,17 +31,17 @@ import java.util.function.Supplier;
 public class BaseArtifact extends RankedItem implements ICurioItem {
 
 	public static void upgrade(ItemStack stack, int exp) {
-		var stats = ArtifactItems.STATS.get(stack);
+		var stats = ACItems.STATS.get(stack);
 		if (stats == null) return;
-		ArtifactItems.STATS.set(stack, stats.addExp(exp));
+		ACItems.STATS.set(stack, stats.addExp(exp));
 	}
 
 	public static Optional<ArtifactStats> getStats(ItemStack stack) {
-		return Optional.ofNullable(ArtifactItems.STATS.get(stack));
+		return Optional.ofNullable(ACItems.STATS.get(stack));
 	}
 
 	public static ItemStack complete(ItemStack stack, ArtifactStats stats) {
-		ArtifactItems.STATS.set(stack, stats);
+		ACItems.STATS.set(stack, stats);
 		return stack;
 	}
 
@@ -87,23 +87,21 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 		if (Proxy.getClientPlayer() != null) {
 			var stats = getStats(stack);
 			if (stats.isEmpty()) {
-				list.add(ArtifactLang.RAW_ARTIFACT.get());
+				list.add(ACLang.RAW_ARTIFACT.get());
 			} else {
 				var s = stats.get();
 				boolean max = s.level() == ArtifactUpgradeManager.getMaxLevel(s.rank());
-				list.add(ArtifactLang.ARTIFACT_LEVEL.get(s.level()).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
+				list.add(ACLang.ARTIFACT_LEVEL.get(s.level()).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
 				if (s.level() < ArtifactUpgradeManager.getMaxLevel(s.rank())) {
 					if (shift)
-						list.add(ArtifactLang.ARTIFACT_EXP.get(s.exp(), ArtifactUpgradeManager.getExpForLevel(s.rank(), s.level())));
+						list.add(ACLang.ARTIFACT_EXP.get(s.exp(), ArtifactUpgradeManager.getExpForLevel(s.rank(), s.level())));
 				}
 				if (s.level() > s.old_level()) {
-					list.add(ArtifactLang.UPGRADE.get());
+					list.add(ACLang.UPGRADE.get());
 				} else if (!shift) {
-					list.add(ArtifactLang.MAIN_STAT.get());
-					list.add(s.main_stat().getTooltip(null));
-					if (!s.sub_stats().isEmpty()) {
-						list.add(ArtifactLang.SUB_STAT.get());
-						for (StatEntry ent : s.sub_stats()) {
+					if (!s.stats().isEmpty()) {
+						list.add(ACLang.STAT.get());
+						for (StatEntry ent : s.stats()) {
 							list.add(ent.getTooltip(null));
 						}
 					}
@@ -111,10 +109,10 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 			}
 			list.addAll(set.get().getAllDescs(stack, shift));
 			if (!shift)
-				list.add(ArtifactLang.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
+				list.add(ACLang.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		if (!shift) {
-			list.add(ArtifactLang.SHIFT_TEXT.get());
+			list.add(ACLang.SHIFT_TEXT.get());
 		}
 	}
 

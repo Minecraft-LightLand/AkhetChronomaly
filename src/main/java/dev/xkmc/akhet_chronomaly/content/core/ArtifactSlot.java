@@ -1,16 +1,16 @@
 package dev.xkmc.akhet_chronomaly.content.core;
 
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactSlotCuriosType;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.data.ACSlotCuriosType;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import net.minecraft.resources.ResourceLocation;
 
 public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 
-	private final ArtifactSlotCuriosType curios;
+	private final ACSlotCuriosType curios;
 
-	public ArtifactSlot(ArtifactSlotCuriosType curios) {
-		super(ArtifactTypeRegistry.SLOT);
+	public ArtifactSlot(ACSlotCuriosType curios) {
+		super(ACTypeRegistry.SLOT);
 		this.curios = curios;
 		curios.slot = this;
 	}

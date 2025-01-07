@@ -6,9 +6,9 @@ import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
 import dev.xkmc.akhet_chronomaly.content.set.core.PlayerOnlySetEffect;
 import dev.xkmc.akhet_chronomaly.events.ArtifactEffectEvents;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactConfig;
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactLang;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.data.ACModConfig;
+import dev.xkmc.akhet_chronomaly.init.data.ACLang;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2core.util.ServerProxy;
@@ -54,11 +54,11 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
 	private MutableComponent getCountDesc(int count) {
 		int max = AkhetChronomaly.REGISTRATE.SET_MAP.get(getRegistryName()).items.length;
-		return ArtifactLang.getTranslate("set." + count, max);
+		return ACLang.getTranslate("set." + count, max);
 	}
 
 	public ArtifactSet() {
-		super(ArtifactTypeRegistry.SET);
+		super(ACTypeRegistry.SET);
 	}
 
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
@@ -67,7 +67,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ArtifactConfig.SERVER.maxRank.get() + 1];
+			int[] rank = new int[ACModConfig.SERVER.maxRank.get() + 1];
 			int index = -1;
 			int count = 0;
 			for (SlotResult result : list) {
@@ -89,7 +89,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ArtifactConfig.SERVER.maxRank.get() + 1];
+			int[] rank = new int[ACModConfig.SERVER.maxRank.get() + 1];
 			int count = 0;
 			for (SlotResult result : list) {
 				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {
@@ -108,7 +108,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
 	private List<ArtifactSetConfig.Entry> getConfig(@Nullable RegistryAccess ctx) {
 		if (ctx == null) return List.of();
-		var ans = ArtifactTypeRegistry.ARTIFACT_SETS.get(ctx, holder());
+		var ans = ACTypeRegistry.ARTIFACT_SETS.get(ctx, holder());
 		return ans == null ? List.of() : ans.entries();
 	}
 
@@ -167,7 +167,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
-				ans.add(ArtifactLang.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
+				ans.add(ACLang.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
 				if (show) {
 					for (ArtifactSetConfig.Entry ent : list) {
 						ChatFormatting color_count = ctx.count() < ent.count() ?
@@ -191,7 +191,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 				playerOnly |= e.effect() instanceof PlayerOnlySetEffect;
 			}
 			if (playerOnly) {
-				ans.add(ArtifactLang.PLAYER_ONLY.get().withStyle(ChatFormatting.DARK_GRAY));
+				ans.add(ACLang.PLAYER_ONLY.get().withStyle(ChatFormatting.DARK_GRAY));
 			}
 		}
 		return ans;
@@ -200,7 +200,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 	public List<Pair<List<Component>, List<Component>>> addComponents(SetContext ctx) {
 		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
 		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
-		ans.add(Pair.of(List.of(ArtifactLang.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
+		ans.add(Pair.of(List.of(ACLang.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
 		var list = getConfig(ServerProxy.getRegistryAccess());
 		for (ArtifactSetConfig.Entry ent : list) {
 			//判断符合数量条件的效果与描述加入ans

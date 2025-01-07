@@ -18,13 +18,15 @@ public class SlotGen extends CuriosDataProvider {
 
 	@Override
 	public void generate(HolderLookup.Provider provider, ExistingFileHelper existingFileHelper) {
-		for (var e : ArtifactSlotCuriosType.values()) {
-			createSlot(e.getIdentifier()).order(e.priority).icon(AkhetChronomaly.loc("slot/empty_" + e.getIdentifier() + "_slot"));
+		for (var e : ACSlotCuriosType.values()) {
+			createSlot(e.getIdentifier()).order(e.priority)
+					.icon(AkhetChronomaly.loc("slot/empty_" + e.getIdentifier() + "_slot"))
+					.useNativeGui(false);
 		}
 		createEntities("l2artifact_player")
 				.addEntities(EntityType.PLAYER)
-				.addSlots(Stream.of(ArtifactSlotCuriosType.values())
-						.map(ArtifactSlotCuriosType::getIdentifier).toArray(String[]::new));
+				.addSlots(Stream.of(ACSlotCuriosType.values())
+						.map(ACSlotCuriosType::getIdentifier).toArray(String[]::new));
 	}
 
 }

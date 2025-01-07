@@ -2,7 +2,7 @@ package dev.xkmc.akhet_chronomaly.init.registrate.entries;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.akhet_chronomaly.content.core.LinearFunc;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.util.ServerProxy;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -11,7 +11,7 @@ public class LinearFuncEntry extends RegistryEntry<LinearFunc, LinearFunc> {
 	public final SetRegHelper set;
 	public final double base, slope;
 
-	public LinearFuncEntry(ArtifactRegistrate owner, SetRegHelper set, DeferredHolder<LinearFunc, LinearFunc> delegate, double base, double slope) {
+	public LinearFuncEntry(ACRegistrate owner, SetRegHelper set, DeferredHolder<LinearFunc, LinearFunc> delegate, double base, double slope) {
 		super(owner, delegate);
 		this.base = base;
 		this.slope = slope;
@@ -22,7 +22,7 @@ public class LinearFuncEntry extends RegistryEntry<LinearFunc, LinearFunc> {
 	public double getFromRank(int rank) {
 		var access = ServerProxy.getRegistryAccess();
 		if (access != null) {
-			var c = ArtifactTypeRegistry.LINEAR_CONFIG.get(access, this);
+			var c = ACTypeRegistry.LINEAR_CONFIG.get(access, this);
 			if (c != null) {
 				return c.base() + c.slope() * (rank - 1);
 			}

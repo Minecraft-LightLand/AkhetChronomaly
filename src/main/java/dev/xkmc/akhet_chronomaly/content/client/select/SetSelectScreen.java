@@ -1,7 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.client.select;
 
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactLang;
+import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,12 +12,12 @@ public class SetSelectScreen extends AbstractSelectScreen {
 	private static final SpriteManager MANAGER = new SpriteManager(AkhetChronomaly.MODID, "set_select");
 
 	public SetSelectScreen() {
-		super(ArtifactLang.TITLE_SELECT_SET.get(), MANAGER, "grid");
+		super(ACLang.TITLE_SELECT_SET.get(), MANAGER, "grid");
 	}
 
 	@Override
 	protected void renderLabels(GuiGraphics g, int mx, int my) {
-		g.drawString(font, ArtifactLang.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
+		g.drawString(font, ACLang.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
 	}
 
 	@Override

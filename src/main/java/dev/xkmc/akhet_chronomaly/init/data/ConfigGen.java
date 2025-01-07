@@ -2,7 +2,7 @@ package dev.xkmc.akhet_chronomaly.init.data;
 
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2damagetracker.init.L2DamageTracker;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -53,7 +53,7 @@ public class ConfigGen {
 	}
 
 	private static void regStat(BootstrapContext<StatType> map, ResourceLocation id, Holder<Attribute> attr, AttributeModifier.Operation op, double base) {
-		map.register(ResourceKey.create(ArtifactTypeRegistry.STAT_TYPE.key(), id), genEntry(attr, op, base, 0.2, 2, 100, 100));
+		map.register(ResourceKey.create(ACTypeRegistry.STAT_TYPE.key(), id), genEntry(attr, op, base, 0.2, 2, 100, 100));
 	}
 
 	private static StatType genEntry(

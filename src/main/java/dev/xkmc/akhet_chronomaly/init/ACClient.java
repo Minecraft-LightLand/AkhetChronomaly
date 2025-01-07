@@ -9,7 +9,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = AkhetChronomaly.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class ArtifactClient {
+public class ACClient {
 
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {

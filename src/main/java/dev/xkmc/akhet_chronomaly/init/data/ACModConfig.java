@@ -4,7 +4,7 @@ import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.l2core.util.ConfigInit;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class ArtifactConfig {
+public class ACModConfig {
 
 
 	public static class Common extends ConfigInit {

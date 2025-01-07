@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 
-public class ArtifactTagGen {
+public class ACTagGen {
 
 	public static void onEffectTagGen(RegistrateTagsProvider.IntrinsicImpl<MobEffect> pvd) {
 	}

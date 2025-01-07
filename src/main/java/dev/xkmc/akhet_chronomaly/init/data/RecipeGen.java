@@ -30,7 +30,7 @@ public class RecipeGen {
 					BaseArtifact output = slot[i].get();
 					unlock(pvd, ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 1)::unlockedBy, input)
 							.requires(input, 2)
-							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ArtifactConfig.COMMON,
+							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ACModConfig.COMMON,
 											e -> e.enableArtifactRankUpRecipe, true)),
 									slot[i].getId().withPrefix("rank_up/"));
 				}

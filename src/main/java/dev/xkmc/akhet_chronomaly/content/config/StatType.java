@@ -1,7 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.config;
 
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -31,14 +31,14 @@ public record StatType(
 
 	@Nullable
 	public static StatTypeHolder get(RegistryAccess access, ResourceLocation id) {
-		var holder = ArtifactTypeRegistry.STAT_TYPE.get(access, id);
+		var holder = ACTypeRegistry.STAT_TYPE.get(access, id);
 		return holder == null ? null : new StatTypeHolder(holder);
 	}
 
 	public static Collection<StatTypeHolder> getValues() {
 		RegistryAccess access = ServerProxy.getRegistryAccess();
 		if (access == null) return List.of();
-		return ArtifactTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
+		return ACTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
 	}
 
 	public double getInitialValue(RandomSource random) {

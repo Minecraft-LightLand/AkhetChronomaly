@@ -3,8 +3,8 @@ package dev.xkmc.akhet_chronomaly.content.misc;
 import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
 import dev.xkmc.akhet_chronomaly.content.core.RankedItem;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
-import dev.xkmc.akhet_chronomaly.init.data.ArtifactLang;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactItems;
+import dev.xkmc.akhet_chronomaly.init.data.ACLang;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -43,13 +43,13 @@ public class RandomArtifactSetItem extends RankedItem {
 	}
 
 	public static ItemStack setList(int rank, Collection<SetEntry<?>> sets) {
-		ItemStack stack = ArtifactItems.RANDOM_SET[rank - 1].asStack();
-		return ArtifactItems.GROUP.set(stack, SetGroup.ofGroup(rank, sets));
+		ItemStack stack = ACItems.RANDOM_SET[rank - 1].asStack();
+		return ACItems.GROUP.set(stack, SetGroup.ofGroup(rank, sets));
 	}
 
 	@Nullable
 	private static Collection<SetEntry<?>> getList(ItemStack stack, int rank) {
-		var group = ArtifactItems.GROUP.get(stack);
+		var group = ACItems.GROUP.get(stack);
 		if (group == null) return null;
 		return group.getSets(rank, true);
 	}
@@ -70,9 +70,9 @@ public class RandomArtifactSetItem extends RankedItem {
 	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		var sets = getList(stack, rank);
 		if (sets == null) {
-			list.add(ArtifactLang.LOOT_POOL_ALL.get());
+			list.add(ACLang.LOOT_POOL_ALL.get());
 		} else {
-			list.add(ArtifactLang.LOOT_POOL.get());
+			list.add(ACLang.LOOT_POOL.get());
 			for (var e : sets) {
 				list.add(e.get().getDesc().withStyle(ChatFormatting.GRAY));
 			}

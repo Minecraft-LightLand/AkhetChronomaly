@@ -11,7 +11,7 @@ import dev.xkmc.l2tabs.tabs.inventory.InvTabData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class ArtifactTabRegistry {
+public class ACTabRegistry {
 
 	private static final ResourceLocation DUMMY = L2Tabs.loc(AkhetChronomaly.MODID);
 
@@ -27,7 +27,7 @@ public class ArtifactTabRegistry {
 
 	public static void genTabs(RegistrateDataMapProvider pvd) {
 		var icon = pvd.builder(L2Tabs.ICON.reg());
-		icon.add(TAB_SET_EFFECTS.id(), ArtifactItems.RANDOM[4].get(), false);
+		icon.add(TAB_SET_EFFECTS.id(), ACItems.RANDOM[4].get(), false);
 
 		var order = pvd.builder(L2Tabs.ORDER.reg());
 		order.add(TAB_SET_EFFECTS.id(), 3000, false);

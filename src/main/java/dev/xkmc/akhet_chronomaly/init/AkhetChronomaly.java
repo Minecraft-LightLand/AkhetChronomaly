@@ -6,10 +6,10 @@ import dev.xkmc.akhet_chronomaly.content.client.select.ChooseArtifactToServer;
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import dev.xkmc.akhet_chronomaly.events.ArtifactAttackListener;
 import dev.xkmc.akhet_chronomaly.init.data.*;
-import dev.xkmc.akhet_chronomaly.init.data.loot.ArtifactGLMProvider;
-import dev.xkmc.akhet_chronomaly.init.data.loot.ArtifactLootGen;
+import dev.xkmc.akhet_chronomaly.init.data.loot.ACGLMProvider;
+import dev.xkmc.akhet_chronomaly.init.data.loot.ACLootGen;
 import dev.xkmc.akhet_chronomaly.init.registrate.*;
-import dev.xkmc.akhet_chronomaly.init.registrate.entries.ArtifactRegistrate;
+import dev.xkmc.akhet_chronomaly.init.registrate.entries.ACRegistrate;
 import dev.xkmc.l2core.init.L2TagGen;
 import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
@@ -35,7 +35,7 @@ public class AkhetChronomaly {
 	public static final String MODID = "akhet_chronomaly";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final Reg REG = new Reg(MODID);
-	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
+	public static final ACRegistrate REGISTRATE = new ACRegistrate();
 
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
 			MODID, 1,
@@ -44,13 +44,13 @@ public class AkhetChronomaly {
 
 
 	public AkhetChronomaly() {
-		ArtifactTypeRegistry.register();
-		ArtifactItems.register();
-		ArtifactMenuRegistry.register();
-		ArtifactEffects.register();
-		ArtifactTabRegistry.register();
-		ArtifactConfig.init();
-		Handlers.registerReg(StatType.class, ArtifactTypeRegistry.STAT_TYPE.key());
+		ACTypeRegistry.register();
+		ACItems.register();
+		ACMenuRegistry.register();
+		ACEffects.register();
+		ACTabRegistry.register();
+		ACModConfig.init();
+		Handlers.registerReg(StatType.class, ACTypeRegistry.STAT_TYPE.key());
 
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
 	}
@@ -69,14 +69,14 @@ public class AkhetChronomaly {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
 		ConfigGen.register();
-		REGISTRATE.addDataGenerator(ProviderType.LANG, ArtifactLang::genLang);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, ACLang::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
-		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
-		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
-		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
+		REGISTRATE.addDataGenerator(ProviderType.LOOT, ACLootGen::onLootGen);
+		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ACTagGen::onEffectTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ACTagGen::onEntityTypeGen);
 		REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, AkhetChronomaly::onDataMapGen);
 		var init = REGISTRATE.getDataGenInitializer();
-		init.add(ArtifactTypeRegistry.STAT_TYPE.key(), ConfigGen::genSlotType);
+		init.add(ACTypeRegistry.STAT_TYPE.key(), ConfigGen::genSlotType);
 
 		var run = event.includeServer();
 		var gen = event.getGenerator();
@@ -85,11 +85,11 @@ public class AkhetChronomaly {
 		var file = event.getExistingFileHelper();
 
 		gen.addProvider(run, new SlotGen(MODID, out, file, reg));
-		gen.addProvider(run, new ArtifactGLMProvider(out, reg));
+		gen.addProvider(run, new ACGLMProvider(out, reg));
 	}
 
 	private static void onDataMapGen(RegistrateDataMapProvider pvd) {
-		ArtifactTabRegistry.genTabs(pvd);
+		ACTabRegistry.genTabs(pvd);
 	}
 
 	public static ResourceLocation loc(String id) {

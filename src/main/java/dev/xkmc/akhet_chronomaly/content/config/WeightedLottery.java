@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.config;
 
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -17,7 +17,7 @@ public class WeightedLottery {
 
 	public WeightedLottery(RegistryAccess access, RandomSource source, boolean main) {
 		this.source = source;
-		ArtifactTypeRegistry.STAT_TYPE.getAll(access)
+		ACTypeRegistry.STAT_TYPE.getAll(access)
 				.map(e -> Pair.of(e, main ? e.value().mainWeight() : e.value().subWeight()))
 				.filter(e -> e.second() > 0)
 				.forEach(list::add);

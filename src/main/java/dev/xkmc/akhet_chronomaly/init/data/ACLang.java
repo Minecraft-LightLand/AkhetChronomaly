@@ -1,7 +1,6 @@
 package dev.xkmc.akhet_chronomaly.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.akhet_chronomaly.compat.PatchouliLang;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -10,13 +9,12 @@ import net.minecraft.network.chat.MutableComponent;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public enum ArtifactLang {
+public enum ACLang {
 	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null),
 	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
 	ARTIFACT_EXP("tooltip.artifact_exp", "Exp: %s/%s", 2, ChatFormatting.DARK_GRAY),
 	UPGRADE("tooltip.upgrade", "Right Click to Reveal Upgrade Result", 0, ChatFormatting.GOLD),
-	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, ChatFormatting.GRAY),
-	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, ChatFormatting.GRAY),
+	STAT("tooltip.sub_stat", "Stats", 0, ChatFormatting.GRAY),
 	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.GRAY),
 	SHIFT_TEXT("tooltip.shift", "Hold Shift for set effects", 0, ChatFormatting.AQUA),
 	SET("tooltip.set", "Set: %s", 1, null),
@@ -74,7 +72,7 @@ public enum ArtifactLang {
 	private final ChatFormatting format;
 
 
-	ArtifactLang(String key, String def, int arg, @Nullable ChatFormatting format) {
+	ACLang(String key, String def, int arg, @Nullable ChatFormatting format) {
 		this.key = AkhetChronomaly.MODID + "." + key;
 		this.def = def;
 		this.arg = arg;
@@ -100,20 +98,14 @@ public enum ArtifactLang {
 	}
 
 	public static void genLang(RegistrateLangProvider pvd) {
-		for (ArtifactLang lang : ArtifactLang.values()) {
+		for (ACLang lang : ACLang.values()) {
 			pvd.add(lang.key, lang.def);
 		}
-		for (ArtifactSlotCuriosType type : ArtifactSlotCuriosType.values()) {
+		for (ACSlotCuriosType type : ACSlotCuriosType.values()) {
 			pvd.add(type.getDesc(), type.getDefTranslation());
 			pvd.add(type.getModifier(), "When equipped as " + type.getDefTranslation() + ":");
 		}
-		pvd.add("l2artifacts.set.1", "When Equip: ");
-		pvd.add("l2artifacts.set.2", "(2/%s) Set Bonus: ");
-		pvd.add("l2artifacts.set.3", "(3/%s) Set Bonus: ");
-		pvd.add("l2artifacts.set.4", "(4/%s) Set Bonus: ");
-		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
-		PatchouliLang.genLang(pvd);
 	}
 
 }

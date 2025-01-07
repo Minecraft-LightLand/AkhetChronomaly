@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.client.tab;
 
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTabRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTabRegistry;
 import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2tabs.init.data.L2TabsConfig;
 import dev.xkmc.l2tabs.tabs.contents.BaseTextScreen;
@@ -34,7 +34,7 @@ public class SetEffectScreen extends BaseTextScreen {
 	@Override
 	public void init() {
 		super.init();
-		new TabManager<>(this, new InvTabData()).init(this::addRenderableWidget, ArtifactTabRegistry.TAB_SET_EFFECTS.get());
+		new TabManager<>(this, new InvTabData()).init(this::addRenderableWidget, ACTabRegistry.TAB_SET_EFFECTS.get());
 		Player player = Proxy.getClientPlayer();
 		var all = SetEffectEntries.aggregate(player, imageWidth - 16, L2TabsConfig.CLIENT.attributeLinePerPage.get());
 		int totalPage = Math.max(1, all.size());

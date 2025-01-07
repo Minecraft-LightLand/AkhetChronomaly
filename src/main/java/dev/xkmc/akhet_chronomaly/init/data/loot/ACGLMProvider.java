@@ -7,9 +7,9 @@ import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ArtifactGLMProvider extends GlobalLootModifierProvider {
+public class ACGLMProvider extends GlobalLootModifierProvider {
 
-	public ArtifactGLMProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+	public ACGLMProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, AkhetChronomaly.MODID);
 	}
 

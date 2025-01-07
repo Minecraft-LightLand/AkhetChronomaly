@@ -11,7 +11,7 @@ public class SetEntry<T extends ArtifactSet> extends RegistryEntry<ArtifactSet, 
 
 	public final ItemEntry<BaseArtifact>[][] items;
 
-	public SetEntry(ArtifactRegistrate owner, DeferredHolder<ArtifactSet, T> delegate,
+	public SetEntry(ACRegistrate owner, DeferredHolder<ArtifactSet, T> delegate,
 					ItemEntry<BaseArtifact>[][] items) {
 		super(owner, delegate);
 		this.items = items;

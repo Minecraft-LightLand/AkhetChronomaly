@@ -16,13 +16,13 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import static dev.xkmc.akhet_chronomaly.init.AkhetChronomaly.REGISTRATE;
 
 @SuppressWarnings({"raw_type", "unchecked"})
-public class ArtifactItems {
+public class ACItems {
 
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	static {
 		REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
-				.icon(ArtifactItems.RANDOM[4]::asStack));
+				.icon(ACItems.RANDOM[4]::asStack));
 	}
 
 	public static final ItemEntry<RandomArtifactItem>[] RANDOM;

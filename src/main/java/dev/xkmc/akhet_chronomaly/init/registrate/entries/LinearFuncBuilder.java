@@ -6,7 +6,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
 import dev.xkmc.akhet_chronomaly.content.core.LinearFunc;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
@@ -18,11 +18,11 @@ public class LinearFuncBuilder<P> extends AbstractBuilder<LinearFunc, LinearFunc
 
 	private final double base, slope;
 
-	public LinearFuncBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback,
+	public LinearFuncBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback,
 							 SetRegHelper set,
 							 NonNullSupplier<LinearFunc> sup,
 							 double base, double slope) {
-		super(owner, parent, name, callback, ArtifactTypeRegistry.LINEAR.key());
+		super(owner, parent, name, callback, ACTypeRegistry.LINEAR.key());
 		this.sup = sup;
 		this.base = base;
 		this.slope = slope;

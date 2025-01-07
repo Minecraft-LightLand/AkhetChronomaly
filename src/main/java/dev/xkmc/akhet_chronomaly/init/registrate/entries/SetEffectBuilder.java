@@ -6,7 +6,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
 import dev.xkmc.akhet_chronomaly.content.set.core.SetEffect;
-import dev.xkmc.akhet_chronomaly.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -16,8 +16,8 @@ public class SetEffectBuilder<T extends SetEffect, P> extends AbstractBuilder<Se
 
 	private final NonNullSupplier<T> sup;
 
-	public SetEffectBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup) {
-		super(owner, parent, name, callback, ArtifactTypeRegistry.SET_EFFECT.key());
+	public SetEffectBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup) {
+		super(owner, parent, name, callback, ACTypeRegistry.SET_EFFECT.key());
 		this.sup = sup;
 	}
 
