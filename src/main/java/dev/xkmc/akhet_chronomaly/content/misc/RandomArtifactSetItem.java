@@ -43,24 +43,24 @@ public class RandomArtifactSetItem extends RankedItem {
 	}
 
 	public static ItemStack setList(int rank, Collection<SetEntry<?>> sets) {
-		ItemStack stack = ACItems.RANDOM_SET[rank - 1].asStack();
-		return ACItems.GROUP.set(stack, SetGroup.ofGroup(rank, sets));
+		ItemStack stack = ACItems.RANDOM_SET[rank].asStack();
+		return ACItems.GROUP.set(stack, SetGroup.of(sets));
 	}
 
 	@Nullable
-	private static Collection<SetEntry<?>> getList(ItemStack stack, int rank) {
+	private static Collection<SetEntry<?>> getList(ItemStack stack) {
 		var group = ACItems.GROUP.get(stack);
 		if (group == null) return null;
-		return group.getSets(rank, true);
+		return group.getSets(true);
 	}
 
 	public static List<ItemStack> getRandomArtifact(ItemStack stack, int rank, RandomSource random) {
-		var list = getList(stack, rank);
+		var list = getList(stack);
 		if (list == null) list = AkhetChronomaly.REGISTRATE.SET_LIST;
-		var sets = list.stream().filter(e -> e.hasRank(rank) && e.items.length == 5).toList();
+		var sets = list.stream().toList();
 		var set = sets.get(random.nextInt(sets.size()));
 		List<ItemStack> ans = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < set.size(); i++) {
 			ans.add(set.getItem(i, rank));
 		}
 		return ans;
@@ -68,7 +68,7 @@ public class RandomArtifactSetItem extends RankedItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
-		var sets = getList(stack, rank);
+		var sets = getList(stack);
 		if (sets == null) {
 			list.add(ACLang.LOOT_POOL_ALL.get());
 		} else {

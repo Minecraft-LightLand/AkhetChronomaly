@@ -25,13 +25,10 @@ public record ChooseArtifactToServer(
 		}
 		var sets = AkhetChronomaly.REGISTRATE.SET_LIST;
 		if (set >= sets.size()) return;
-		var slots = sets.get(set).items;
-		if (slot >= slots.length) return;
-		var ranks = slots[slot];
-		if (rank >= ranks.length) return;
+		if (slot >= sets.get(set).size()) return;
 		if (!player.getAbilities().instabuild)
 			stack.shrink(1);
-		ItemStack artifact = ranks[rank].asStack();
+		ItemStack artifact = sets.get(set).getItem(slot, rank);
 		player.getInventory().placeItemBackInInventory(artifact);
 	}
 }

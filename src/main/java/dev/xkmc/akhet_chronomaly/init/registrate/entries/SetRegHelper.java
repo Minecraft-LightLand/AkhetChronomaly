@@ -24,8 +24,8 @@ public class SetRegHelper {
 		return reg.regLinear(id, this, v, s);
 	}
 
-	public SetBuilder<ArtifactSet, BaseArtifact, ACRegistrate> regSet(int min, int max, String lang) {
-		return reg.regSet(id, ArtifactSet::new, min, max, lang);
+	public SetBuilder<ArtifactSet, BaseArtifact, ACRegistrate> regSet(String lang) {
+		return reg.regSet(id, ArtifactSet::new, lang);
 	}
 
 	public <T extends SetEffect> SetEffectBuilder<T, ACRegistrate> setEffect(String id, NonNullSupplier<T> sup) {

@@ -27,9 +27,8 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
 		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.items[0][setEntry.items[0].length - 1].asStack();
-		int n = setEntry.items.length;
-		return x < n ? setEntry.items[x][setEntry.items[x].length - 1].asStack() : ItemStack.EMPTY;
+		if (comp.equals("set")) return setEntry.getItem(0, -1);
+		return setEntry.getItem(x, -1);
 	}
 
 
@@ -46,8 +45,7 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 		}
 		int ind = result.x();
 		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		int n = setEntry.items.length;
-		if (ind >= n) return false;
+		if (ind >= setEntry.size()) return false;
 		Minecraft.getInstance().setScreen(new RankSelectScreen(set, ind));
 		return true;
 	}

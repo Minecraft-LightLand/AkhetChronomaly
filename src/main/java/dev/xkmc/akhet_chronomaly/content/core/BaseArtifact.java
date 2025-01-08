@@ -1,13 +1,12 @@
 package dev.xkmc.akhet_chronomaly.content.core;
 
 import com.google.common.collect.Multimap;
-import dev.xkmc.akhet_chronomaly.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
+import dev.xkmc.akhet_chronomaly.init.data.ACModConfig;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
@@ -18,6 +17,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class BaseArtifact extends RankedItem implements ICurioItem {
+public class BaseArtifact extends Item implements ICurioItem {
 
 	public static void upgrade(ItemStack stack, int exp) {
 		var stats = ACItems.STATS.get(stack);
@@ -48,10 +48,14 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 	public final Supplier<ArtifactSet> set;
 	public final Supplier<ArtifactSlot> slot;
 
-	public BaseArtifact(Properties properties, Supplier<ArtifactSet> set, Supplier<ArtifactSlot> slot, int rank) {
-		super(properties.stacksTo(1), rank);
+	public BaseArtifact(Properties properties, Supplier<ArtifactSet> set, Supplier<ArtifactSlot> slot) {
+		super(properties.stacksTo(1));
 		this.set = set;
 		this.slot = slot;
+	}
+
+	public static int getRank(ItemStack stack) {
+		return Math.min(ACModConfig.SERVER.maxRank.get(), getStats(stack).map(ArtifactStats::rank).orElse(0));
 	}
 
 	@Override
@@ -62,9 +66,10 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 
 	public InteractionResultHolder<ItemStack> resolve(RegistryAccess access, ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
-		if (optStats.isEmpty()) {
+		if (optStats.isEmpty() || optStats.get().stats().isEmpty()) {
 			if (!isClient) {
-				ArtifactStats stats = ArtifactStats.generate(access, slot.get(), rank, random);
+				ArtifactStats stats = optStats.map(e -> e.generate(access, random))
+						.orElseGet(() -> ArtifactStats.generate(access, slot.get(), 0, random));
 				complete(stack, stats);
 			}
 			return InteractionResultHolder.success(stack);
@@ -86,30 +91,12 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 		boolean shift = flag.hasShiftDown();
 		if (Proxy.getClientPlayer() != null) {
 			var stats = getStats(stack);
-			if (stats.isEmpty()) {
+			if (stats.isEmpty() || stats.get().stats().isEmpty()) {
 				list.add(ACLang.RAW_ARTIFACT.get());
 			} else {
-				var s = stats.get();
-				boolean max = s.level() == ArtifactUpgradeManager.getMaxLevel(s.rank());
-				list.add(ACLang.ARTIFACT_LEVEL.get(s.level()).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
-				if (s.level() < ArtifactUpgradeManager.getMaxLevel(s.rank())) {
-					if (shift)
-						list.add(ACLang.ARTIFACT_EXP.get(s.exp(), ArtifactUpgradeManager.getExpForLevel(s.rank(), s.level())));
-				}
-				if (s.level() > s.old_level()) {
-					list.add(ACLang.UPGRADE.get());
-				} else if (!shift) {
-					if (!s.stats().isEmpty()) {
-						list.add(ACLang.STAT.get());
-						for (StatEntry ent : s.stats()) {
-							list.add(ent.getTooltip(null));
-						}
-					}
-				}
+				stats.get().buildTooltip(ctx, list, flag);
 			}
 			list.addAll(set.get().getAllDescs(stack, shift));
-			if (!shift)
-				list.add(ACLang.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		if (!shift) {
 			list.add(ACLang.SHIFT_TEXT.get());
@@ -120,7 +107,7 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext ctx, ResourceLocation id, ItemStack stack) {
 		var stats = getStats(stack);
 		if (stats.isPresent()) {
-			return stats.get().buildAttributes(id);
+			return stats.get().buildAttributes(ctx.entity().registryAccess(), id);
 		}
 		return ICurioItem.super.getAttributeModifiers(ctx, id, stack);
 	}
@@ -148,7 +135,7 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 		} catch (Exception e) {
 			if (slotContext.entity() instanceof Player player) {
 				L2LibReg.CONDITIONAL.type().getOrCreate(player).data.entrySet().removeIf(x -> x.getKey().type().equals(AkhetChronomaly.MODID));
-				AkhetChronomaly.LOGGER.error("Player " + player + " has invalid artifact data for " + stack.getItem() + ". This could be a bug.");
+				AkhetChronomaly.LOGGER.error("Player {} has invalid artifact data for {}. This could be a bug.", player, stack.getItem());
 			}
 		}
 	}

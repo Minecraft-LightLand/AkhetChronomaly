@@ -29,10 +29,9 @@ public class RankSelectScreen extends AbstractSelectScreen {
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
 		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.items[0][setEntry.items[0].length - 1].asStack();
-		if (comp.equals("slot")) return setEntry.items[slot][setEntry.items[slot].length - 1].asStack();
-		int n = setEntry.items[slot].length;
-		return x < n ? setEntry.items[slot][x].asStack() : ItemStack.EMPTY;
+		if (comp.equals("set")) return setEntry.getItem(0, -1);
+		if (comp.equals("slot")) return setEntry.getItem(slot, -1);
+		return setEntry.getItem(slot, -1);
 	}
 
 	@Override
@@ -52,7 +51,7 @@ public class RankSelectScreen extends AbstractSelectScreen {
 		}
 		int ind = result.x();
 		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		int n = setEntry.items[slot].length;
+		int n = 5;//TODO max rank
 		if (ind >= n) return false;
 		Minecraft.getInstance().setScreen(null);
 		AkhetChronomaly.HANDLER.toServer(new ChooseArtifactToServer(set, slot, ind));

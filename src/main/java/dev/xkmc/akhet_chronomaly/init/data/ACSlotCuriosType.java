@@ -7,11 +7,18 @@ import top.theillusivec4.curios.api.CuriosDataProvider;
 import java.util.Locale;
 
 public enum ACSlotCuriosType {
-	HEAD("artifact_head", 15231, 1),
-	NECKLACE("artifact_necklace", 15232, 1),
-	BRACELET("artifact_bracelet", 15233, 1),
-	BODY("artifact_body", 15234, 1),
-	BELT("artifact_belt", -15235, 1);
+	HEAD("akhet_head", 15231, 1),
+	CAPE("akhet_cape", 15232, 1),
+	BODY("akhet_body", 15233, 1),
+	BELT("akhet_belt", 15234, 1),
+	LEGS("akhet_legs", 15235, 1),
+	FEET("akhet_feet", 15236, 1),
+	SHOULDER("akhet_shoulder", 15237, 2),
+	WRIST("akhet_wrist", 15238, 2),
+	HAND("akhet_hand", 15239, 2),
+	NECK("akhet_neck", 15240, 1),
+	RING("akhet_ring", 15241, 2),
+	CHARM("akhet_charm", 15242, 3);
 
 	final String id;
 	public final int priority, count;

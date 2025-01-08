@@ -24,8 +24,7 @@ public class SetSelectScreen extends AbstractSelectScreen {
 	protected ItemStack getStack(String comp, int x, int y) {
 		int ind = x + y * 9;
 		if (ind >= AkhetChronomaly.REGISTRATE.SET_LIST.size()) return ItemStack.EMPTY;
-		var arr = AkhetChronomaly.REGISTRATE.SET_LIST.get(ind).items[0];
-		return arr[arr.length - 1].asStack();
+		return AkhetChronomaly.REGISTRATE.SET_LIST.get(ind).getItem(0, -1);
 	}
 
 	@Override

@@ -1,0 +1,9 @@
+{
+  "attr": "minecraft:player.block_interaction_range",
+  "base": 0.2,
+  "base_high": 1.0,
+  "base_low": 0.5,
+  "leveling_high": 0.2,
+  "leveling_low": 0.1,
+  "op": "ADD_VALUE"
+}

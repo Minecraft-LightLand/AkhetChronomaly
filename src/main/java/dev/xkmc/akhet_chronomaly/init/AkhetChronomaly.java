@@ -68,7 +68,7 @@ public class AkhetChronomaly {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
-		ConfigGen.register();
+		ACConfigGen.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, ACLang::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LOOT, ACLootGen::onLootGen);
@@ -76,7 +76,7 @@ public class AkhetChronomaly {
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ACTagGen::onEntityTypeGen);
 		REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, AkhetChronomaly::onDataMapGen);
 		var init = REGISTRATE.getDataGenInitializer();
-		init.add(ACTypeRegistry.STAT_TYPE.key(), ConfigGen::genSlotType);
+		init.add(ACTypeRegistry.STAT_TYPE.key(), ACConfigGen::genSlotType);
 
 		var run = event.includeServer();
 		var gen = event.getGenerator();
@@ -90,6 +90,7 @@ public class AkhetChronomaly {
 
 	private static void onDataMapGen(RegistrateDataMapProvider pvd) {
 		ACTabRegistry.genTabs(pvd);
+		ACConfigGen.genStatMap(pvd);
 	}
 
 	public static ResourceLocation loc(String id) {

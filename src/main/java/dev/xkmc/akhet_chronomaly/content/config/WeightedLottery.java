@@ -1,5 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.config;
 
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.Holder;
@@ -11,31 +12,32 @@ import java.util.List;
 
 public class WeightedLottery {
 
-	private final List<Pair<Holder<StatType>, Integer>> list = new LinkedList<>();
+	private final List<Pair<Holder<StatType>, SlotStatEntry>> list = new LinkedList<>();
 	private final RandomSource source;
 	private int total = 0;
 
-	public WeightedLottery(RegistryAccess access, RandomSource source, boolean main) {
+	public WeightedLottery(ArtifactSlot slot, RegistryAccess access, RandomSource source) {
 		this.source = source;
-		ACTypeRegistry.STAT_TYPE.getAll(access)
-				.map(e -> Pair.of(e, main ? e.value().mainWeight() : e.value().subWeight()))
-				.filter(e -> e.second() > 0)
-				.forEach(list::add);
+		var map = ACTypeRegistry.STAT_MAP.get(access, slot.holder());
+		if (map == null) return;
+		map.map().entrySet().stream()
+				.map(e -> Pair.of(ACTypeRegistry.STAT_TYPE.get(access, e.getKey()), e.getValue()))
+				.filter(e -> e.first() != null && e.second().weight() > 0).forEach(list::add);
 		for (var e : list) {
-			total += e.second();
+			total += e.second().weight();
 		}
 	}
 
-	public Holder<StatType> poll() {
+	public Pair<Holder<StatType>, SlotStatEntry> poll() {
 		var itr = list.iterator();
 		int sel = source.nextInt(total);
 		while (true) {
 			var e = itr.next();
-			sel -= e.second();
+			sel -= e.second().weight();
 			if (sel < 0 || !itr.hasNext()) {
 				itr.remove();
-				total -= e.second();
-				return e.first();
+				total -= e.second().weight();
+				return e;
 			}
 		}
 	}
@@ -49,7 +51,7 @@ public class WeightedLottery {
 		while (itr.hasNext()) {
 			var e = itr.next();
 			if (e.equals(sub)) {
-				total -= e.second();
+				total -= e.second().weight();
 				itr.remove();
 				return;
 			}

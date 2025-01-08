@@ -27,8 +27,8 @@ public class ACRegistrate extends L2Registrate {
 	public final List<SetEntry<?>> SET_LIST = new ArrayList<>();
 	public final Multimap<ResourceLocation, LinearFuncEntry> LINEAR_LIST = LinkedListMultimap.create();
 
-	final <T extends ArtifactSet> SetBuilder<T, BaseArtifact, ACRegistrate> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, String name) {
-		return this.entry(id, (cb) -> new SetBuilder<>(this, this, id, cb, sup, min_rank, max_rank)).lang(name);
+	final <T extends ArtifactSet> SetBuilder<T, BaseArtifact, ACRegistrate> regSet(String id, NonNullSupplier<T> sup, String name) {
+		return this.entry(id, (cb) -> new SetBuilder<>(this, this, id, cb, sup)).lang(name);
 	}
 
 	final LinearFuncEntry regLinear(String id, SetRegHelper set, double base, double slope) {

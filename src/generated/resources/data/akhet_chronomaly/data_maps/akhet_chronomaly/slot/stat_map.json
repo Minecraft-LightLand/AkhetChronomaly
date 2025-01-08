@@ -1,0 +1,484 @@
+{
+  "values": {
+    "akhet_chronomaly:belt": {
+      "map": {
+        "akhet_chronomaly:armor_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:health_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:health_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:body": {
+      "map": {
+        "akhet_chronomaly:absorption": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_add": {
+          "scale": 1.25,
+          "weight": 100
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 1.25,
+          "weight": 100
+        },
+        "akhet_chronomaly:health_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:health_mult": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 1.0,
+          "weight": 50
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:cape": {
+      "map": {
+        "akhet_chronomaly:absorption": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:feet": {
+      "map": {
+        "akhet_chronomaly:absorption": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 0.75,
+          "weight": 50
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:hand": {
+      "map": {
+        "akhet_chronomaly:armor_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:attack_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_range_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:bow_strength_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:mining_range_add": {
+          "scale": 1.0,
+          "weight": 100
+        }
+      },
+      "mayAscend": false,
+      "mayReforge": true,
+      "overallScale": 0.6,
+      "refineChance": 3
+    },
+    "akhet_chronomaly:head": {
+      "map": {
+        "akhet_chronomaly:armor_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 0.75,
+          "weight": 50
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:legs": {
+      "map": {
+        "akhet_chronomaly:absorption": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_add": {
+          "scale": 1.25,
+          "weight": 100
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 1.25,
+          "weight": 100
+        },
+        "akhet_chronomaly:health_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:health_mult": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:speed_mult": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 1.0,
+          "weight": 50
+        }
+      },
+      "mayAscend": true,
+      "mayReforge": true,
+      "overallScale": 1.0,
+      "refineChance": 4
+    },
+    "akhet_chronomaly:neck": {
+      "map": {
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:health_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:health_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 1.0,
+          "weight": 100
+        }
+      },
+      "mayAscend": false,
+      "mayReforge": false,
+      "overallScale": 0.4,
+      "refineChance": 2
+    },
+    "akhet_chronomaly:ring": {
+      "map": {
+        "akhet_chronomaly:attack_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_range_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:bow_strength_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:mining_range_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        }
+      },
+      "mayAscend": false,
+      "mayReforge": false,
+      "overallScale": 0.4,
+      "refineChance": 2
+    },
+    "akhet_chronomaly:shoulder": {
+      "map": {
+        "akhet_chronomaly:armor_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:bow_strength_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:health_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:health_mult": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:reduction": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:regeneration_rate": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:tough_add": {
+          "scale": 0.75,
+          "weight": 50
+        }
+      },
+      "mayAscend": false,
+      "mayReforge": true,
+      "overallScale": 0.6,
+      "refineChance": 3
+    },
+    "akhet_chronomaly:wrist": {
+      "map": {
+        "akhet_chronomaly:armor_add": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:armor_mult": {
+          "scale": 0.75,
+          "weight": 50
+        },
+        "akhet_chronomaly:attack_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:attack_speed_mult": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:bow_strength_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_damage_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:crit_rate_add": {
+          "scale": 1.0,
+          "weight": 100
+        },
+        "akhet_chronomaly:explosion_add": {
+          "scale": 1.0,
+          "weight": 50
+        },
+        "akhet_chronomaly:magic_add": {
+          "scale": 1.0,
+          "weight": 50
+        }
+      },
+      "mayAscend": false,
+      "mayReforge": true,
+      "overallScale": 0.6,
+      "refineChance": 3
+    }
+  }
+}

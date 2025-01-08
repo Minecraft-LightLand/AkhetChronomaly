@@ -1,46 +1,32 @@
 package dev.xkmc.akhet_chronomaly.events;
 
 import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.CuriosUtils;
 import dev.xkmc.akhet_chronomaly.content.set.core.SetEffect;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotResult;
-
-import java.util.List;
 
 @EventBusSubscriber(modid = AkhetChronomaly.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class ArtifactEffectEvents {
 
 	public static <T> void postEvent(LivingEntity entity, T event, EventConsumer<T> cons) {
-		var opt = CuriosApi.getCuriosInventory(entity);
-		if (opt.isEmpty()) return;
-		List<SlotResult> list = opt.get()
-				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
-		for (SlotResult result : list) {
-			ItemStack stack = result.stack();
-			BaseArtifact base = (BaseArtifact) stack.getItem();
-			base.set.get().propagateEvent(result.slotContext(), event, cons);
+		var map = CuriosUtils.findAll(entity);
+		if (map.isEmpty()) return;
+		for (var ent : map.entrySet()) {
+			ent.getKey().propagateEvent(ent.getValue(), entity, event, cons);
 		}
 	}
 
 	public static <T> boolean postEvent(LivingEntity entity, T event, EventPredicate<T> cons) {
-		var opt = CuriosApi.getCuriosInventory(entity);
-		if (opt.isEmpty())
-			return false;
-		List<SlotResult> list = opt.get()
-				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
+		var map = CuriosUtils.findAll(entity);
+		if (map.isEmpty()) return false;
 		boolean ans = false;
-		for (SlotResult result : list) {
-			ItemStack stack = result.stack();
-			BaseArtifact base = (BaseArtifact) stack.getItem();
-			ans |= base.set.get().propagateEvent(result.slotContext(), event, cons);
+		for (var ent : map.entrySet()) {
+			ans |= ent.getKey().propagateEvent(ent.getValue(), entity, event, cons);
 		}
 		return ans;
 	}

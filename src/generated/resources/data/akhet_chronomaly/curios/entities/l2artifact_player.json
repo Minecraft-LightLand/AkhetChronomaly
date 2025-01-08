@@ -3,10 +3,17 @@
     "minecraft:player"
   ],
   "slots": [
-    "artifact_head",
-    "artifact_belt",
-    "artifact_body",
-    "artifact_necklace",
-    "artifact_bracelet"
+    "akhet_wrist",
+    "akhet_ring",
+    "akhet_belt",
+    "akhet_charm",
+    "akhet_head",
+    "akhet_shoulder",
+    "akhet_legs",
+    "akhet_feet",
+    "akhet_hand",
+    "akhet_cape",
+    "akhet_body",
+    "akhet_neck"
   ]
 }

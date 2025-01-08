@@ -3,13 +3,13 @@ package dev.xkmc.akhet_chronomaly.content.client.tab;
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.CuriosUtils;
 import dev.xkmc.l2library.util.TextWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 import javax.annotation.Nullable;
@@ -22,11 +22,8 @@ public record SetEffectEntries(
 ) {
 
 	public static List<List<SetEffectEntries>> aggregate(@Nullable LivingEntity le, int width, int linePerPage) {
-		if (le == null) return List.of();
-		var opt = CuriosApi.getCuriosInventory(le);
-		if (opt.isEmpty()) return List.of();
-		List<SlotResult> slots = opt.get()
-				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
+		var slots = CuriosUtils.findAll(le);
+		if (slots.isEmpty()) return List.of();
 		List<SetEffectEntries> raw = new ArrayList<>();
 		for (SlotResult sr : slots) {
 			ItemStack stack = sr.stack();//玩家身上的饰品

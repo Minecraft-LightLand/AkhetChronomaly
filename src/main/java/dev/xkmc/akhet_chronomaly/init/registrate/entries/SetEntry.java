@@ -9,22 +9,23 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class SetEntry<T extends ArtifactSet> extends RegistryEntry<ArtifactSet, T> {
 
-	public final ItemEntry<BaseArtifact>[][] items;
+	public final ItemEntry<BaseArtifact>[] items;
 
 	public SetEntry(ACRegistrate owner, DeferredHolder<ArtifactSet, T> delegate,
-					ItemEntry<BaseArtifact>[][] items) {
+					ItemEntry<BaseArtifact>[] items) {
 		super(owner, delegate);
 		this.items = items;
 		owner.SET_LIST.add(this);
 		owner.SET_MAP.put(getId(), this);
 	}
 
-	public boolean hasRank(int rank) {
-		return items[0][0].get().rank <= rank && rank <= items[0][items[0].length - 1].get().rank;
+	public int size() {
+		return items.length;
 	}
 
 	public ItemStack getItem(int slot, int rank) {
-		return items[slot][rank - items[slot][0].get().rank].asStack();
+		if (rank < 0) rank = 0;
+		return items[slot].asStack();//TODO
 	}
 
 }

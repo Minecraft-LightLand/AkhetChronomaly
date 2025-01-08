@@ -11,20 +11,19 @@ import java.util.List;
 
 public record SetGroup(ArrayList<ArtifactSet> set) {
 
-	public static SetGroup of(int rank, Collection<SetEntry<?>> sets) {
-		return new SetGroup(new ArrayList<>(sets.stream().filter(e -> e.hasRank(rank)).map(DeferredHolder::get).toList()));
+	public static SetGroup of(Collection<SetEntry<?>> sets) {
+		return new SetGroup(new ArrayList<>(sets.stream().map(DeferredHolder::get).toList()));
 	}
 
-	public static SetGroup ofGroup(int rank, Collection<SetEntry<?>> sets) {
-		return new SetGroup(new ArrayList<>(sets.stream().filter(e -> e.items.length == 5 && e.hasRank(rank)).map(DeferredHolder::get).toList()));
+	public static SetGroup ofGroup(Collection<SetEntry<?>> sets) {
+		return new SetGroup(new ArrayList<>(sets.stream().map(DeferredHolder::get).toList()));
 	}
 
-	public List<SetEntry<?>> getSets(int rank, boolean full) {
+	public List<SetEntry<?>> getSets(boolean full) {//TODO
 		ArrayList<SetEntry<?>> ans = new ArrayList<>();
 		for (var e : set) {
 			var x = AkhetChronomaly.REGISTRATE.SET_MAP.get(e.getRegistryName());
-			if (x == null || !x.hasRank(rank)) continue;
-			if (full && x.items.length != 5) continue;
+			if (x == null) continue;
 			ans.add(x);
 		}
 		return ans;

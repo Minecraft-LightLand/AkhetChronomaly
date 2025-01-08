@@ -1,0 +1,9 @@
+{
+  "attr": "l2damagetracker:damage_absorption",
+  "base": 0.5,
+  "base_high": 1.0,
+  "base_low": 0.5,
+  "leveling_high": 0.2,
+  "leveling_low": 0.1,
+  "op": "ADD_VALUE"
+}

@@ -3,6 +3,7 @@ package dev.xkmc.akhet_chronomaly.init.registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
 import dev.xkmc.akhet_chronomaly.content.config.LinearParam;
+import dev.xkmc.akhet_chronomaly.content.config.SlotStatMap;
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
@@ -28,12 +29,19 @@ public class ACTypeRegistry {
 
 	public static final DataMapReg<LinearFunc, LinearParam> LINEAR_CONFIG = AkhetChronomaly.REG.dataMap("linear", LINEAR.key(), LinearParam.class);
 	public static final DataMapReg<ArtifactSet, ArtifactSetConfig> ARTIFACT_SETS = AkhetChronomaly.REG.dataMap("artifact_sets", SET.key(), ArtifactSetConfig.class);
+	public static final DataMapReg<ArtifactSlot, SlotStatMap> STAT_MAP = AkhetChronomaly.REG.dataMap("stat_map", SLOT.key(), SlotStatMap.class);
 
 	public static final SimpleEntry<ArtifactSlot> SLOT_HEAD = regSlot("head", () -> new ArtifactSlot(ACSlotCuriosType.HEAD));
-	public static final SimpleEntry<ArtifactSlot> SLOT_NECKLACE = regSlot("necklace", () -> new ArtifactSlot(ACSlotCuriosType.NECKLACE));
-	public static final SimpleEntry<ArtifactSlot> SLOT_BRACELET = regSlot("bracelet", () -> new ArtifactSlot(ACSlotCuriosType.BRACELET));
 	public static final SimpleEntry<ArtifactSlot> SLOT_BODY = regSlot("body", () -> new ArtifactSlot(ACSlotCuriosType.BODY));
+	public static final SimpleEntry<ArtifactSlot> SLOT_CAPE = regSlot("cape", () -> new ArtifactSlot(ACSlotCuriosType.CAPE));
 	public static final SimpleEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", () -> new ArtifactSlot(ACSlotCuriosType.BELT));
+	public static final SimpleEntry<ArtifactSlot> SLOT_LEGS = regSlot("legs", () -> new ArtifactSlot(ACSlotCuriosType.LEGS));
+	public static final SimpleEntry<ArtifactSlot> SLOT_FEET = regSlot("feet", () -> new ArtifactSlot(ACSlotCuriosType.FEET));
+	public static final SimpleEntry<ArtifactSlot> SLOT_SHOULDER = regSlot("shoulder", () -> new ArtifactSlot(ACSlotCuriosType.SHOULDER));
+	public static final SimpleEntry<ArtifactSlot> SLOT_WRIST = regSlot("wrist", () -> new ArtifactSlot(ACSlotCuriosType.WRIST));
+	public static final SimpleEntry<ArtifactSlot> SLOT_HAND = regSlot("hand", () -> new ArtifactSlot(ACSlotCuriosType.HAND));
+	public static final SimpleEntry<ArtifactSlot> SLOT_NECK = regSlot("neck", () -> new ArtifactSlot(ACSlotCuriosType.NECK));
+	public static final SimpleEntry<ArtifactSlot> SLOT_RING = regSlot("ring", () -> new ArtifactSlot(ACSlotCuriosType.RING));
 
 	public static void register() {
 

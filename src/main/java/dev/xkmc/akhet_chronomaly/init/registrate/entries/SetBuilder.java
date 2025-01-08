@@ -33,16 +33,13 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	private final NonNullSupplier<T> sup;
-	private final int min_rank, max_rank;
 
 	private SimpleEntry<ArtifactSlot>[] slots;
-	private ItemEntry<BaseArtifact>[][] items;
+	private ItemEntry<BaseArtifact>[] items;
 
-	public SetBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank) {
+	public SetBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup) {
 		super(owner, parent, name, callback, ACTypeRegistry.SET.key());
 		this.sup = sup;
-		this.min_rank = min_rank;
-		this.max_rank = max_rank;
 
 	}
 
@@ -62,24 +59,19 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	@SuppressWarnings({"rawtype", "unchecked"})
 	public SetBuilder<T, I, P> regItems() {
 		if (slots == null) throw new IllegalStateException("call setSlots() first");
-		items = new ItemEntry[slots.length][max_rank - min_rank + 1];
+		items = new ItemEntry[slots.length];
 		TagKey<Item> artifact = ItemTags.create(AkhetChronomaly.loc("artifact"));
 		for (int i = 0; i < slots.length; i++) {
 			SimpleEntry<ArtifactSlot> slot = slots[i];
 			String slot_name = slot.key().location().getPath();
 			TagKey<Item> curios_tag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "artifact_" + slot_name));
 			TagKey<Item> slot_tag = ItemTags.create(AkhetChronomaly.loc(slot_name));
-			for (int r = min_rank; r <= max_rank; r++) {
-				TagKey<Item> rank_tag = ItemTags.create(AkhetChronomaly.loc("rank_" + r));
-				String name = this.getName() + "_" + slot_name + "_" + r;
-				int rank = r;
-				items[i][r - min_rank] = AkhetChronomaly.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
-						.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
-								.texture("layer0", AkhetChronomaly.loc("item/rank/" + rank))
-								.texture("layer1", AkhetChronomaly.loc("item/" + getName() + "/" + slot_name)))
-						.tag(curios_tag, slot_tag, rank_tag, artifact).lang(RegistrateLangProvider
-								.toEnglishName(this.getName() + "_" + slot_name) + RANK_NAME[r - 1]).register();
-			}
+			String name = this.getName() + "_" + slot_name;
+			items[i] = AkhetChronomaly.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot))
+					.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer1", AkhetChronomaly.loc("item/" + getName() + "/" + slot_name)))
+					.tag(curios_tag, slot_tag, artifact).lang(RegistrateLangProvider
+							.toEnglishName(this.getName() + "_" + slot_name)).register();
 		}
 		return this;
 	}

@@ -20,10 +20,8 @@ import java.util.List;
 
 public record StatType(
 		double base, double base_low, double base_high,
-		double main_low, double main_high, double sub_low,
-		double sub_high, Holder<Attribute> attr,
+		double leveling_low, double leveling_high, Holder<Attribute> attr,
 		AttributeModifier.Operation op,
-		int mainWeight, int subWeight,
 		@Nullable ResourceLocation icon
 ) {
 
@@ -45,12 +43,8 @@ public record StatType(
 		return Mth.nextDouble(random, base_low, base_high);
 	}
 
-	public double getMainValue(RandomSource random) {
-		return Mth.nextDouble(random, main_low, main_high);
-	}
-
-	public double getSubValue(RandomSource random) {
-		return Mth.nextDouble(random, sub_low, sub_high);
+	public double getLevelingValue(RandomSource random) {
+		return Mth.nextDouble(random, leveling_low, leveling_high);
 	}
 
 	public MutableComponent getValueText(double val) {
