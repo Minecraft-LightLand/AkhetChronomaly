@@ -2,12 +2,10 @@ package dev.xkmc.akhet_chronomaly.init.registrate;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
-import dev.xkmc.akhet_chronomaly.content.config.LinearParam;
 import dev.xkmc.akhet_chronomaly.content.config.SlotStatMap;
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
-import dev.xkmc.akhet_chronomaly.content.core.LinearFunc;
 import dev.xkmc.akhet_chronomaly.content.set.core.SetEffect;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACSlotCuriosType;
@@ -23,11 +21,9 @@ public class ACTypeRegistry {
 	public static final L2Registrate.RegistryInstance<ArtifactSlot> SLOT = REGISTRATE.newRegistry("slot", ArtifactSlot.class);
 	public static final L2Registrate.RegistryInstance<ArtifactSet> SET = REGISTRATE.newRegistry("set", ArtifactSet.class);
 	public static final L2Registrate.RegistryInstance<SetEffect> SET_EFFECT = REGISTRATE.newRegistry("set_effect", SetEffect.class);
-	public static final L2Registrate.RegistryInstance<LinearFunc> LINEAR = REGISTRATE.newRegistry("linear", LinearFunc.class);
 
 	public static final DatapackReg<StatType> STAT_TYPE = AkhetChronomaly.REG.dataReg("stat_type", StatType.class);
 
-	public static final DataMapReg<LinearFunc, LinearParam> LINEAR_CONFIG = AkhetChronomaly.REG.dataMap("linear", LINEAR.key(), LinearParam.class);
 	public static final DataMapReg<ArtifactSet, ArtifactSetConfig> ARTIFACT_SETS = AkhetChronomaly.REG.dataMap("artifact_sets", SET.key(), ArtifactSetConfig.class);
 	public static final DataMapReg<ArtifactSlot, SlotStatMap> STAT_MAP = AkhetChronomaly.REG.dataMap("stat_map", SLOT.key(), SlotStatMap.class);
 

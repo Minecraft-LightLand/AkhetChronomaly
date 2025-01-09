@@ -7,7 +7,6 @@ import dev.xkmc.akhet_chronomaly.content.set.core.PlayerOnlySetEffect;
 import dev.xkmc.akhet_chronomaly.events.ArtifactEffectEvents;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
-import dev.xkmc.akhet_chronomaly.init.data.ACModConfig;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.util.Proxy;
@@ -30,25 +29,25 @@ import java.util.Optional;
 
 public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
-	public record SetContext(int count, int[] ranks, int current_index) {
+	public record SetContext(int count, int index) {
 
 	}
 
-	private static int[] remapRanks(int count, int[] rank) {
-		for (int i = rank.length - 2; i >= 0; i--) {
-			rank[i] += rank[i + 1];
-		}
-		// now rank[i] means how many items are equal or above this rank
-		// ranks[i] means the maximum rank for count of i
-		int[] ranks = new int[count + 1];
-		for (int i = 0; i <= count; i++) { // count
-			for (int j = 0; j < rank.length; j++) { // rank
-				if (rank[j] >= i) {
-					ranks[i] = Math.max(ranks[i], j);
-				}
+	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
+		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
+		var list = CuriosUtils.find(e, this);
+		if (list.isEmpty()) return Optional.empty();
+		int index = -1;
+		int count = 0;
+		for (SlotResult result : list) {
+			if (result.stack().getItem() instanceof BaseArtifact) {
+				if (context != null && context.identifier().equals(result.slotContext().identifier()) &&
+						context.index() == result.slotContext().index())
+					index = count;
+				count++;
 			}
 		}
-		return ranks;
+		return Optional.of(new SetContext(count, index));
 	}
 
 	private MutableComponent getCountDesc(int count) {
@@ -58,44 +57,6 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
 	public ArtifactSet() {
 		super(ACTypeRegistry.SET);
-	}
-
-	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
-		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
-		var list = CuriosUtils.find(e, this);
-		if (list.isEmpty()) return Optional.empty();
-		int[] rank = new int[ACModConfig.SERVER.maxRank.get() + 1];
-		int index = -1;
-		int count = 0;
-		for (SlotResult result : list) {
-			if (result.stack().getItem() instanceof BaseArtifact) {
-				rank[BaseArtifact.getRank(result.stack())]++;
-				if (context != null && context.identifier().equals(result.slotContext().identifier()) &&
-						context.index() == result.slotContext().index())
-					index = count;
-				count++;
-			}
-		}
-		return Optional.of(new SetContext(count, remapRanks(count, rank), index));
-	}
-
-
-	public SetContext getSetCount(List<SlotResult> list) {
-		int[] rank = new int[ACModConfig.SERVER.maxRank.get() + 1];
-		int count = 0;
-		for (SlotResult result : list) {
-			if (result.stack().getItem() instanceof BaseArtifact) {
-				rank[BaseArtifact.getRank(result.stack())]++;
-				count++;
-			}
-		}
-		return new SetContext(count, remapRanks(count, rank), -1);
-	}
-
-	public Optional<SetContext> getSetCount(LivingEntity e) {
-		var list = CuriosUtils.find(e, this);
-		if (list.isEmpty()) return Optional.empty();
-		return Optional.of(getSetCount(list));
 	}
 
 	private List<ArtifactSetConfig.Entry> getConfig(LivingEntity e) {
@@ -113,34 +74,34 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		Optional<SetContext> result = getCountAndIndex(context);
 		if (result.isPresent()) {
 			for (ArtifactSetConfig.Entry ent : getConfig(context.entity())) {
-				ent.effect().update(e, ent, result.get().ranks()[ent.count()], result.get().count() >= ent.count());
+				ent.effect().update(e, ent, result.get().count() >= ent.count());
 			}
 		}
 	}
 
 	public void tick(SlotContext context) {
 		LivingEntity e = context.entity();
-		Optional<SetContext> result = getCountAndIndex(context);
-		if (result.isPresent() && result.get().current_index() == 0) {
+		var result = getCountAndIndex(context);
+		if (result.isPresent() && result.get().index() == 0) {
 			for (ArtifactSetConfig.Entry ent : getConfig(context.entity())) {
-				ent.effect().tick(e, ent, result.get().ranks()[ent.count()], result.get().count() >= ent.count());
+				ent.effect().tick(e, ent, result.get().count() >= ent.count());
 			}
 		}
 	}
 
-	public <T> void propagateEvent(SetContext ctx, LivingEntity e, T event, ArtifactEffectEvents.EventConsumer<T> cons) {
+	public <T> void propagateEvent(int count, LivingEntity e, T event, ArtifactEffectEvents.EventConsumer<T> cons) {
 		for (ArtifactSetConfig.Entry ent : getConfig(e)) {
-			if (ctx.count() >= ent.count()) {
-				cons.apply(ent.effect(), e, ent, ctx.ranks()[ent.count()], event);
+			if (count >= ent.count()) {
+				cons.apply(ent.effect(), e, ent, event);
 			}
 		}
 	}
 
-	public <T> boolean propagateEvent(SetContext ctx, LivingEntity e, T event, ArtifactEffectEvents.EventPredicate<T> cons) {
+	public <T> boolean propagateEvent(int count, LivingEntity e, T event, ArtifactEffectEvents.EventPredicate<T> cons) {
 		boolean ans = false;
 		for (ArtifactSetConfig.Entry ent : getConfig(e)) {
-			if (ctx.count() >= ent.count()) {
-				ans |= cons.apply(ent.effect(), e, ent, ctx.ranks()[ent.count()], event);
+			if (count >= ent.count()) {
+				ans |= cons.apply(ent.effect(), e, ent, event);
 			}
 
 		}
@@ -151,21 +112,17 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		List<MutableComponent> ans = new ArrayList<>();
 		var list = getConfig(ServerProxy.getRegistryAccess());
 		if (Proxy.getPlayer() != null) {
-			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
-			if (opt.isPresent()) {
-				int rank = BaseArtifact.getRank(stack);
-				SetContext ctx = opt.get();
+			int count = CuriosUtils.find(Proxy.getPlayer(), this).size();
+			if (count > 0) {
 				ans.add(ACLang.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
 				if (show) {
 					for (ArtifactSetConfig.Entry ent : list) {
-						ChatFormatting color_count = ctx.count() < ent.count() ?
+						ChatFormatting color_title = count < ent.count() ?
 								ChatFormatting.GRAY : ChatFormatting.GREEN;
-						ChatFormatting color_title = ctx.count() < ent.count() || ctx.ranks()[ent.count()] < rank ?
-								ChatFormatting.GRAY : ChatFormatting.GREEN;
-						ChatFormatting color_desc = ctx.count() < ent.count() || ctx.ranks()[ent.count()] < rank ?
+						ChatFormatting color_desc = count < ent.count() ?
 								ChatFormatting.DARK_GRAY : ChatFormatting.DARK_GREEN;
-						ans.add(getCountDesc(ent.count()).withStyle(color_count).append(ent.effect().getDesc().withStyle(color_title)));
-						List<MutableComponent> desc = ent.effect().getDetailedDescription(rank);
+						ans.add(getCountDesc(ent.count()).withStyle(color_title).append(ent.effect().getDesc().withStyle(color_title)));
+						List<MutableComponent> desc = ent.effect().getDetailedDescription();
 						for (MutableComponent comp : desc) {
 							ans.add(comp.withStyle(color_desc));
 						}
@@ -185,22 +142,21 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		return ans;
 	}
 
-	public List<Pair<List<Component>, List<Component>>> addComponents(SetContext ctx) {
+	public List<Pair<List<Component>, List<Component>>> addComponents(int count) {
 		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
 		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
-		ans.add(Pair.of(List.of(ACLang.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
+		ans.add(Pair.of(List.of(ACLang.ALL_SET_EFFECTS.get(getDesc(), count)), List.of()));
 		var list = getConfig(ServerProxy.getRegistryAccess());
 		for (ArtifactSetConfig.Entry ent : list) {
 			//判断符合数量条件的效果与描述加入ans
-			if (ctx.count() >= ent.count()) {//若数量符合
-				int rank = ctx.ranks[ent.count()];//根据不同数量获取不同等级
+			if (count >= ent.count()) {//若数量符合
 				List<Component> a = List.of(getCountDesc(ent.count()), ent.effect().getDesc()
-						.withStyle(DarkTextColorRanks.getDark(rank)));
+						.withStyle(DarkTextColorRanks.getDark()));
 				List<Component> b = new ArrayList<>();
 				b.add(getCountDesc(ent.count()).append(ent.effect().getDesc()
-						.withStyle(DarkTextColorRanks.getLight(rank))));
-				b.addAll(ent.effect().getDetailedDescription(rank).stream()
-						.map(comp -> (Component) comp.withStyle(DarkTextColorRanks.getDark(rank))).toList());
+						.withStyle(DarkTextColorRanks.getLight())));
+				b.addAll(ent.effect().getDetailedDescription().stream()
+						.map(comp -> (Component) comp.withStyle(DarkTextColorRanks.getDark())).toList());
 				ans.add(Pair.of(a, b));
 			}
 		}

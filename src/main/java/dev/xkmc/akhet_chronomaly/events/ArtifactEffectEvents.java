@@ -44,13 +44,13 @@ public class ArtifactEffectEvents {
 
 	public interface EventConsumer<T> {
 
-		void apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, int rank, T event);
+		void apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, T event);
 
 	}
 
 	public interface EventPredicate<T> {
 
-		boolean apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, int rank, T event);
+		boolean apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, T event);
 
 	}
 

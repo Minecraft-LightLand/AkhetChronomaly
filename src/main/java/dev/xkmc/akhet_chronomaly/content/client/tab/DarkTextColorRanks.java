@@ -9,12 +9,12 @@ public enum DarkTextColorRanks {
 	PURPLE(ChatFormatting.LIGHT_PURPLE, ChatFormatting.DARK_PURPLE),
 	GOLD(ChatFormatting.RED, ChatFormatting.DARK_RED);
 
-	public static ChatFormatting getLight(int rank) {
-		return values()[rank - 1].light;
+	public static ChatFormatting getLight() {
+		return values()[0].light;
 	}
 
-	public static ChatFormatting getDark(int rank) {
-		return values()[rank - 1].dark;
+	public static ChatFormatting getDark() {
+		return values()[0].dark;
 	}
 
 	public final ChatFormatting light, dark;

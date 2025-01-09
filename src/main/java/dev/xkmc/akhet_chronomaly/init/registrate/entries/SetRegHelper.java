@@ -20,10 +20,6 @@ public class SetRegHelper {
 		return ResourceLocation.fromNamespaceAndPath(reg.getModid(), id);
 	}
 
-	public <I extends BaseArtifact> LinearFuncEntry regLinear(String id, double v, double s) {
-		return reg.regLinear(id, this, v, s);
-	}
-
 	public SetBuilder<ArtifactSet, BaseArtifact, ACRegistrate> regSet(String lang) {
 		return reg.regSet(id, ArtifactSet::new, lang);
 	}

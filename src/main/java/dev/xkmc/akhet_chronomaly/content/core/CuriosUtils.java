@@ -12,7 +12,8 @@ import java.util.Map;
 
 public class CuriosUtils {
 
-	public static Map<ArtifactSet, ArtifactSet.SetContext> findAll(@Nullable LivingEntity le) {
+	//TODO improve performance
+	public static Map<ArtifactSet, Integer> findAll(@Nullable LivingEntity le) {
 		if (le == null) return Map.of();
 		var opt = CuriosApi.getCuriosInventory(le);
 		if (opt.isEmpty()) return Map.of();
@@ -23,9 +24,9 @@ public class CuriosUtils {
 				map.computeIfAbsent(art.set.get(), k -> new ArrayList<>()).add(e);
 			}
 		}
-		Map<ArtifactSet, ArtifactSet.SetContext> ans = new LinkedHashMap<>();
+		Map<ArtifactSet, Integer> ans = new LinkedHashMap<>();
 		for (var ent : map.entrySet()) {
-			ans.put(ent.getKey(), ent.getKey().getSetCount(ent.getValue()));
+			ans.put(ent.getKey(), ent.getValue().size());
 		}
 		return ans;
 	}

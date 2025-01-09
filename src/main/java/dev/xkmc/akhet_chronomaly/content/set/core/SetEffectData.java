@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 public class SetEffectData extends ConditionalToken {
 
 	@SerialField
-	public int life, rank;
+	public int life;
 
 	public boolean tick(Player player) {
 		if (life > 0)
@@ -20,9 +20,8 @@ public class SetEffectData extends ConditionalToken {
 		return life <= 0;
 	}
 
-	public void update(int time, int rank) {
+	public void update(int time) {
 		life = time;
-		this.rank = rank;
 	}
 
 	protected void remove(Player player) {
