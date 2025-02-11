@@ -1,5 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.client.select;
 
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
@@ -11,9 +12,9 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 
 	private static final SpriteManager MANAGER = new SpriteManager(AkhetChronomaly.MODID, "slot_select");
 
-	private final int set;
+	private final ArtifactSet set;
 
-	protected SlotSelectScreen(int set) {
+	protected SlotSelectScreen(ArtifactSet set) {
 		super(ACLang.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot");
 		this.set = set;
 	}
@@ -26,9 +27,7 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
-		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.getItem(0, -1);
-		return setEntry.getItem(x, -1);
+		return set.getLink().getItem(x, -1);
 	}
 
 
@@ -44,8 +43,7 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 			return true;
 		}
 		int ind = result.x();
-		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		if (ind >= setEntry.size()) return false;
+		if (ind >= set.getLink().size()) return false;
 		Minecraft.getInstance().setScreen(new RankSelectScreen(set, ind));
 		return true;
 	}

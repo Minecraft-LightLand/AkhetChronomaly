@@ -32,6 +32,13 @@ public record ArtifactStats(
 		return new Mutable(new ArtifactStats(slot, rank, 0, 0, 0, rank, chance, 1, null, new ArrayList<>()));
 	}
 
+	public static ArtifactStats withRank(RegistryAccess access, ArtifactSlot slot, int rank) {
+		var data = ACTypeRegistry.STAT_MAP.get(access, slot.holder());
+		int chance = data == null ? 0 : data.refineChance();
+		var ans = ArtifactStats.of(slot, rank, chance);
+		return ans.immutable();
+	}
+
 	public static ArtifactStats generate(RegistryAccess access, ArtifactSlot slot, int rank, RandomSource random) {
 		var data = ACTypeRegistry.STAT_MAP.get(access, slot.holder());
 		int chance = data == null ? 0 : data.refineChance();

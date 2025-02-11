@@ -1,7 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.config;
 
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
-import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -19,12 +18,13 @@ public record SetGroup(ArrayList<ArtifactSet> set) {
 		return new SetGroup(new ArrayList<>(sets.stream().map(DeferredHolder::get).toList()));
 	}
 
-	public List<SetEntry<?>> getSets(boolean full) {//TODO
-		ArrayList<SetEntry<?>> ans = new ArrayList<>();
+	public Collection<ArtifactSet> getSets(boolean full) {
+		if (!full) return set;
+		List<ArtifactSet> ans = new ArrayList<>();
 		for (var e : set) {
-			var x = AkhetChronomaly.REGISTRATE.SET_MAP.get(e.getRegistryName());
-			if (x == null) continue;
-			ans.add(x);
+			if (e.getLink().isFullSet()) {
+				ans.add(e);
+			}
 		}
 		return ans;
 	}

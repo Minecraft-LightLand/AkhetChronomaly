@@ -1,14 +1,13 @@
 package dev.xkmc.akhet_chronomaly.content.client.tab;
 
 import com.mojang.datafixers.util.Pair;
-import dev.xkmc.akhet_chronomaly.content.core.CuriosUtils;
+import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2library.util.TextWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,20 +16,20 @@ public record SetEffectEntries(
 		List<Pair<List<FormattedCharSequence>, List<Component>>> text
 ) {
 
-	public static List<List<SetEffectEntries>> aggregate(@Nullable LivingEntity le, int width, int linePerPage) {
-		var slots = CuriosUtils.findAll(le);
-		if (slots.isEmpty()) return List.of();
+	public static List<List<SetEffectEntries>> aggregate(Player player, int width, int linePerPage) {
+		var map = ACTypeRegistry.CAP.type().getOrCreate(player).getSets();
+		if (map.isEmpty()) return List.of();
 		List<SetEffectEntries> raw = new ArrayList<>();
-		for (var ent : slots.entrySet()) {
+		for (var ent : map.entrySet()) {
 			List<Pair<List<FormattedCharSequence>, List<Component>>> ans = new ArrayList<>();
-			var list = ent.getKey().addComponents(ent.getValue());
+			var list = ent.getKey().addComponents(ent.getValue().count());
 			int size = 0;
 			for (var pair : list) {
 				var lines = TextWrapper.wrapText(Minecraft.getInstance().font, pair.getFirst(), width - 16);
 				size += lines.size();
 				ans.add(Pair.of(lines, pair.getSecond()));
 			}
-			raw.add(new SetEffectEntries(ent.getValue(), size, ans));
+			raw.add(new SetEffectEntries(ent.getValue().count(), size, ans));
 		}
 		List<List<SetEffectEntries>> ans = new ArrayList<>();
 		List<SetEffectEntries> current = new ArrayList<>();
@@ -44,7 +43,7 @@ public record SetEffectEntries(
 			size += e.size();
 			current.add(e);
 		}
-		if (!current.isEmpty()) ans.add(current);
+		ans.add(current);
 		return ans;
 	}
 

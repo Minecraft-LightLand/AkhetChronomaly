@@ -1,8 +1,8 @@
 package dev.xkmc.akhet_chronomaly.content.misc;
 
 import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.RankedItem;
-import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
@@ -48,7 +48,7 @@ public class RandomArtifactSetItem extends RankedItem {
 	}
 
 	@Nullable
-	private static Collection<SetEntry<?>> getList(ItemStack stack) {
+	private static Collection<ArtifactSet> getList(ItemStack stack) {
 		var group = ACItems.GROUP.get(stack);
 		if (group == null) return null;
 		return group.getSets(true);
@@ -56,9 +56,9 @@ public class RandomArtifactSetItem extends RankedItem {
 
 	public static List<ItemStack> getRandomArtifact(ItemStack stack, int rank, RandomSource random) {
 		var list = getList(stack);
-		if (list == null) list = AkhetChronomaly.REGISTRATE.SET_LIST;
+		if (list == null) list = ArtifactSet.getAll();
 		var sets = list.stream().toList();
-		var set = sets.get(random.nextInt(sets.size()));
+		var set = sets.get(random.nextInt(sets.size())).getLink();
 		List<ItemStack> ans = new ArrayList<>();
 		for (int i = 0; i < set.size(); i++) {
 			ans.add(set.getItem(i, rank));
@@ -74,7 +74,7 @@ public class RandomArtifactSetItem extends RankedItem {
 		} else {
 			list.add(ACLang.LOOT_POOL.get());
 			for (var e : sets) {
-				list.add(e.get().getDesc().withStyle(ChatFormatting.GRAY));
+				list.add(e.getDesc().withStyle(ChatFormatting.GRAY));
 			}
 		}
 	}

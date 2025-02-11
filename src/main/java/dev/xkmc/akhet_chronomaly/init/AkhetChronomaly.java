@@ -4,6 +4,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateDataMapProvider;
 import dev.xkmc.akhet_chronomaly.content.client.select.ChooseArtifactToServer;
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.events.ArtifactAttackListener;
 import dev.xkmc.akhet_chronomaly.init.data.*;
 import dev.xkmc.akhet_chronomaly.init.data.loot.ACGLMProvider;
@@ -57,6 +58,7 @@ public class AkhetChronomaly {
 
 	@SubscribeEvent
 	public static void commonInit(FMLCommonSetupEvent event) {
+		ArtifactSet.load();
 		event.enqueueWork(() -> {
 		});
 	}

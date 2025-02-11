@@ -1,5 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.client.select;
 
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
@@ -11,9 +13,10 @@ public class RankSelectScreen extends AbstractSelectScreen {
 
 	private static final SpriteManager MANAGER = new SpriteManager(AkhetChronomaly.MODID, "rank_select");
 
-	private final int set, slot;
+	private final ArtifactSet set;
+	private final int slot;
 
-	protected RankSelectScreen(int set, int slot) {
+	protected RankSelectScreen(ArtifactSet set, int slot) {
 		super(ACLang.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot", "rank");
 		this.set = set;
 		this.slot = slot;
@@ -28,10 +31,8 @@ public class RankSelectScreen extends AbstractSelectScreen {
 
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
-		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.getItem(0, -1);
-		if (comp.equals("slot")) return setEntry.getItem(slot, -1);
-		return setEntry.getItem(slot, -1);
+		if (comp.equals("set")) return set.getLink().getItem(0, -1);
+		return set.getLink().getItem(slot, -1);
 	}
 
 	@Override
@@ -50,9 +51,7 @@ public class RankSelectScreen extends AbstractSelectScreen {
 			return true;
 		}
 		int ind = result.x();
-		var setEntry = AkhetChronomaly.REGISTRATE.SET_LIST.get(set);
-		int n = 5;//TODO max rank
-		if (ind >= n) return false;
+		if (ind >= BaseArtifact.maxRank()) return false;
 		Minecraft.getInstance().setScreen(null);
 		AkhetChronomaly.HANDLER.toServer(new ChooseArtifactToServer(set, slot, ind));
 		return true;

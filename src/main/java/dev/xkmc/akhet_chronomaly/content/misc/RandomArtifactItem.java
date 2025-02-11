@@ -1,12 +1,13 @@
 package dev.xkmc.akhet_chronomaly.content.misc;
 
 import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
+import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.RankedItem;
-import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
@@ -18,7 +19,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class RandomArtifactItem extends RankedItem {
 		ItemStack stack = player.getItemInHand(hand);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (!level.isClientSide) {
-			player.getInventory().placeItemBackInInventory(getRandomArtifact(stack, rank, player.getRandom()));
+			player.getInventory().placeItemBackInInventory(getRandomArtifact(player.level().registryAccess(), stack, rank, player.getRandom()));
 		}
 		if (!player.getAbilities().instabuild) {
 			stack.shrink(1);
@@ -47,19 +47,19 @@ public class RandomArtifactItem extends RankedItem {
 	}
 
 	@Nullable
-	private static Collection<SetEntry<?>> getList(ItemStack stack) {
+	private static Collection<ArtifactSet> getList(ItemStack stack) {
 		var group = ACItems.GROUP.get(stack);
 		if (group == null) return null;
 		return group.getSets(false);
 	}
 
-	public static ItemStack getRandomArtifact(ItemStack stack, int rank, RandomSource random) {
+	public static ItemStack getRandomArtifact(RegistryAccess access, ItemStack stack, int rank, RandomSource random) {
 		var list = getList(stack);
-		if (list == null) list = AkhetChronomaly.REGISTRATE.SET_LIST;
+		if (list == null) list = ArtifactSet.getAll();
 		var sets = list.stream()
-				.flatMap(e -> Arrays.stream(e.items)).toList();
+				.flatMap(e -> e.getLink().getItems().stream()).toList();
 		var arr = sets.get(random.nextInt(sets.size()));
-		return arr.asStack();//TODO rank
+		return arr.withRank(access, rank);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class RandomArtifactItem extends RankedItem {
 		} else {
 			list.add(ACLang.LOOT_POOL.get());
 			for (var e : sets) {
-				list.add(e.get().getDesc().withStyle(ChatFormatting.GRAY));
+				list.add(e.getDesc().withStyle(ChatFormatting.GRAY));
 			}
 		}
 	}

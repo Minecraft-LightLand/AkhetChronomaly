@@ -2,14 +2,11 @@ package dev.xkmc.akhet_chronomaly.init.registrate.entries;
 
 import com.tterrag.registrate.builders.AbstractBuilder;
 import com.tterrag.registrate.builders.BuilderCallback;
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
-import dev.xkmc.akhet_chronomaly.content.config.ArtifactSetConfig;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
@@ -26,11 +23,7 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Consumer;
-
 public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extends AbstractBuilder<ArtifactSet, T, P, SetBuilder<T, I, P>> {
-
-	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	private final NonNullSupplier<T> sup;
 
@@ -40,7 +33,6 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	public SetBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup) {
 		super(owner, parent, name, callback, ACTypeRegistry.SET.key());
 		this.sup = sup;
-
 	}
 
 	@SafeVarargs
@@ -48,13 +40,6 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		this.slots = slots;
 		return this;
 	}
-
-	public SetBuilder<T, I, P> buildConfig(Consumer<ArtifactSetConfig.SetBuilder> builder) {
-		getOwner().addDataGenerator(ProviderType.DATA_MAP, (e) -> e.builder(ACTypeRegistry.ARTIFACT_SETS.reg())
-				.add(DataGenContext.from(this).getId(), ArtifactSetConfig.construct(builder), false));
-		return this;
-	}
-
 
 	@SuppressWarnings({"rawtype", "unchecked"})
 	public SetBuilder<T, I, P> regItems() {

@@ -1,9 +1,7 @@
 package dev.xkmc.akhet_chronomaly.init.registrate.entries;
 
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
-import dev.xkmc.akhet_chronomaly.content.set.core.SetEffect;
 import net.minecraft.resources.ResourceLocation;
 
 public class SetRegHelper {
@@ -24,7 +22,4 @@ public class SetRegHelper {
 		return reg.regSet(id, ArtifactSet::new, lang);
 	}
 
-	public <T extends SetEffect> SetEffectBuilder<T, ACRegistrate> setEffect(String id, NonNullSupplier<T> sup) {
-		return reg.setEffect(id, sup);
-	}
 }
