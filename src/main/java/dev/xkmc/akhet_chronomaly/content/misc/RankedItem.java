@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.misc;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;

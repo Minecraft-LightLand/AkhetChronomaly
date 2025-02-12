@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.client.select;
 
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;

@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 public class EquipScreen extends AbstractContainerScreen<EquipMenu> {
 
 	private static final ResourceLocation TEX = AkhetChronomaly.loc("textures/gui/container/equip.png");
+	private static final ResourceLocation SLOT = AkhetChronomaly.loc("equip_slot");
 
 	public EquipScreen(EquipMenu menu, Inventory playerInventory, Component title) {
 		super(menu, playerInventory, title);
@@ -39,6 +40,11 @@ public class EquipScreen extends AbstractContainerScreen<EquipMenu> {
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
 		g.blit(TEX, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		for (var e : menu.handler.holders) {
+			if (e.slot != null && e.slot.isActive()) {
+				g.blitSprite(SLOT, i + e.slot.x - 5, j + e.slot.y - 5, 26, 26);
+			}
+		}
 
 	}
 

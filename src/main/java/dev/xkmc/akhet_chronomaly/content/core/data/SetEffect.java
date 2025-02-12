@@ -1,6 +1,5 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.data;
 
-import dev.xkmc.akhet_chronomaly.content.engine.core.effect.EffectContext;
 import dev.xkmc.akhet_chronomaly.content.engine.core.trigger.TriggerType;
 import dev.xkmc.akhet_chronomaly.content.engine.core.type.IEffectEntry;
 import dev.xkmc.akhet_chronomaly.content.engine.entry.StatusEffectEntry;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public record SetEffect(int count, List<IEffectEntry<?>> effects) {
 
-	public <T> void trigger(EffectContext ctx, TriggerType<T> type, T event) {
+	public <T> void trigger(SetEffectContext ctx, TriggerType<T> type, T event) {
 		for (int i = 0; i < effects().size(); i++) {
 			if (effects().get(i) instanceof TriggerEffectEntry<?> entry) {
 				var c0 = ctx.sub("/" + i);
@@ -29,7 +28,7 @@ public record SetEffect(int count, List<IEffectEntry<?>> effects) {
 		}
 	}
 
-	public int tick(EffectContext ctx, int flag, boolean available) {
+	public int tick(SetEffectContext ctx, int flag, boolean available) {
 		int ans = 0;
 		for (int i = 0; i < effects.size(); i++) {
 			if (effects().get(i) instanceof StatusEffectEntry entry) {

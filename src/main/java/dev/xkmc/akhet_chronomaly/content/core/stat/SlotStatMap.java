@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.core.stat;
 
 import net.minecraft.resources.ResourceLocation;
 

@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.engine.effect;
 
-import dev.xkmc.akhet_chronomaly.content.engine.core.effect.EffectContext;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
 import dev.xkmc.akhet_chronomaly.content.engine.core.effect.IStatusEffect;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -25,7 +25,7 @@ public record AttributeStatusEffect(
 	}
 
 	@Override
-	public void start(EffectContext ctx) {
+	public void start(SetEffectContext ctx) {
 		var ins = ctx.player().getAttribute(attribute);
 		if (ins == null) return;
 		ins.removeModifier(ctx.path());
@@ -33,7 +33,7 @@ public record AttributeStatusEffect(
 	}
 
 	@Override
-	public void stop(EffectContext ctx) {
+	public void stop(SetEffectContext ctx) {
 		var ins = ctx.player().getAttribute(attribute);
 		if (ins == null) return;
 		ins.removeModifier(ctx.path());

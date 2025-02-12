@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.events;
 
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.l2menustacker.click.writable.ClickedPlayerSlotResult;
 import dev.xkmc.l2menustacker.click.writable.WritableStackClickHandler;

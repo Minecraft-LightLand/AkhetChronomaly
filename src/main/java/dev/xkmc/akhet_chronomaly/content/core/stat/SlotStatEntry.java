@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.core.stat;
 
 public record SlotStatEntry(int weight, double scale) {
 

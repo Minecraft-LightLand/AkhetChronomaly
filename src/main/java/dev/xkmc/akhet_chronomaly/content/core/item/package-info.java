@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.core.item;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

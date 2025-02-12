@@ -1,7 +1,9 @@
 package dev.xkmc.akhet_chronomaly.content.client.equip;
 
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
-import dev.xkmc.akhet_chronomaly.content.core.BaseCharmArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseCharmArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.IArtifact;
 import dev.xkmc.akhet_chronomaly.init.data.ACSlotCuriosType;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import net.minecraft.util.Unit;
@@ -25,10 +27,25 @@ public class EquipHandler implements IItemHandlerModifiable {
 		List<SlotHolder> list = new ArrayList<>();
 		for (var e : ACSlotCuriosType.values()) {
 			for (int i = 0; i < e.count; i++) {
-				list.add(new SlotHolder(e, i, list.size()));
+				list.add(new SlotHolder(this, e, i, list.size()));
 			}
 		}
 		holders = list.toArray(SlotHolder[]::new);
+	}
+
+	@Nullable
+	protected ArtifactSet getSet() {
+		for (int i = 0; i < 6; i++) {
+			ItemStack stack = getStackInSlot(i);
+			if (stack.isEmpty()) continue;
+			if (stack.getItem() instanceof BaseArtifact item) {
+				return item.set.get();
+			}
+		}
+		return null;
+	}
+
+	protected void verify() {
 	}
 
 	@Override
@@ -94,29 +111,49 @@ public class EquipHandler implements IItemHandlerModifiable {
 
 	public static class SlotHolder {
 
-		protected final ACSlotCuriosType slot;
+		private final EquipHandler parent;
+		protected final ACSlotCuriosType type;
 		protected final int slotIndex, menuIndex;
+
+		@Nullable
+		protected EquipSlot slot;
 
 		@Nullable
 		protected SlotAccess access;
 
-		public SlotHolder(ACSlotCuriosType e, int slotIndex, int menuIndex) {
-			this.slot = e;
+		public SlotHolder(EquipHandler parent, ACSlotCuriosType e, int slotIndex, int menuIndex) {
+			this.parent = parent;
+			this.type = e;
 			this.slotIndex = slotIndex;
 			this.menuIndex = menuIndex;
 		}
 
+		public boolean isEnabled() {
+			if (access == null) return false;
+			ArtifactSet set = parent.getSet();
+			return set != null || menuIndex < 6;
+		}
+
 		public boolean isValid(ItemStack stack) {
 			if (access == null || !access.isValid(stack)) return false;
-			if (slot.slot != null) {
-				return stack.getItem() instanceof BaseArtifact item && item.slot.get() == slot.slot;
+			ArtifactSet set = parent.getSet();
+			if (set == null && menuIndex >= 6) return false;
+			if (!(stack.getItem() instanceof IArtifact item)) return false;
+			if (set != null && item.getSet() != set) return false;
+			if (type.slot != null) {
+				return stack.getItem() instanceof BaseArtifact art && art.slot.get() == type.slot;
 			}
 			return stack.getItem() instanceof BaseCharmArtifact;
 		}
 
 	}
 
-	public record CurioSlot(boolean canFlip, IDynamicStackHandler handler, int index) implements SlotAccess {
+	public record CurioSlot(
+			SlotHolder holder,
+			boolean canFlip,
+			IDynamicStackHandler handler,
+			int index
+	) implements SlotAccess {
 
 		@Override
 		public boolean isValid(ItemStack stack) {
@@ -126,16 +163,7 @@ public class EquipHandler implements IItemHandlerModifiable {
 		@Override
 		public ItemStack insertItem(ItemStack stack, boolean simulate) {
 			if (index >= handler.getSlots()) return stack;
-			ItemStack ans = handler.insertItem(index, stack, simulate);
-			if (canFlip && !simulate && ans.isEmpty()) {
-				ItemStack part = handler.getStackInSlot(index);
-				if (!part.isEmpty()) {
-					if (index == 0) part.remove(ACItems.FLIP);
-					else ACItems.FLIP.set(part, Unit.INSTANCE);
-					handler.setStackInSlot(index, part);
-				}
-			}
-			return ans;
+			return handler.insertItem(index, stack, simulate);
 		}
 
 		@Override
@@ -191,22 +219,37 @@ public class EquipHandler implements IItemHandlerModifiable {
 
 	public static class CurioHandler extends EquipHandler {
 
+		private final Player player;
+
 		public CurioHandler(Player player) {
 			super();
+			this.player = player;
 			var opt = CuriosApi.getCuriosInventory(player);
 			if (opt.isPresent()) {
 				for (var e : holders) {
-					String id = e.slot.getIdentifier();
+					String id = e.type.getIdentifier();
 					var stacks = opt.get().getStacksHandler(id);
 					if (stacks.isPresent()) {
 						var handler = stacks.get().getStacks();
 						if (handler.getSlots() > e.slotIndex)
-							e.access = new CurioSlot(e.slot.count == 2, handler, e.slotIndex);
+							e.access = new CurioSlot(e, e.type.count == 2, handler, e.slotIndex);
 					}
 				}
 			}
 		}
 
+		@Override
+		protected void verify() {
+			super.verify();
+			if (getSet() != null) return;
+			for (var e : holders) {
+				if (e.access == null) continue;
+				if (e.access.getItem().isEmpty()) continue;
+				ItemStack stack = e.access.extractItem(false);
+				if (stack.isEmpty()) continue;
+				player.getInventory().placeItemBackInInventory(stack);
+			}
+		}
 	}
 
 	public static class DummyHandler extends EquipHandler {

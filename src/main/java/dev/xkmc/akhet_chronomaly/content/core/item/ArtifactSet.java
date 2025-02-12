@@ -1,6 +1,7 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.item;
 
 import com.mojang.datafixers.util.Pair;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetConfig;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;

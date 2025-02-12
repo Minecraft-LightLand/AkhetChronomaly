@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.upgrades;
+package dev.xkmc.akhet_chronomaly.content.core.item;
 
 import dev.xkmc.akhet_chronomaly.init.data.ACModConfig;
 

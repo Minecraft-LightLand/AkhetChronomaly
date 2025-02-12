@@ -1,7 +1,6 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.stat;
 
 import com.google.common.collect.ImmutableMultimap;
-import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

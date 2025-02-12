@@ -1,7 +1,7 @@
 package dev.xkmc.akhet_chronomaly.init.registrate.entries;
 
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
 import net.minecraft.resources.ResourceLocation;
 
 public class SetRegHelper {

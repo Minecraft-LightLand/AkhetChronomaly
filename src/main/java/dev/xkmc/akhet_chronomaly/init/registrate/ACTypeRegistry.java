@@ -1,9 +1,13 @@
 package dev.xkmc.akhet_chronomaly.init.registrate;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.akhet_chronomaly.content.config.SlotStatMap;
-import dev.xkmc.akhet_chronomaly.content.config.StatType;
-import dev.xkmc.akhet_chronomaly.content.core.*;
+import dev.xkmc.akhet_chronomaly.content.core.stat.SlotStatMap;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
+import dev.xkmc.akhet_chronomaly.content.core.data.AkhetCapability;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetConfig;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetEffect;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACSlotCuriosType;
 import dev.xkmc.l2core.capability.player.PlayerCapabilityNetworkHandler;

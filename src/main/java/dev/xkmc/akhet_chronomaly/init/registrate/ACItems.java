@@ -1,9 +1,9 @@
 package dev.xkmc.akhet_chronomaly.init.registrate;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
-import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactStats;
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.misc.SetGroup;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactStats;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.content.misc.RandomArtifactItem;
 import dev.xkmc.akhet_chronomaly.content.misc.RandomArtifactSetItem;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;

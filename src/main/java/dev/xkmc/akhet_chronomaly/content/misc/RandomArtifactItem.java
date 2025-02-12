@@ -1,8 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.misc;
 
-import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
-import dev.xkmc.akhet_chronomaly.content.core.RankedItem;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACItems;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;

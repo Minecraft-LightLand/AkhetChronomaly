@@ -1,10 +1,10 @@
 package dev.xkmc.akhet_chronomaly.init.data;
 
 import com.tterrag.registrate.providers.RegistrateDataMapProvider;
-import dev.xkmc.akhet_chronomaly.content.config.SlotStatEntry;
-import dev.xkmc.akhet_chronomaly.content.config.SlotStatMap;
-import dev.xkmc.akhet_chronomaly.content.config.StatType;
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
+import dev.xkmc.akhet_chronomaly.content.core.stat.SlotStatEntry;
+import dev.xkmc.akhet_chronomaly.content.core.stat.SlotStatMap;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.l2damagetracker.init.L2DamageTracker;
 import net.minecraft.core.Holder;

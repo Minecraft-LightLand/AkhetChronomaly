@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.content.client.select;
 
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.misc.SelectArtifactItem;
 import dev.xkmc.l2serial.network.SerialPacketBase;
 import net.minecraft.server.level.ServerPlayer;

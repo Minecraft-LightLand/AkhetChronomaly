@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.data;
 
 import net.minecraft.core.Holder;
 

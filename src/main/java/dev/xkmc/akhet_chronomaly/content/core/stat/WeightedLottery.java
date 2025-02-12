@@ -1,6 +1,6 @@
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.core.stat;
 
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.Holder;

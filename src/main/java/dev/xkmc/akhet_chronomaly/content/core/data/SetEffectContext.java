@@ -1,6 +1,5 @@
-package dev.xkmc.akhet_chronomaly.content.engine.core.effect;
+package dev.xkmc.akhet_chronomaly.content.core.data;
 
-import dev.xkmc.akhet_chronomaly.content.core.SetEffect;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -10,9 +9,10 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 import java.util.Optional;
 
-public record EffectContext(
+public record SetEffectContext(
 		Player player,
 		Holder<SetEffect> set,
+		AkhetSetData data,
 		ResourceLocation path,
 		Optional<?> trigger
 ) {
@@ -33,8 +33,8 @@ public record EffectContext(
 		return trigger().map(e -> e instanceof DamageData.PostSetup p ? p : null);
 	}
 
-	public EffectContext sub(String s) {
-		return new EffectContext(player, set, path.withSuffix(s), trigger);
+	public SetEffectContext sub(String s) {
+		return new SetEffectContext(player, set, data, path.withSuffix(s), trigger);
 	}
 
 }

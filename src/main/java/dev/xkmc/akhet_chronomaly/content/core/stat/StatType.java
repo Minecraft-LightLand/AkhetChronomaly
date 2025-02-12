@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.core.stat;
 
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;

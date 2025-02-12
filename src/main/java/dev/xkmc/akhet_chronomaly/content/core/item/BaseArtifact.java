@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.item;
 
 import com.google.common.collect.Multimap;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class BaseArtifact extends Item implements ICurioItem {
+public class BaseArtifact extends Item implements ICurioItem, IArtifact {
 
 	public static final List<BaseArtifact> LIST = new ArrayList<>();
 
@@ -62,6 +62,11 @@ public class BaseArtifact extends Item implements ICurioItem {
 		this.set = set;
 		this.slot = slot;
 		LIST.add(this);
+	}
+
+	@Override
+	public ArtifactSet getSet() {
+		return set.get();
 	}
 
 	public ItemStack withRank(RegistryAccess access, int rank) {

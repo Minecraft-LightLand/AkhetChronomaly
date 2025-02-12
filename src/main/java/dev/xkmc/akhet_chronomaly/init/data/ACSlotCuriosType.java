@@ -1,8 +1,7 @@
 package dev.xkmc.akhet_chronomaly.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSlot;
-import top.theillusivec4.curios.api.CuriosDataProvider;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 
 import java.util.Locale;
 

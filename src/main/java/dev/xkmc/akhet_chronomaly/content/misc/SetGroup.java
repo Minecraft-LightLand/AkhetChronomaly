@@ -1,6 +1,6 @@
-package dev.xkmc.akhet_chronomaly.content.config;
+package dev.xkmc.akhet_chronomaly.content.misc;
 
-import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
 import net.neoforged.neoforge.registries.DeferredHolder;
 

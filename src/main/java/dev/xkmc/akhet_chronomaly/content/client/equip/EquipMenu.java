@@ -6,7 +6,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class EquipMenu extends AbstractContainerMenu {
 
@@ -14,7 +13,7 @@ public class EquipMenu extends AbstractContainerMenu {
 		return new EquipMenu(type, wid, inv, new EquipHandler.DummyHandler());
 	}
 
-	private final EquipHandler handler;
+	protected final EquipHandler handler;
 
 	public EquipMenu(MenuType<?> type, int wid, Inventory inv, EquipHandler handler) {
 		super(type, wid);
@@ -25,45 +24,41 @@ public class EquipMenu extends AbstractContainerMenu {
 
 	private void addSlots(EquipHandler handler) {
 		// head
-		addSlot(new SlotItemHandler(handler, 0, 61, 16));
+		addSlot(new EquipSlot(handler, 0, 61, 16));
 		// body
-		addSlot(new SlotItemHandler(handler, 1, 47, 44));
+		addSlot(new EquipSlot(handler, 1, 47, 44));
 		// cape
-		addSlot(new SlotItemHandler(handler, 2, 75, 44));
+		addSlot(new EquipSlot(handler, 2, 75, 44));
 		// belt
-		addSlot(new SlotItemHandler(handler, 3, 47, 72));
+		addSlot(new EquipSlot(handler, 3, 47, 72));
 		// pants
-		addSlot(new SlotItemHandler(handler, 4, 75, 72));
+		addSlot(new EquipSlot(handler, 4, 75, 72));
 		// boots
-		addSlot(new SlotItemHandler(handler, 5, 61, 100));
-
+		addSlot(new EquipSlot(handler, 5, 61, 100));
 		// left pauldron
-		addSlot(new SlotItemHandler(handler, 6, 19, 30));
-		// left bracer
-		addSlot(new SlotItemHandler(handler, 8, 19, 58));
-		// left glove
-		addSlot(new SlotItemHandler(handler, 10, 19, 86));
-
+		addSlot(new EquipSlot(handler, 6, 19, 30));
 		// right pauldron
-		addSlot(new SlotItemHandler(handler, 7, 103, 30));
+		addSlot(new EquipSlot(handler, 7, 103, 30));
+		// left bracer
+		addSlot(new EquipSlot(handler, 8, 19, 58));
 		// right bracer
-		addSlot(new SlotItemHandler(handler, 9, 103, 58));
+		addSlot(new EquipSlot(handler, 9, 103, 58));
+		// left glove
+		addSlot(new EquipSlot(handler, 10, 19, 86));
 		// right glove
-		addSlot(new SlotItemHandler(handler, 11, 103, 86));
-
+		addSlot(new EquipSlot(handler, 11, 103, 86));
 		// necklace
-		addSlot(new SlotItemHandler(handler, 12, 131, 30));
+		addSlot(new EquipSlot(handler, 12, 131, 30));
 		// left ring
-		addSlot(new SlotItemHandler(handler, 13, 131, 58));
+		addSlot(new EquipSlot(handler, 13, 131, 58));
 		// right ring
-		addSlot(new SlotItemHandler(handler, 14, 131, 86));
-
+		addSlot(new EquipSlot(handler, 14, 131, 86));
 		// charm
-		addSlot(new SlotItemHandler(handler, 15, 163, 30));
+		addSlot(new EquipSlot(handler, 15, 163, 30));
 		// charm
-		addSlot(new SlotItemHandler(handler, 16, 163, 58));
+		addSlot(new EquipSlot(handler, 16, 163, 58));
 		// charm
-		addSlot(new SlotItemHandler(handler, 17, 163, 86));
+		addSlot(new EquipSlot(handler, 17, 163, 86));
 	}
 
 	protected void bindPlayerInventory(Inventory plInv, int x, int y) {

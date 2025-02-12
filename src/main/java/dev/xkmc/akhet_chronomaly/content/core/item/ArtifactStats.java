@@ -1,10 +1,10 @@
-package dev.xkmc.akhet_chronomaly.content.core;
+package dev.xkmc.akhet_chronomaly.content.core.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import dev.xkmc.akhet_chronomaly.content.config.StatType;
-import dev.xkmc.akhet_chronomaly.content.config.WeightedLottery;
-import dev.xkmc.akhet_chronomaly.content.upgrades.ArtifactUpgradeManager;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatEntry;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
+import dev.xkmc.akhet_chronomaly.content.core.stat.WeightedLottery;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.data.ACModConfig;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;

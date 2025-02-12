@@ -1,7 +1,7 @@
 package dev.xkmc.akhet_chronomaly.events;
 
 import dev.xkmc.akhet_chronomaly.content.client.select.SetSelectScreen;
-import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
