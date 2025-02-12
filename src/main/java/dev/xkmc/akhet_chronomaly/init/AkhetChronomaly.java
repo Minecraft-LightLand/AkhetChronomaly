@@ -4,8 +4,9 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateDataMapProvider;
 import dev.xkmc.akhet_chronomaly.content.client.equip.OpenEquipToServer;
 import dev.xkmc.akhet_chronomaly.content.client.select.ChooseArtifactToServer;
-import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
+import dev.xkmc.akhet_chronomaly.content.engine.core.type.AutoReg;
 import dev.xkmc.akhet_chronomaly.events.ACSlotClickHandler;
 import dev.xkmc.akhet_chronomaly.events.ArtifactAttackListener;
 import dev.xkmc.akhet_chronomaly.init.data.*;
@@ -53,6 +54,7 @@ public class AkhetChronomaly {
 		ACEffects.register();
 		ACTabRegistry.register();
 		ACModConfig.init();
+		AutoReg.register();
 		Handlers.registerReg(StatType.class, ACTypeRegistry.STAT_TYPE.key());
 		new ACSlotClickHandler(loc("click"));
 		AttackEventHandler.register(3000, new ArtifactAttackListener());

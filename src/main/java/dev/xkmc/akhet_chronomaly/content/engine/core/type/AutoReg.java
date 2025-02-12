@@ -74,4 +74,8 @@ public class AutoReg {
 		return SRTT.reg(id, () -> new TriggerType<>(cls));
 	}
 
+	public static void register() {
+
+	}
+
 }

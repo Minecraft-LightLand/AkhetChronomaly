@@ -11,6 +11,12 @@ public class EquipScreen extends AbstractContainerScreen<EquipMenu> {
 
 	private static final ResourceLocation TEX = AkhetChronomaly.loc("textures/gui/container/equip.png");
 	private static final ResourceLocation SLOT = AkhetChronomaly.loc("equip_slot");
+	private static final ResourceLocation CANDLE_L = AkhetChronomaly.loc("candle_left");
+	private static final ResourceLocation CANDLE_R = AkhetChronomaly.loc("candle_right");
+	private static final ResourceLocation FLAG_L = AkhetChronomaly.loc("flag_left");
+	private static final ResourceLocation FLAG_R = AkhetChronomaly.loc("flag_right");
+	private static final ResourceLocation FACE_UP = AkhetChronomaly.loc("face_up");
+	private static final ResourceLocation FACE_DOWN = AkhetChronomaly.loc("face_down");
 
 	public EquipScreen(EquipMenu menu, Inventory playerInventory, Component title) {
 		super(menu, playerInventory, title);
@@ -45,7 +51,12 @@ public class EquipScreen extends AbstractContainerScreen<EquipMenu> {
 				g.blitSprite(SLOT, i + e.slot.x - 5, j + e.slot.y - 5, 26, 26);
 			}
 		}
-
+		g.blitSprite(CANDLE_L, i, j + 104, 24, 24);
+		g.blitSprite(CANDLE_R, i + 200, j + 104, 24, 24);
+		g.blitSprite(FLAG_L, i, j + 128, 24, 24);
+		g.blitSprite(FLAG_R, i + 200, j + 128, 24, 24);
+		g.blitSprite(FACE_UP, i + 186, j + 13, 35, 50);
+		g.blitSprite(FACE_DOWN, i + 186, j + 69, 35, 50);
 	}
 
 }

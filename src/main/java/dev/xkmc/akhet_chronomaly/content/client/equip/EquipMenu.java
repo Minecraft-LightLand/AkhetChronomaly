@@ -7,6 +7,8 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
+
 public class EquipMenu extends AbstractContainerMenu {
 
 	public static EquipMenu fromNetwork(MenuType<?> type, int wid, Inventory inv) {
@@ -20,6 +22,15 @@ public class EquipMenu extends AbstractContainerMenu {
 		this.handler = handler;
 		bindPlayerInventory(inv, 32, 133);
 		addSlots(handler);
+		if (!inv.player.level().isClientSide())
+			handler.updating(true);
+	}
+
+	@Override
+	public void initializeContents(int stateId, List<ItemStack> items, ItemStack carried) {
+		handler.updating(false);
+		super.initializeContents(stateId, items, carried);
+		handler.updating(true);
 	}
 
 	private void addSlots(EquipHandler handler) {

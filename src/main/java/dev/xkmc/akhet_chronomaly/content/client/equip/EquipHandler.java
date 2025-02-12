@@ -23,6 +23,12 @@ public class EquipHandler implements IItemHandlerModifiable {
 
 	protected final SlotHolder[] holders;
 
+	@Nullable
+	protected ArtifactSet set;
+	protected int a, l, r, c, total;
+
+	private boolean doUpdate = false, updating = false, shouldUpdate = false;
+
 	protected EquipHandler() {
 		List<SlotHolder> list = new ArrayList<>();
 		for (var e : ACSlotCuriosType.values()) {
@@ -33,19 +39,52 @@ public class EquipHandler implements IItemHandlerModifiable {
 		holders = list.toArray(SlotHolder[]::new);
 	}
 
-	@Nullable
-	protected ArtifactSet getSet() {
+
+	public void updating(boolean b) {
+		doUpdate = b;
+		if (doUpdate) {
+			verifyImpl();
+		}
+	}
+
+	public final void verify() {
+		if (!doUpdate) return;
+		if (updating) {
+			shouldUpdate = true;
+			return;
+		}
+		updating = true;
+		shouldUpdate = true;
+		while (shouldUpdate) {
+			shouldUpdate = false;
+			verifyImpl();
+		}
+		updating = false;
+	}
+
+	protected void verifyImpl() {
+		set = null;
+		a = l = r = c = 0;
 		for (int i = 0; i < 6; i++) {
 			ItemStack stack = getStackInSlot(i);
 			if (stack.isEmpty()) continue;
-			if (stack.getItem() instanceof BaseArtifact item) {
-				return item.set.get();
+			a++;
+			if (set == null && stack.getItem() instanceof BaseArtifact item) {
+				set = item.set.get();
 			}
 		}
-		return null;
-	}
-
-	protected void verify() {
+		for (int i = 6; i < 12; i++) {
+			ItemStack stack = getStackInSlot(i);
+			if (stack.isEmpty()) continue;
+			if (i % 2 == 0) l++;
+			else r++;
+		}
+		for (int i = 12; i < 15; i++) {
+			ItemStack stack = getStackInSlot(i);
+			if (stack.isEmpty()) continue;
+			c++;
+		}
+		total = a + l + r + c;
 	}
 
 	@Override
@@ -130,14 +169,23 @@ public class EquipHandler implements IItemHandlerModifiable {
 
 		public boolean isEnabled() {
 			if (access == null) return false;
-			ArtifactSet set = parent.getSet();
-			return set != null || menuIndex < 6;
+			if (menuIndex < 6) return true;
+			if (menuIndex < 12) return parent.a > 0;
+			return switch (menuIndex) {
+				case 12 -> parent.a >= 3;
+				case 13 -> parent.l > 0;
+				case 14 -> parent.r > 0;
+				case 15 -> parent.total >= 9;
+				case 16 -> parent.total >= 12;
+				case 17 -> parent.total >= 15;
+				default -> true;
+			};
 		}
 
 		public boolean isValid(ItemStack stack) {
 			if (access == null || !access.isValid(stack)) return false;
-			ArtifactSet set = parent.getSet();
-			if (set == null && menuIndex >= 6) return false;
+			if (!isEnabled()) return false;
+			ArtifactSet set = parent.set;
 			if (!(stack.getItem() instanceof IArtifact item)) return false;
 			if (set != null && item.getSet() != set) return false;
 			if (type.slot != null) {
@@ -239,15 +287,16 @@ public class EquipHandler implements IItemHandlerModifiable {
 		}
 
 		@Override
-		protected void verify() {
-			super.verify();
-			if (getSet() != null) return;
+		protected void verifyImpl() {
+			super.verifyImpl();
 			for (var e : holders) {
 				if (e.access == null) continue;
-				if (e.access.getItem().isEmpty()) continue;
-				ItemStack stack = e.access.extractItem(false);
+				if (e.isEnabled()) continue;
+				ItemStack stack = e.access.getItem();
 				if (stack.isEmpty()) continue;
 				player.getInventory().placeItemBackInInventory(stack);
+				e.access.setItem(ItemStack.EMPTY);
+				verify();
 			}
 		}
 	}
