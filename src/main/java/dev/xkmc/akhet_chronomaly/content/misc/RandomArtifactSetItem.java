@@ -51,7 +51,7 @@ public class RandomArtifactSetItem extends RankedItem {
 	private static Collection<ArtifactSet> getList(ItemStack stack) {
 		var group = ACItems.GROUP.get(stack);
 		if (group == null) return null;
-		return group.getSets(true);
+		return group.getSets(false);//TODO
 	}
 
 	public static List<ItemStack> getRandomArtifact(ItemStack stack, int rank, RandomSource random) {

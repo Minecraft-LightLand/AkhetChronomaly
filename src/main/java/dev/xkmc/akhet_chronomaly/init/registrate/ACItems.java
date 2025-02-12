@@ -3,6 +3,7 @@ package dev.xkmc.akhet_chronomaly.init.registrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.akhet_chronomaly.content.config.SetGroup;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactStats;
+import dev.xkmc.akhet_chronomaly.content.core.BaseArtifact;
 import dev.xkmc.akhet_chronomaly.content.misc.RandomArtifactItem;
 import dev.xkmc.akhet_chronomaly.content.misc.RandomArtifactSetItem;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
@@ -10,6 +11,7 @@ import dev.xkmc.l2core.init.reg.simple.DCReg;
 import dev.xkmc.l2core.init.reg.simple.DCVal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
@@ -21,7 +23,7 @@ public class ACItems {
 	public static final String[] RANK_NAME = {" [Worn]", " -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	static {
-		REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
+		REGISTRATE.buildL2CreativeTab("artifacts", "Akhet Chronomaly", b -> b
 				.icon(ACItems.RANDOM[0]::asStack));
 	}
 
@@ -31,28 +33,45 @@ public class ACItems {
 	private static final DCReg DC = DCReg.of(AkhetChronomaly.REG);
 	public static final DCVal<ArtifactStats> STATS = DC.reg("stats", ArtifactStats.class, false);
 	public static final DCVal<SetGroup> GROUP = DC.reg("set_group", SetGroup.class, true);
+	public static final DCVal<Unit> FLIP = DC.unit("flip");
 
 	static {
-		int n = 3;
-		RANDOM = new ItemEntry[n];
-		for (int i = 0; i < n; i++) {
-			int I = i;
-			TagKey<Item> artifact = ItemTags.create(AkhetChronomaly.loc("artifact"));
-			RANDOM[i] = REGISTRATE.item("random_" + I, p -> new RandomArtifactItem(p, I))
-					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", AkhetChronomaly.loc("item/rank/" + I))
-							.texture("layer1", AkhetChronomaly.loc("item/random")))
-					.tag(artifact)
-					.lang("Random Artifact" + RANK_NAME[i]).register();
+		{
+			int n = BaseArtifact.maxRank();
+			RANDOM = new ItemEntry[n];
+			for (int i = 0; i < n; i++) {
+				int I = i;
+				TagKey<Item> artifact = ItemTags.create(AkhetChronomaly.loc("artifact"));
+				RANDOM[i] = REGISTRATE.item("random_" + I, p -> new RandomArtifactItem(p, I))
+						.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+								.texture("layer0", AkhetChronomaly.loc("item/rank/" + I))
+								.texture("layer1", AkhetChronomaly.loc("item/random")))
+						.tag(artifact)
+						.lang("Random Artifact" + RANK_NAME[i]).register();
+			}
+			RANDOM_SET = new ItemEntry[n];
+			for (int i = 0; i < n; i++) {
+				int I = i;
+				RANDOM_SET[i] = REGISTRATE.item("random_set_" + I, p -> new RandomArtifactSetItem(p, I))
+						.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+								.texture("layer0", AkhetChronomaly.loc("item/rank/" + I))
+								.texture("layer1", AkhetChronomaly.loc("item/random_set")))
+						.lang("Random Artifact Set" + RANK_NAME[i]).register();
+			}
 		}
-		RANDOM_SET = new ItemEntry[n];
-		for (int i = 0; i < n; i++) {
-			int I = i;
-			RANDOM_SET[i] = REGISTRATE.item("random_set_" + I, p -> new RandomArtifactSetItem(p, I))
-					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", AkhetChronomaly.loc("item/rank/" + I))
-							.texture("layer1", AkhetChronomaly.loc("item/random_set")))
-					.lang("Random Artifact Set" + RANK_NAME[i]).register();
+		{
+			var set = REGISTRATE.getSetHelper("count_sanguivore");
+			set.regSet("Count Sanguivore")
+					.addSlot(ACTypeRegistry.SLOT_HEAD, "hat").build()
+					.addSlot(ACTypeRegistry.SLOT_BODY, "cloth").build()
+					.addSlot(ACTypeRegistry.SLOT_CAPE, "cloak").build()
+					.addSlot(ACTypeRegistry.SLOT_LEGS, "pants").build()
+					.addSymmetricSlot(ACTypeRegistry.SLOT_SHOULDER, "pauldron").build()
+					.addSymmetricSlot(ACTypeRegistry.SLOT_WRIST, "bracer").build()
+					.addSymmetricSlot(ACTypeRegistry.SLOT_HAND, "glove").build()
+					.addSlot(ACTypeRegistry.SLOT_NECK, "necklace").build()
+					.addSymmetricSlot(ACTypeRegistry.SLOT_RING, "ring").build()
+					.register();
 		}
 	}
 

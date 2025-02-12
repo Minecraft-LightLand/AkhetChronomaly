@@ -1,5 +1,6 @@
 {
   "icon": "akhet_chronomaly:slot/empty_akhet_hand_slot",
   "order": 15239,
+  "size": 2,
   "use_native_gui": false
 }

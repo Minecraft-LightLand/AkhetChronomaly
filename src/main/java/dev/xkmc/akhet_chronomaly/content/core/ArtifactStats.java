@@ -118,10 +118,6 @@ public record ArtifactStats(
 		var world = ctx.level();
 		boolean max = level() == ArtifactUpgradeManager.getMaxLevel(rank());
 		list.add(ACLang.ARTIFACT_LEVEL.get(level()).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
-		if (level() < ArtifactUpgradeManager.getMaxLevel(rank())) {
-			if (shift)
-				list.add(ACLang.ARTIFACT_EXP.get(exp(), ArtifactUpgradeManager.getExpForLevel(rank(), level())));
-		}
 		if (level() > old_level()) {
 			list.add(ACLang.UPGRADE.get());
 		} else if (!shift && world != null && !stats().isEmpty()) {

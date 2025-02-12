@@ -1,9 +1,18 @@
 {
   "values": [
+    "akhet_chronomaly:random_0",
     "akhet_chronomaly:random_1",
     "akhet_chronomaly:random_2",
     "akhet_chronomaly:random_3",
     "akhet_chronomaly:random_4",
-    "akhet_chronomaly:random_5"
+    "akhet_chronomaly:count_sanguivore_hat",
+    "akhet_chronomaly:count_sanguivore_cloth",
+    "akhet_chronomaly:count_sanguivore_cloak",
+    "akhet_chronomaly:count_sanguivore_pants",
+    "akhet_chronomaly:count_sanguivore_pauldron",
+    "akhet_chronomaly:count_sanguivore_bracer",
+    "akhet_chronomaly:count_sanguivore_glove",
+    "akhet_chronomaly:count_sanguivore_necklace",
+    "akhet_chronomaly:count_sanguivore_ring"
   ]
 }

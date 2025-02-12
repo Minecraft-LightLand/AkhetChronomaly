@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "akhet_chronomaly:item/count_sanguivore/ring_left"
+  }
+}

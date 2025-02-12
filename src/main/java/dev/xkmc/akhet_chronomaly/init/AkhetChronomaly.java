@@ -2,9 +2,11 @@ package dev.xkmc.akhet_chronomaly.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateDataMapProvider;
+import dev.xkmc.akhet_chronomaly.content.client.equip.OpenEquipToServer;
 import dev.xkmc.akhet_chronomaly.content.client.select.ChooseArtifactToServer;
 import dev.xkmc.akhet_chronomaly.content.config.StatType;
 import dev.xkmc.akhet_chronomaly.content.core.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.events.ACSlotClickHandler;
 import dev.xkmc.akhet_chronomaly.events.ArtifactAttackListener;
 import dev.xkmc.akhet_chronomaly.init.data.*;
 import dev.xkmc.akhet_chronomaly.init.data.loot.ACGLMProvider;
@@ -40,9 +42,9 @@ public class AkhetChronomaly {
 
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
 			MODID, 1,
-			e -> e.create(ChooseArtifactToServer.class, PacketHandler.NetDir.PLAY_TO_SERVER)
+			e -> e.create(ChooseArtifactToServer.class, PacketHandler.NetDir.PLAY_TO_SERVER),
+			e -> e.create(OpenEquipToServer.class, PacketHandler.NetDir.PLAY_TO_SERVER)
 	);
-
 
 	public AkhetChronomaly() {
 		ACTypeRegistry.register();
@@ -52,7 +54,7 @@ public class AkhetChronomaly {
 		ACTabRegistry.register();
 		ACModConfig.init();
 		Handlers.registerReg(StatType.class, ACTypeRegistry.STAT_TYPE.key());
-
+		new ACSlotClickHandler(loc("click"));
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
 	}
 

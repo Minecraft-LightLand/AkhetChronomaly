@@ -19,6 +19,10 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 		return curios.ordinal();
 	}
 
+	public boolean mayFlip() {
+		return curios.count == 2;
+	}
+
 	public ResourceLocation icon() {
 		return getRegistryName().withPath(e -> "textures/slot/empty_artifact_" + e + "_slot.png");
 	}

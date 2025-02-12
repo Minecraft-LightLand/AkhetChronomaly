@@ -1,5 +1,6 @@
 {
   "values": {
-    "akhet_chronomaly:set_effects": "akhet_chronomaly:random_5"
+    "akhet_chronomaly:equip": "akhet_chronomaly:random_set_4",
+    "akhet_chronomaly:set_effects": "akhet_chronomaly:random_4"
   }
 }

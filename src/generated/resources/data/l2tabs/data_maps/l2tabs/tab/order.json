@@ -1,5 +1,6 @@
 {
   "values": {
-    "akhet_chronomaly:set_effects": 3000
+    "akhet_chronomaly:equip": 2100,
+    "akhet_chronomaly:set_effects": 2900
   }
 }

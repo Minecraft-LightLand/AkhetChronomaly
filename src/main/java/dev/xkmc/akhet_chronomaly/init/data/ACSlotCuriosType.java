@@ -47,6 +47,4 @@ public enum ACSlotCuriosType {
 		return "curios.modifiers." + id;
 	}
 
-	public void buildConfig(CuriosDataProvider cons) {
-	}
 }

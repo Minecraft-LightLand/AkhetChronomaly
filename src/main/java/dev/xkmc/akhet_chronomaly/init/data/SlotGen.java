@@ -21,6 +21,7 @@ public class SlotGen extends CuriosDataProvider {
 		for (var e : ACSlotCuriosType.values()) {
 			createSlot(e.getIdentifier()).order(e.priority)
 					.icon(AkhetChronomaly.loc("slot/empty_" + e.getIdentifier() + "_slot"))
+					.size(e.count)
 					.useNativeGui(false);
 		}
 		createEntities("l2artifact_player")
