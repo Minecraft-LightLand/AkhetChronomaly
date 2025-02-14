@@ -5,7 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusRef;
 import dev.xkmc.akhet_chronomaly.content.core.bonus.Constant;
-import dev.xkmc.akhet_chronomaly.content.core.bonus.NumberProvider;
+import dev.xkmc.akhet_chronomaly.content.core.bonus.NumberValue;
 import dev.xkmc.l2serial.serialization.custom_handler.Handlers;
 import dev.xkmc.l2serial.serialization.type_cache.RecordCache;
 import dev.xkmc.l2serial.serialization.type_cache.TypeInfo;
@@ -32,14 +32,14 @@ public class CodecHelper {
 		PARAM_CACHE.put(String.class, Codec.STRING);
 		PARAM_CACHE.put(ResourceLocation.class, Codec.STRING.xmap(ResourceLocation::parse, ResourceLocation::toString));
 
-		Codec<NumberProvider> numCodec = Codec.either(
+		Codec<NumberValue> numCodec = Codec.either(
 				Codec.STRING.xmap(BonusRef::new, BonusRef::type),
 				Codec.DOUBLE.xmap(Constant::new, Constant::val)
 		).xmap(
 				e -> e.map(l -> l, r -> r),
 				e -> e instanceof BonusRef ref ? Either.left(ref) : Either.right((Constant) e)
 		);
-		PARAM_CACHE.put(NumberProvider.class, numCodec);
+		PARAM_CACHE.put(NumberValue.class, numCodec);
 	}
 
 	public static <T extends Record & IAutoCodec<T>> MapCodec<T> getAutoCodec(Class<T> cls) {

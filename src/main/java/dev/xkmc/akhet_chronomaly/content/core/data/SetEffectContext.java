@@ -12,7 +12,7 @@ import java.util.Optional;
 public record SetEffectContext(
 		Player player,
 		Holder<SetEffect> set,
-		AkhetSetData data,
+		AkhetCapability data,
 		ResourceLocation path,
 		Optional<?> trigger
 ) {

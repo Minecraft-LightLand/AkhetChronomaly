@@ -17,6 +17,9 @@ public class BonusHolder {
 	private double add, base, total;
 
 	public void addModifier(ResourceLocation id, BonusModifier mod) {
+		if (modifiers.containsKey(id)) {
+			modifiers.get(id).update(mod);
+		}
 		modifiers.put(id, mod);
 		update();
 	}

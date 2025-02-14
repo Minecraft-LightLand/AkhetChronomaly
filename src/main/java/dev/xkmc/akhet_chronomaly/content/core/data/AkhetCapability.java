@@ -1,5 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.core.data;
 
+import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusHolder;
+import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusModifier;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactStats;
@@ -11,6 +13,7 @@ import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -22,7 +25,10 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 
 	@SerialField
 	private final Map<ArtifactSet, SetStat> setMap = new LinkedHashMap<>();
+	@SerialField
 	private final Map<ArtifactSet, AkhetSetData> dataMap = new LinkedHashMap<>();
+	@SerialField
+	private final Map<String, BonusHolder> bonuses = new LinkedHashMap<>();
 
 	@Override
 	public void tick(Player player) {
@@ -40,13 +46,15 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 			for (int i = 0; i < list.size(); i++) {
 				var holder = list.get(i);
 				var id = holder.unwrapKey().orElseThrow().location();
-				SetEffectContext ctx = new SetEffectContext(player, holder, data, id, Optional.empty());
+				SetEffectContext ctx = new SetEffectContext(player, holder, this, id, Optional.empty());
 				data.flags[i] = holder.value().tick(ctx, data.flags[i], holder.value().count() >= newStat.count());
 			}
-			data.tick();
 			if (!setMap.containsKey(set)) {
 				dataMap.remove(set);
 			}
+		}
+		for (var ent : bonuses.values()) {
+			ent.tick();
 		}
 	}
 
@@ -54,10 +62,9 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 		for (var ent : setMap.entrySet()) {
 			var effects = ent.getKey().getConfig(player.level().registryAccess());
 			List<Holder<SetEffect>> list = effects == null ? List.of() : effects.list();
-			AkhetSetData data = dataMap.computeIfAbsent(ent.getKey(), k -> new AkhetSetData());
 			for (Holder<SetEffect> holder : list) {
 				var id = holder.unwrapKey().orElseThrow().location();
-				SetEffectContext ctx = new SetEffectContext(player, holder, data, id, Optional.of(event));
+				SetEffectContext ctx = new SetEffectContext(player, holder, this, id, Optional.of(event));
 				holder.value().trigger(ctx, type, event);
 			}
 		}
@@ -92,6 +99,19 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 
 	public Map<ArtifactSet, SetStat> getSets() {
 		return setMap;
+	}
+
+	public BonusHolder getBonus(String type) {
+		return bonuses.getOrDefault(type, new BonusHolder());
+	}
+
+	public void addModifier(String type, ResourceLocation id, BonusModifier modifier) {
+		bonuses.computeIfAbsent(type, k -> new BonusHolder()).addModifier(id, modifier);
+	}
+
+	public void removeModifier(String type, ResourceLocation id) {
+		var holder = bonuses.get(type);
+		if (holder != null) holder.removeModifier(id);
 	}
 
 	public static class SetStatBuilder {

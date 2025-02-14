@@ -35,4 +35,14 @@ public class BonusModifier {
 		return --duration <= 0;
 	}
 
+	public void update(BonusModifier mod) {
+		if (duration > 0) {
+			if (mod.duration < 0) {
+				duration = mod.duration;
+			} else {
+				duration += mod.duration;
+			}
+		}
+	}
+
 }
