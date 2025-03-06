@@ -6,7 +6,7 @@ import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactStats;
 import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
-import dev.xkmc.akhet_chronomaly.content.engine.core.trigger.TriggerType;
+import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
 import dev.xkmc.l2core.capability.player.PlayerCapabilityTemplate;
 import dev.xkmc.l2library.util.GenericItemStack;

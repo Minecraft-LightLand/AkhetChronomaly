@@ -61,19 +61,22 @@ public class ACItems {
 		}
 		{
 			var set = REGISTRATE.getSetHelper("count_sanguivore");
-			set.regSet("Count Sanguivore").addClothPreset().register();
-		}
-		{
-			var set = REGISTRATE.getSetHelper("pale_moon");
-			set.regSet("Pale Moon").addArmorPreset().register();
-		}
-		{
-			var set = REGISTRATE.getSetHelper("pure_blood");
-			set.regSet("Pure Blood").addArmorPreset().register();
-		}
-		{
-			var set = REGISTRATE.getSetHelper("draining_sentinel");
-			set.regSet("Draining Sentinel").addArmorPreset().register();
+			var root = set.regSet("Count Sanguivore").addClothPreset().register();
+			{
+
+			}
+			{
+				var sub = root.subSet("pale_moon");
+				sub.regSet("Pale Moon").addArmorPreset().register();
+			}
+			{
+				var sub = root.subSet("pure_blood");
+				sub.regSet("Pure Blood").addArmorPreset().register();
+			}
+			{
+				var sub = root.subSet("draining_sentinel");
+				sub.regSet("Draining Sentinel").addArmorPreset().register();
+			}
 		}
 	}
 

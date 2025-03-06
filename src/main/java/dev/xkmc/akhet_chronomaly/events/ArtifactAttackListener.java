@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.events;
 
-import dev.xkmc.akhet_chronomaly.content.engine.core.type.AutoReg;
+import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 import dev.xkmc.l2damagetracker.contents.attack.AttackListener;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 

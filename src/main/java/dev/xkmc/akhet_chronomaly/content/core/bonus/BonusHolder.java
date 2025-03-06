@@ -45,7 +45,7 @@ public class BonusHolder {
 		for (var e : modifiers.values()) {
 			add += e.add;
 			base += e.base;
-			total *= e.total;
+			total *= (1 + e.total);
 		}
 	}
 

@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import dev.xkmc.akhet_chronomaly.content.core.data.SetConfig;
 import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
+import dev.xkmc.akhet_chronomaly.init.registrate.entries.SetEntry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
@@ -36,9 +37,15 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 	}
 
 	private final SetLink link = new SetLink();
+	private SetEntry<?> root = null;
 
 	public ArtifactSet() {
 		super(ACTypeRegistry.SET);
+	}
+
+	public ArtifactSet(@Nullable SetEntry<?> root) {
+		this();
+		this.root = root;
 	}
 
 	public SetLink getLink() {
@@ -90,6 +97,10 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			}
 		}
 		return ans;
+	}
+
+	public ArtifactSet root() {
+		return root == null ? this : root.get();
 	}
 
 }

@@ -36,13 +36,8 @@ public class BonusModifier {
 	}
 
 	public void update(BonusModifier mod) {
-		if (duration > 0) {
-			if (mod.duration < 0) {
-				duration = mod.duration;
-			} else {
-				duration += mod.duration;
-			}
-		}
+		if (mod.duration < 0) duration = -1;
+		else if (duration > 0) duration = Math.max(duration, mod.duration);
 	}
 
 }

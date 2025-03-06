@@ -70,7 +70,7 @@ public class EquipHandler implements IItemHandlerModifiable {
 			if (stack.isEmpty()) continue;
 			a++;
 			if (set == null && stack.getItem() instanceof BaseArtifact item) {
-				set = item.set.get();
+				set = item.getSet().root();
 			}
 		}
 		for (int i = 6; i < 12; i++) {
@@ -187,7 +187,7 @@ public class EquipHandler implements IItemHandlerModifiable {
 			if (!isEnabled()) return false;
 			ArtifactSet set = parent.set;
 			if (!(stack.getItem() instanceof IArtifact item)) return false;
-			if (set != null && item.getSet() != set) return false;
+			if (set != null && item.getSet() != set.root()) return false;
 			if (type.slot != null) {
 				return stack.getItem() instanceof BaseArtifact art && art.slot.get() == type.slot;
 			}

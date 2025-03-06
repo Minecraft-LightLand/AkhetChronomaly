@@ -1,9 +1,9 @@
 package dev.xkmc.akhet_chronomaly.content.core.data;
 
-import dev.xkmc.akhet_chronomaly.content.engine.core.trigger.TriggerType;
-import dev.xkmc.akhet_chronomaly.content.engine.core.type.IEffectEntry;
-import dev.xkmc.akhet_chronomaly.content.engine.entry.StatusEffectEntry;
-import dev.xkmc.akhet_chronomaly.content.engine.entry.TriggerEffectEntry;
+import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
+import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
+import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
+import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.network.chat.MutableComponent;
 
