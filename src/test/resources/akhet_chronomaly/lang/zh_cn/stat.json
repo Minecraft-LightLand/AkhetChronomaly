@@ -1,0 +1,16 @@
+{
+
+	"stat_type.akhet_chronomaly.armor_add": "+护甲值",
+	"stat_type.akhet_chronomaly.attack_add": "+攻击伤害",
+	"stat_type.akhet_chronomaly.attack_mult": "+%%攻击伤害",
+	"stat_type.akhet_chronomaly.attack_speed_mult": "+%%攻击速度",
+	"stat_type.akhet_chronomaly.bow_strength_add": "+弓箭伤害",
+	"stat_type.akhet_chronomaly.crit_damage_add": "+暴击伤害",
+	"stat_type.akhet_chronomaly.crit_rate_add": "+暴击率",
+	"stat_type.akhet_chronomaly.health_add": "+最大生命值",
+	"stat_type.akhet_chronomaly.reach_add": "+攻击距离",
+	"stat_type.akhet_chronomaly.speed_mult": "+%%速度",
+	"stat_type.akhet_chronomaly.tough_add": "+盔甲韧性",
+	"stat_type.akhet_chronomaly.explosion_add": "+%%爆炸伤害",
+	"stat_type.akhet_chronomaly.magic_add": "+%%魔法伤害"
+}

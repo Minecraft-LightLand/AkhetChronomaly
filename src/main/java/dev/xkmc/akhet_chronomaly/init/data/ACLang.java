@@ -14,9 +14,7 @@ public enum ACLang {
 	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
 	UPGRADE("tooltip.upgrade", "Right Click to Reveal Upgrade Result", 0, ChatFormatting.GOLD),
 	STAT("tooltip.sub_stat", "Stats", 0, ChatFormatting.GRAY),
-	SHIFT_TEXT("tooltip.shift", "Hold Shift for set effects", 0, ChatFormatting.AQUA),
-	SET("tooltip.set", "Set: %s", 1, null),
-	ALL_SET_EFFECTS("set.all_set_effects", "%s: %s piece(s)", 2, null),
+	SHIFT_TEXT("tooltip.shift", "Hold Shift for set effects", 0, ChatFormatting.DARK_AQUA),
 
 	TITLE_SELECT_SET("title.select_set", "Select Artifact Set"),
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot"),
@@ -28,7 +26,17 @@ public enum ACLang {
 	LOOT_POOL("tooltip.loot_pool", "Possible Sets:", 0, ChatFormatting.YELLOW),
 	LOOT_POOL_ALL("tooltip.loot_pool_all", "Possible Sets: All Sets", 0, ChatFormatting.YELLOW),
 
-	;
+
+	SET("set.set_name", "Set: %s", 1, ChatFormatting.GRAY),
+	EFFECT_COUNT("set.effect_count", "%s: %s piece(s)", 2, ChatFormatting.GOLD),
+	COMBINE("set.combine", "%s: %s", 2, ChatFormatting.GRAY),
+	CONDITION("set.condition", "%s:", 1, ChatFormatting.GRAY),
+
+	PHP_LOW("effect.predicate.php_low", "When your HP is below %s", 1, ChatFormatting.GRAY),
+	PHP_HIGH("effect.predicate.php_high", "When your HP is above %s", 1, ChatFormatting.GRAY),
+	PHP_MID("effect.predicate.php_mid", "When your HP is between %s ~ %s", 2, ChatFormatting.GRAY),
+
+	HEAL_HIT("effect.trigger.heal_hit", "Heal %s of the damage inflicted", 1, ChatFormatting.GRAY);
 
 	private final String key, def;
 	private final int arg;
@@ -39,6 +47,10 @@ public enum ACLang {
 		this.def = def;
 		this.arg = arg;
 		this.format = format;
+	}
+
+	ACLang(String key, String def, int arg) {
+		this(key, def, arg, null);
 	}
 
 	ACLang(String key, String def) {
@@ -71,6 +83,27 @@ public enum ACLang {
 			pvd.add(type.getDesc(), type.getDefTranslation());
 			pvd.add(type.getModifier(), "When equipped as " + type.getDefTranslation() + ":");
 		}
+	}
+
+
+	public static MutableComponent num(int val) {
+		return Component.literal("" + val).withStyle(ChatFormatting.DARK_AQUA);
+	}
+
+
+	public static MutableComponent decimal(double val) {
+		if (Math.abs(val - Math.round(val)) < 1e-3) {
+			return num((int) Math.round(val));
+		}
+		return Component.literal("" + val).withStyle(ChatFormatting.DARK_AQUA);
+	}
+
+	public static MutableComponent perc(double val) {
+		return Component.literal(Math.round(val * 100) + "%").withStyle(ChatFormatting.DARK_AQUA);
+	}
+
+	public static MutableComponent percSmall(double val) {
+		return Component.literal(val * 100 + "%").withStyle(ChatFormatting.DARK_AQUA);
 	}
 
 }

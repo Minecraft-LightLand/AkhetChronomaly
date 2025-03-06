@@ -1,5 +1,7 @@
 package dev.xkmc.akhet_chronomaly.content.core.data;
 
+import dev.xkmc.akhet_chronomaly.engine.core.tooltip.DescElementCollector;
+import dev.xkmc.akhet_chronomaly.engine.core.tooltip.TooltipConsumer;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
 import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
@@ -11,8 +13,9 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
+import java.util.Optional;
 
-public record SetEffect(int count, List<IEffectEntry<?>> effects) {
+public record SetEffect(int count, List<IEffectEntry<?>> effects, Optional<String> desc) {
 
 	public <T> void trigger(SetEffectContext ctx, TriggerType<T> type, T event) {
 		for (int i = 0; i < effects().size(); i++) {
@@ -61,8 +64,18 @@ public record SetEffect(int count, List<IEffectEntry<?>> effects) {
 		return Component.translatable(Util.makeDescriptionId("set_effect", id));
 	}
 
-	public List<MutableComponent> getDetailedDescription() {
-		return List.of();//TODO
+	public void getDetailedDescription(ResourceLocation id, TooltipConsumer list) {
+		if (desc.isPresent()) {
+			var elements = new DescElementCollector();
+			for (var e : effects()) {
+				e.getDescElements(elements);
+			}
+			list.add(elements.parse(Util.makeDescriptionId("set_effect", id) + ".desc"));
+		} else {
+			for (var e : effects()) {
+				e.getFullDesc(list);
+			}
+		}
 	}
 
 }

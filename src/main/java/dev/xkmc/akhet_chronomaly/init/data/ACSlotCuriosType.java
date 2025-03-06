@@ -35,7 +35,7 @@ public enum ACSlotCuriosType {
 	}
 
 	public String getDefTranslation() {
-		return "Artifact - " + RegistrateLangProvider.toEnglishName(name().toLowerCase(Locale.ROOT));
+		return "Akhet - " + RegistrateLangProvider.toEnglishName(name().toLowerCase(Locale.ROOT));
 	}
 
 	public String getDesc() {

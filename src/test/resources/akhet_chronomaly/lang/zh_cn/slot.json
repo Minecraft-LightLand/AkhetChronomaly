@@ -1,0 +1,27 @@
+{
+	"-cartesian": {
+		"slots": {
+			"path": "",
+			"list": [
+				{
+					"belt": "腰带",
+					"body": "上身",
+					"cape": "披风",
+					"feet": "脚部",
+					"hand": "手部",
+					"head": "头部",
+					"legs": "下身",
+					"neck": "项链",
+					"ring": "戒指",
+					"shoulder": "肩膀",
+					"wrist": "手臂"
+				},
+				{
+					"slot.akhet_chronomaly.*": "*",
+					"curios.identifier.akhet_*": "阿赫特 - *",
+					"curios.modifiers.akhet_*": "作为阿赫特*时:"
+				}
+			]
+		}
+	}
+}

@@ -1,8 +1,9 @@
 package dev.xkmc.akhet_chronomaly.engine.entry;
 
-import dev.xkmc.akhet_chronomaly.engine.core.type.IStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
+import dev.xkmc.akhet_chronomaly.engine.core.type.IStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.core.type.IUserPredicate;
+import net.minecraft.network.chat.MutableComponent;
 
 import java.util.List;
 import java.util.Optional;

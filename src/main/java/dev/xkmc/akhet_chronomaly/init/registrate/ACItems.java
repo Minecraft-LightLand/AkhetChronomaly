@@ -82,9 +82,13 @@ public class ACItems {
 			var rootBuilder = set.regSet("Count Sanguivore").addClothPreset();
 			if (DatagenModLoader.isRunningDataGen()) {
 				rootBuilder.effect("bloodshed", 3, () -> List.of(TriggerEffectEntry.of(
-						new DirectDamagePredicate(true), new HealOnHit(0.05f))));
-				rootBuilder.effect("blood_drain", 6, () -> List.of(TriggerEffectEntry.of(new HealOnHit(0.02f))));
-				rootBuilder.effect("necrovore_festival", 9, () -> List.of(TriggerEffectEntry.of(new HealOnKill(0.15f, 4, 0.6f, 0.05f))));
+								new DirectDamagePredicate(true), new HealOnHit(0.05f))),
+						"%s on direct attack");
+				rootBuilder.effect("blood_drain", 6, () -> List.of(TriggerEffectEntry.of(
+						new HealOnHit(0.02f))));
+				rootBuilder.effect("necrovore_festival", 9, () -> List.of(TriggerEffectEntry.of(
+								new HealOnKill(0.15f, 4, 0.6f, 0.05f))),
+						"Heal %s of your health and restore nutrition when you kill enemies");
 				rootBuilder.effect("blood_bath", 12, () -> List.of(
 						StatusEffectEntry.of(
 								new SelfHealthPredicate(0, 0.5),
@@ -98,7 +102,7 @@ public class ACItems {
 				rootBuilder.effect("night_party", 15, () -> List.of(StatusEffectEntry.of(
 						new PlayerLightPredicate(0, 7, true),
 						AttributeStatusEffect.add(L2DamageTracker.REGEN, 2)
-				)));
+				)), "When you are not under sunlight: %s");
 			}
 			var root = rootBuilder.register();
 			{
@@ -106,22 +110,22 @@ public class ACItems {
 				var builder = sub.regSet("Pure Blood").addArmorPreset();
 				if (DatagenModLoader.isRunningDataGen()) {
 					builder.effect("scarlet_shadow", 3, () -> List.of(
-							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.MOVEMENT_SPEED, "pure_blood_speed")),
-							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_speed", 100, 0.2), AutoReg.ON_HEAL.get()))
-					));
+							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_speed", 100, 0.2), AutoReg.ON_HEAL.get())),
+							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.MOVEMENT_SPEED, "pure_blood_speed"))
+					), "When you heal, gain %s for %s seconds");
 					builder.effect("primal_strength", 6, () -> List.of(
-							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.ATTACK_DAMAGE, "pure_blood_attack")),
-							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_attack", 100, 0.3), AutoReg.ON_HEAL.get()))
-					));
+							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_attack", 100, 0.3), AutoReg.ON_HEAL.get())),
+							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.ATTACK_DAMAGE, "pure_blood_attack"))
+					), "When you heal, gain %s for %s seconds");
 					builder.effect("inherited_spell", 9, () -> List.of(
-							StatusEffectEntry.of(AttributeBonusStatusEffect.base(L2DamageTracker.MAGIC_FACTOR, "pure_blood_magic")),
-							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_magic", 100, 0.4), AutoReg.ON_HEAL.get()))
-					));
+							TriggerEffectEntry.of(new GainBonus<>(BonusRecord.add("pure_blood_magic", 100, 0.4), AutoReg.ON_HEAL.get())),
+							StatusEffectEntry.of(AttributeBonusStatusEffect.base(L2DamageTracker.MAGIC_FACTOR, "pure_blood_magic"))
+					), "When you heal, gain %s for %s seconds");
 					builder.effect("nobel_blood", 12, () -> List.of(StatusEffectEntry.of(
 							BonusStatusEffect.total("pure_blood_speed", 0.5),
 							BonusStatusEffect.total("pure_blood_attack", 0.5),
 							BonusStatusEffect.total("pure_blood_magic", 0.5)
-					)));
+					)), "Amplify previous effects in this set by %s/%s/%s");
 				}
 				builder.register();
 			}

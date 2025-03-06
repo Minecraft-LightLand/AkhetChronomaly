@@ -1,0 +1,60 @@
+{
+	"item.akhet_chronomaly": {
+		"random_0": "Random Artifact [Worn]",
+		"random_1": "Random Artifact -Common-",
+		"random_2": "Random Artifact =Rare=",
+		"random_3": "Random Artifact >Epic<",
+		"random_4": "Random Artifact »Legendary«",
+		"random_set_0": "Random Artifact Set [Worn]",
+		"random_set_1": "Random Artifact Set -Common-",
+		"random_set_2": "Random Artifact Set =Rare=",
+		"random_set_3": "Random Artifact Set >Epic<",
+		"random_set_4": "Random Artifact Set »Legendary«"
+	},
+	"-cartesian": {
+		"cloth": {
+			"path": "item.akhet_chronomaly",
+			"list": [
+				{
+					"count_sanguivore": "汲血伯爵"
+				},
+				{
+					"hat": "帽子",
+					"cloth": "上衣",
+					"cloak": "披风",
+					"belt": "腰带",
+					"pants": "裤子",
+					"boots": "靴子",
+					"pauldron": "护肩",
+					"bracer": "护臂",
+					"glove": "手套",
+					"necklace": "项链",
+					"ring": "戒指"
+				}
+			]
+		},
+		"armor": {
+			"path": "item.akhet_chronomaly",
+			"list": [
+				{
+					"pure_blood": "纯血之子",
+					"draining_sentinel": "抑血守卫",
+					"pale_moon": "苍白月夜"
+				},
+				{
+					"helmet": "头盔",
+					"armor": "护甲",
+					"cloak": "披风",
+					"belt": "腰带",
+					"pants": "裤子",
+					"boots": "靴子",
+					"pauldron": "护肩",
+					"bracer": "护臂",
+					"glove": "手套",
+					"necklace": "项链",
+					"ring": "戒指"
+				}
+			]
+		}
+	}
+}

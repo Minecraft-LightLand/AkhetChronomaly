@@ -1,0 +1,22 @@
+{
+	"set.akhet_chronomaly.count_sanguivore": "汲血伯爵",
+	"set_effect.akhet_chronomaly.count_sanguivore_bloodshed": "嗜血",
+	"set_effect.akhet_chronomaly.count_sanguivore_bloodshed.desc": "直接攻击时%s",
+	"set_effect.akhet_chronomaly.count_sanguivore_blood_drain": "咒噬",
+	"set_effect.akhet_chronomaly.count_sanguivore_necrovore_festival": "宴席",
+	"set_effect.akhet_chronomaly.count_sanguivore_necrovore_festival.desc": "当你击杀目标时，回复总血量的%s并回复饱食度",
+	"set_effect.akhet_chronomaly.count_sanguivore_blood_bath": "血浴",
+	"set_effect.akhet_chronomaly.count_sanguivore_night_party": "午夜请帖",
+	"set_effect.akhet_chronomaly.count_sanguivore_night_party.desc": "当你不在阳光下时: %s",
+	"set.akhet_chronomaly.pure_blood": "纯血之子",
+	"set_effect.akhet_chronomaly.pure_blood_scarlet_shadow": "血影",
+	"set_effect.akhet_chronomaly.pure_blood_scarlet_shadow.desc": "回复血量时%2$s秒内%1$s",
+	"set_effect.akhet_chronomaly.pure_blood_primal_strength": "先祖狂力",
+	"set_effect.akhet_chronomaly.pure_blood_primal_strength.desc": "回复血量时%2$s秒内%1$s",
+	"set_effect.akhet_chronomaly.pure_blood_inherited_spell": "传承禁咒",
+	"set_effect.akhet_chronomaly.pure_blood_inherited_spell.desc": "回复血量时%2$s秒内%1$s",
+	"set_effect.akhet_chronomaly.pure_blood_nobel_blood": "高贵血脉",
+	"set_effect.akhet_chronomaly.pure_blood_nobel_blood.desc": "本套装词条上升%s/%s/%s",
+	"set.akhet_chronomaly.pale_moon": "苍白月夜",
+	"set.akhet_chronomaly.draining_sentinel": "抑血守卫"
+}

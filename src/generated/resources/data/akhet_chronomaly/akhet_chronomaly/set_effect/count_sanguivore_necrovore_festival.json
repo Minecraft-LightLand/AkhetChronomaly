@@ -1,5 +1,6 @@
 {
   "count": 9,
+  "desc": "set_effect.akhet_chronomaly.count_sanguivore_necrovore_festival.desc",
   "effects": {
     "type": "akhet_chronomaly:trigger",
     "listeners": {

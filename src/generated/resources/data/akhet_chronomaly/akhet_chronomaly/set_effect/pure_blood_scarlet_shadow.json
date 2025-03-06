@@ -1,15 +1,7 @@
 {
   "count": 3,
+  "desc": "set_effect.akhet_chronomaly.pure_blood_scarlet_shadow.desc",
   "effects": [
-    {
-      "type": "akhet_chronomaly:status",
-      "listeners": {
-        "type": "akhet_chronomaly:attribute_from_bonus",
-        "attribute": "minecraft:generic.movement_speed",
-        "id": "pure_blood_speed",
-        "operation": "ADD_MULTIPLIED_BASE"
-      }
-    },
     {
       "type": "akhet_chronomaly:trigger",
       "listeners": {
@@ -19,6 +11,15 @@
         "id": "pure_blood_speed",
         "operation": "ADD_VALUE",
         "triggerType": "akhet_chronomaly:on_heal"
+      }
+    },
+    {
+      "type": "akhet_chronomaly:status",
+      "listeners": {
+        "type": "akhet_chronomaly:attribute_from_bonus",
+        "attribute": "minecraft:generic.movement_speed",
+        "id": "pure_blood_speed",
+        "operation": "ADD_MULTIPLIED_BASE"
       }
     }
   ]

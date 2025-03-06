@@ -111,7 +111,7 @@ public class BaseArtifact extends Item implements ICurioItem, IArtifact {
 			} else {
 				stats.get().buildTooltip(ctx, list, flag);
 			}
-			//list.addAll(set.get().getAllDescs(stack, shift));
+			set.get().getAllDescs(list, ctx, shift);
 		}
 		if (!shift) {
 			list.add(ACLang.SHIFT_TEXT.get());

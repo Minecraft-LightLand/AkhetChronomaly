@@ -1,5 +1,6 @@
 {
   "count": 12,
+  "desc": "set_effect.akhet_chronomaly.pure_blood_nobel_blood.desc",
   "effects": {
     "type": "akhet_chronomaly:status",
     "listeners": [

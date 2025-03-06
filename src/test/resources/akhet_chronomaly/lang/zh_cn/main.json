@@ -1,0 +1,34 @@
+{
+	"akhet_chronomaly": {
+		"tooltip": {
+			"artifact_level": "等级: %s",
+			"loot_pool": "可能出现的套装：",
+			"loot_pool_all": "可能出现的套装：所有套装",
+			"raw_artifact": "右键鉴定属性",
+			"shift": "按Shift显示套装效果",
+			"sub_stat": "词条:",
+			"upgrade": "右键显示升级后的属性"
+		},
+		"title": {
+			"select_rank": "选择品质",
+			"select_set": "选择套装",
+			"select_slot": "选择部件"
+		},
+		"menu": {
+			"tabs.equip": "阿赫特的套装",
+			"tabs.set_effects": "激活的套装效果"
+		},
+		"set": {
+			"combine": "%s: %s",
+			"condition": "%s:",
+			"effect_count": "%s: %s件",
+			"set_name": "套装: %s"
+		},
+		"effect": {
+			"predicate.php_high": "当你血量高于%s时",
+			"predicate.php_low": "当你血量低于%s时",
+			"predicate.php_mid": "当你血量处于%s ~ %s时",
+			"trigger.heal_hit": "恢复造成伤害的%s"
+		}
+	}
+}

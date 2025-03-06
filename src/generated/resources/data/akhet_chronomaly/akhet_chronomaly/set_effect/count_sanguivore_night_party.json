@@ -1,5 +1,6 @@
 {
   "count": 15,
+  "desc": "set_effect.akhet_chronomaly.count_sanguivore_night_party.desc",
   "effects": {
     "type": "akhet_chronomaly:status",
     "listeners": {

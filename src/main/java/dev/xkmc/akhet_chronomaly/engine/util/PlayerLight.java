@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.content.effects.core;
+package dev.xkmc.akhet_chronomaly.engine.util;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LightLayer;

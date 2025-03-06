@@ -20,6 +20,7 @@ import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2menustacker.init.L2MSTagGen;
 import dev.xkmc.l2serial.util.Wrappers;
+import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -29,9 +30,11 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import static com.tterrag.registrate.providers.RegistrateLangProvider.toEnglishName;
@@ -128,11 +131,17 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	public SetBuilder<T, I, P> effect(String name, int count, Supplier<List<IEffectEntry<?>>> data) {
+		return effect(name, count, data, null);
+	}
+
+	public SetBuilder<T, I, P> effect(String name, int count, Supplier<List<IEffectEntry<?>>> data, @Nullable String desc) {
 		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(owner.getModid(), getName() + "_" + name);
 		var key = ResourceKey.create(ACTypeRegistry.SET_EFFECT.key(), id);
 		effects.add(new DataGenHolder<>(key, null));
-		owner.addData(key, () -> new SetEffect(count, data.get()));
+		owner.addData(key, () -> new SetEffect(count, data.get(), desc == null ? Optional.empty() :
+				Optional.of(Util.makeDescriptionId("set_effect", id) + ".desc")));
 		owner.addLang("set_effect", id, RegistrateLangProvider.toEnglishName(name));
+		if (desc != null) owner.addLang("set_effect", id, "desc", desc);
 		return this;
 	}
 

@@ -1,5 +1,6 @@
 {
   "count": 3,
+  "desc": "set_effect.akhet_chronomaly.count_sanguivore_bloodshed.desc",
   "effects": {
     "type": "akhet_chronomaly:trigger",
     "listeners": {
