@@ -1,13 +1,14 @@
 package dev.xkmc.akhet_chronomaly.init.registrate;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.akhet_chronomaly.content.core.stat.SlotStatMap;
-import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
-import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.data.AkhetCapability;
-import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.data.SetConfig;
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffect;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
+import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
+import dev.xkmc.akhet_chronomaly.content.core.stat.SlotStatMap;
+import dev.xkmc.akhet_chronomaly.content.core.stat.StatType;
+import dev.xkmc.akhet_chronomaly.engine.core.codec.CodecHelper;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.data.ACSlotCuriosType;
 import dev.xkmc.l2core.capability.player.PlayerCapabilityNetworkHandler;
@@ -26,7 +27,7 @@ public class ACTypeRegistry {
 	public static final L2Registrate.RegistryInstance<ArtifactSet> SET = REGISTRATE.newRegistry("set", ArtifactSet.class);
 
 	public static final DatapackReg<StatType> STAT_TYPE = AkhetChronomaly.REG.dataReg("stat_type", StatType.class);
-	public static final DatapackReg<SetEffect> SET_EFFECT = AkhetChronomaly.REG.dataReg("set_effect", SetEffect.class);
+	public static final DatapackReg<SetEffect> SET_EFFECT = AkhetChronomaly.REG.dataReg("set_effect", CodecHelper.getAutoCodec(SetEffect.class).codec());
 
 	public static final DataMapReg<ArtifactSlot, SlotStatMap> STAT_MAP = AkhetChronomaly.REG.dataMap("stat_map", SLOT.key(), SlotStatMap.class);
 	public static final DataMapReg<ArtifactSet, SetConfig> SET_CONFIG = AkhetChronomaly.REG.dataMap("set_config", SET.key(), SetConfig.class);

@@ -2,10 +2,10 @@ package dev.xkmc.akhet_chronomaly.engine.core.type;
 
 import dev.xkmc.akhet_chronomaly.engine.core.codec.AutoCodecTypeRegistry;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.WR;
-import dev.xkmc.akhet_chronomaly.engine.core.effect.IStatusEffect;
-import dev.xkmc.akhet_chronomaly.engine.core.effect.ITriggerEffect;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
+import dev.xkmc.akhet_chronomaly.engine.effect.AttributeBonusStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.effect.AttributeStatusEffect;
+import dev.xkmc.akhet_chronomaly.engine.effect.BonusStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.effect.MobEffectStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
@@ -56,6 +56,8 @@ public class AutoReg {
 
 		// status
 		REG_STATUS.reg("attribute", AttributeStatusEffect.class);
+		REG_STATUS.reg("attribute_from_bonus", AttributeBonusStatusEffect.class);
+		REG_STATUS.reg("bonus", BonusStatusEffect.class);
 		REG_STATUS.reg("mob_effect", MobEffectStatusEffect.class);
 
 		// on hurt target

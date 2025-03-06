@@ -1,5 +1,6 @@
 package dev.xkmc.akhet_chronomaly.engine.util;
 
+import dev.xkmc.akhet_chronomaly.engine.core.codec.IComponentCodec;
 import dev.xkmc.l2core.base.effects.EffectUtil;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
@@ -13,7 +14,7 @@ public record EffectRecord(
 		double chance,
 		boolean stack,
 		int maxStack
-) {
+) implements IComponentCodec {
 
 	public void trigger(LivingEntity player, LivingEntity target) {
 		if (player.getRandom().nextDouble() < chance) {

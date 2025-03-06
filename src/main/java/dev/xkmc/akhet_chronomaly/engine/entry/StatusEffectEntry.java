@@ -1,6 +1,6 @@
 package dev.xkmc.akhet_chronomaly.engine.entry;
 
-import dev.xkmc.akhet_chronomaly.engine.core.effect.IStatusEffect;
+import dev.xkmc.akhet_chronomaly.engine.core.type.IStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.core.type.IUserPredicate;
 

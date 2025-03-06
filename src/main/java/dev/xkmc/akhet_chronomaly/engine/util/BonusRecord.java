@@ -2,6 +2,7 @@ package dev.xkmc.akhet_chronomaly.engine.util;
 
 import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusModifier;
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
+import dev.xkmc.akhet_chronomaly.engine.core.codec.IComponentCodec;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public record BonusRecord(
@@ -9,7 +10,7 @@ public record BonusRecord(
 		int duration,
 		double amount,
 		AttributeModifier.Operation operation
-) {
+) implements IComponentCodec {
 
 	public static BonusRecord add(String id, int duration, double amount) {
 		return new BonusRecord(id, duration, amount, AttributeModifier.Operation.ADD_VALUE);

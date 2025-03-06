@@ -1,0 +1,26 @@
+{
+  "count": 12,
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": [
+      {
+        "type": "akhet_chronomaly:bonus",
+        "attribute": "pure_blood_speed",
+        "operation": "ADD_MULTIPLIED_TOTAL",
+        "value": 0.5
+      },
+      {
+        "type": "akhet_chronomaly:bonus",
+        "attribute": "pure_blood_attack",
+        "operation": "ADD_MULTIPLIED_TOTAL",
+        "value": 0.5
+      },
+      {
+        "type": "akhet_chronomaly:bonus",
+        "attribute": "pure_blood_magic",
+        "operation": "ADD_MULTIPLIED_TOTAL",
+        "value": 0.5
+      }
+    ]
+  }
+}

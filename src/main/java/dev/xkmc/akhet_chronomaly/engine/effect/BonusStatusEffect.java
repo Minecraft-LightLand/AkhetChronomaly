@@ -2,7 +2,7 @@ package dev.xkmc.akhet_chronomaly.engine.effect;
 
 import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusModifier;
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
-import dev.xkmc.akhet_chronomaly.engine.core.effect.IStatusEffect;
+import dev.xkmc.akhet_chronomaly.engine.core.type.IStatusEffect;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public record BonusStatusEffect(

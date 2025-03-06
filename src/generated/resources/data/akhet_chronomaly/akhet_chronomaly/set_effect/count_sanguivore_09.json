@@ -1,0 +1,13 @@
+{
+  "count": 9,
+  "effects": {
+    "type": "akhet_chronomaly:trigger",
+    "listeners": {
+      "type": "akhet_chronomaly:heal_on_kill",
+      "healFactor": 0.15,
+      "nutrition": 4,
+      "overflowFactor": 0.05,
+      "saturation": 0.6
+    }
+  }
+}

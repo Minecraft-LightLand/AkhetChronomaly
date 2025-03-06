@@ -48,13 +48,13 @@ public class AkhetChronomaly {
 	);
 
 	public AkhetChronomaly() {
+		AutoReg.register();
 		ACTypeRegistry.register();
 		ACItems.register();
 		ACMenuRegistry.register();
 		ACEffects.register();
 		ACTabRegistry.register();
 		ACModConfig.init();
-		AutoReg.register();
 		Handlers.registerReg(StatType.class, ACTypeRegistry.STAT_TYPE.key());
 		new ACSlotClickHandler(loc("click"));
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
@@ -83,6 +83,7 @@ public class AkhetChronomaly {
 		REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, AkhetChronomaly::onDataMapGen);
 		var init = REGISTRATE.getDataGenInitializer();
 		init.add(ACTypeRegistry.STAT_TYPE.key(), ACConfigGen::genSlotType);
+		init.add(ACTypeRegistry.SET_EFFECT.key(), REGISTRATE::genSetEffect);
 
 		var run = event.includeServer();
 		var gen = event.getGenerator();

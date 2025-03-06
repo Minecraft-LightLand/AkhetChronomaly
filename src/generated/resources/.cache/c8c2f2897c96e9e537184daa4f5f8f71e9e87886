@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-06T13:57:01.14863	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+// 1.21.1	2025-03-06T16:39:31.301072	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
 b1531597c8e256ea0d5dcd82afab885e089fce75 assets/akhet_chronomaly/lang/en_ud.json
 1ff735bfd06a4e6ad80ed5a0fe03aab5071ecc98 assets/akhet_chronomaly/lang/en_us.json
 77d087031bbccd052d84cbaff938413800e14233 assets/akhet_chronomaly/models/item/count_sanguivore_belt.json
@@ -71,6 +71,15 @@ a1946b070db5f1d702bbb63a4950bccc0c8eed46 assets/akhet_chronomaly/models/item/ran
 1fe4c1b98533c01e4fd4cba2131547df4163e200 assets/akhet_chronomaly/models/item/random_set_2.json
 b6ff8d561c80b44eb7b456d0611f6c70cb23916b assets/akhet_chronomaly/models/item/random_set_3.json
 f1acc5dd8037f830aa27d578019b1a00a6fb1e47 assets/akhet_chronomaly/models/item/random_set_4.json
+5da2dd6d19a4f69c923a2f93fb82769fcbc9e36c data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_03.json
+48b31430afef9a467d1a5a33e058c0ee95f8c11c data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_06.json
+09b73a632451856eb572bf984680ce32e833ef0c data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_09.json
+38243db099bcb2b9c3a71cbce527cef97c55de81 data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_12.json
+1e903fc8dcb59139d5a3a45f02944edd718c5bd2 data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_15.json
+499be1f2e4f840fabacafb9baac2881c02a92476 data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_03.json
+6ae6b44af23afd58db574ef6c508c345ea4d6b4d data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_06.json
+4e0057617b3b8f6b03edcc55ba05cba04395183e data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_09.json
+b634abded0b772735538ad591b01f56bc371a77a data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_12.json
 e835408be30350c7e12023ca077a6706811e0cd2 data/akhet_chronomaly/akhet_chronomaly/stat_type/absorption.json
 e9d8355c9fc38e0ccae36ef31130519bd7570d79 data/akhet_chronomaly/akhet_chronomaly/stat_type/armor_add.json
 e263610ae2dd84ce2517dfc97704c2c85e01be55 data/akhet_chronomaly/akhet_chronomaly/stat_type/armor_mult.json
@@ -90,6 +99,7 @@ f195bd91b10d9dc0650a65ba29226746e5a0303a data/akhet_chronomaly/akhet_chronomaly/
 616cd4f6b8dfec76785098da2c0d1a6a02c81b73 data/akhet_chronomaly/akhet_chronomaly/stat_type/regeneration_rate.json
 62edf430726f4e6694f8005bbfc9d62a3d3ef7d2 data/akhet_chronomaly/akhet_chronomaly/stat_type/speed_mult.json
 07c4fb2e97e0b1b8455b42d343ecfae0c5559b29 data/akhet_chronomaly/akhet_chronomaly/stat_type/tough_add.json
+cd0ac7b9b7f7d635b086521d84e88b8d5ac7a5e7 data/akhet_chronomaly/data_maps/akhet_chronomaly/set/set_config.json
 74ae37f1444ad5459f994f7eb611bf9943ab1162 data/akhet_chronomaly/data_maps/akhet_chronomaly/slot/stat_map.json
 6a2fd88ec3fb49457358a51d478da5a3d302c5cd data/akhet_chronomaly/tags/item/artifact.json
 e4bd73532ea27b7f779d416693e45dcb85f50a61 data/akhet_chronomaly/tags/item/belt.json

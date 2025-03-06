@@ -1,0 +1,27 @@
+{
+  "values": {
+    "akhet_chronomaly:count_sanguivore": {
+      "list": [
+        "akhet_chronomaly:count_sanguivore_03",
+        "akhet_chronomaly:count_sanguivore_06",
+        "akhet_chronomaly:count_sanguivore_09",
+        "akhet_chronomaly:count_sanguivore_12",
+        "akhet_chronomaly:count_sanguivore_15"
+      ]
+    },
+    "akhet_chronomaly:draining_sentinel": {
+      "list": []
+    },
+    "akhet_chronomaly:pale_moon": {
+      "list": [
+        "akhet_chronomaly:pale_moon_03",
+        "akhet_chronomaly:pale_moon_06",
+        "akhet_chronomaly:pale_moon_09",
+        "akhet_chronomaly:pale_moon_12"
+      ]
+    },
+    "akhet_chronomaly:pure_blood": {
+      "list": []
+    }
+  }
+}

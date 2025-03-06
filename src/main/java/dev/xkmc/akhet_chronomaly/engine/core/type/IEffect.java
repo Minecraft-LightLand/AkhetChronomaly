@@ -1,4 +1,4 @@
-package dev.xkmc.akhet_chronomaly.engine.core.effect;
+package dev.xkmc.akhet_chronomaly.engine.core.type;
 
 import dev.xkmc.akhet_chronomaly.engine.core.codec.IAutoCodec;
 

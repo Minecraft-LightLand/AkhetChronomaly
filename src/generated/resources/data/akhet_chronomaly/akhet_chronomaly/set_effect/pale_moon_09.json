@@ -1,0 +1,24 @@
+{
+  "count": 9,
+  "effects": [
+    {
+      "type": "akhet_chronomaly:status",
+      "listeners": {
+        "type": "akhet_chronomaly:attribute_from_bonus",
+        "attribute": "l2damagetracker:magic_damage",
+        "id": "pure_blood_magic",
+        "operation": "ADD_MULTIPLIED_BASE"
+      }
+    },
+    {
+      "type": "akhet_chronomaly:trigger",
+      "listeners": {
+        "type": "akhet_chronomaly:heal_gain_bonus",
+        "amount": 0.4,
+        "duration": 100,
+        "id": "pure_blood_magic",
+        "operation": "ADD_VALUE"
+      }
+    }
+  ]
+}

@@ -25,10 +25,10 @@ public class CodecHelper {
 	private static final ConcurrentHashMap<Class<?>, MapCodec<?>> RESULT_CACHE = new ConcurrentHashMap<>();
 
 	static {
-		PARAM_CACHE.put(Boolean.class, Codec.BOOL);
-		PARAM_CACHE.put(Integer.class, Codec.INT);
-		PARAM_CACHE.put(Float.class, Codec.FLOAT);
-		PARAM_CACHE.put(Double.class, Codec.DOUBLE);
+		PARAM_CACHE.put(boolean.class, Codec.BOOL);
+		PARAM_CACHE.put(int.class, Codec.INT);
+		PARAM_CACHE.put(float.class, Codec.FLOAT);
+		PARAM_CACHE.put(double.class, Codec.DOUBLE);
 		PARAM_CACHE.put(String.class, Codec.STRING);
 		PARAM_CACHE.put(ResourceLocation.class, Codec.STRING.xmap(ResourceLocation::parse, ResourceLocation::toString));
 
@@ -42,7 +42,7 @@ public class CodecHelper {
 		PARAM_CACHE.put(NumberValue.class, numCodec);
 	}
 
-	public static <T extends Record & IAutoCodec<T>> MapCodec<T> getAutoCodec(Class<T> cls) {
+	public static <T extends Record> MapCodec<T> getAutoCodec(Class<T> cls) {
 		var hit = RESULT_CACHE.get(cls);
 		if (hit != null) return Wrappers.cast(hit);
 		try {
@@ -54,7 +54,7 @@ public class CodecHelper {
 		}
 	}
 
-	private static <T extends Record & IAutoCodec<T>> MapCodec<T> getEntryCodec(Class<T> cls) throws Exception {
+	private static <T extends Record> MapCodec<T> getEntryCodec(Class<T> cls) throws Exception {
 		var cache = RecordCache.get(cls);
 		if (IComponentCodec.class.isAssignableFrom(cache.getComponents()[0].getType())) {
 			var subType = cache.getComponents()[0].getType();
@@ -86,12 +86,19 @@ public class CodecHelper {
 	private static Codec<?> getCodec(TypeInfo info) {
 		if (info.getAsClass() == List.class) {
 			var codec = getCodec(info.getGenericType(0));
-			return Codec.either(codec, codec.listOf());
+			return maybeList(codec);
 		}
 		if (info.getAsClass() == Holder.class) {
 			return Handlers.getReg(info.getGenericType(0).getAsClass()).holder().codec();
 		}
 		return getCodec(info.getAsClass());
+	}
+
+	private static <T> Codec<List<T>> maybeList(Codec<T> codec) {
+		return Codec.either(codec, codec.listOf()).xmap(
+				e -> e.map(List::of, r -> r),
+				list -> list.size() == 1 ? Either.left(list.getFirst()) : Either.right(list)
+		);
 	}
 
 	private static <T> Codec<T> getCodec(Class<T> cls) {

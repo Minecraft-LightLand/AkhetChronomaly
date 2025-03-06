@@ -1,0 +1,14 @@
+{
+  "count": 3,
+  "effects": {
+    "type": "akhet_chronomaly:trigger",
+    "listeners": {
+      "type": "akhet_chronomaly:heal_on_hit",
+      "healFactor": 0.05
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:direct_damage",
+      "checkStrength": true
+    }
+  }
+}

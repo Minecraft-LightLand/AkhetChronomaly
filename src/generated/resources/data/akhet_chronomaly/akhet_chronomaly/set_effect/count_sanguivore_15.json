@@ -1,0 +1,18 @@
+{
+  "count": 15,
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": {
+      "type": "akhet_chronomaly:attribute",
+      "attribute": "l2damagetracker:regen",
+      "operation": "ADD_VALUE",
+      "value": 2.0
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:player_light",
+      "max": 7,
+      "min": 0,
+      "skyOnly": true
+    }
+  }
+}

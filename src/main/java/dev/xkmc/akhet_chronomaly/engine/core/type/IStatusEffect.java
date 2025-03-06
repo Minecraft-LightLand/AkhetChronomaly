@@ -1,8 +1,7 @@
-package dev.xkmc.akhet_chronomaly.engine.core.effect;
+package dev.xkmc.akhet_chronomaly.engine.core.type;
 
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.AutoCodecTypeRegistry;
-import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 
 public interface IStatusEffect<T extends Record & IStatusEffect<T>> extends IEffect<T> {
 

@@ -1,9 +1,8 @@
-package dev.xkmc.akhet_chronomaly.engine.core.effect;
+package dev.xkmc.akhet_chronomaly.engine.core.type;
 
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.AutoCodecTypeRegistry;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
-import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
 
 public interface ITriggerEffect<T extends Record & ITriggerEffect<T, R>, R> extends IEffect<T> {

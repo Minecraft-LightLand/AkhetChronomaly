@@ -1,0 +1,33 @@
+{
+  "count": 12,
+  "effects": [
+    {
+      "type": "akhet_chronomaly:status",
+      "listeners": {
+        "type": "akhet_chronomaly:attribute",
+        "attribute": "l2damagetracker:damage_reduction",
+        "operation": "ADD_MULTIPLIED_TOTAL",
+        "value": -0.2
+      },
+      "predicate": {
+        "type": "akhet_chronomaly:health_percentage",
+        "max": 0.5,
+        "min": 0.0
+      }
+    },
+    {
+      "type": "akhet_chronomaly:status",
+      "listeners": {
+        "type": "akhet_chronomaly:attribute",
+        "attribute": "l2damagetracker:crit_rate",
+        "operation": "ADD_VALUE",
+        "value": 0.2
+      },
+      "predicate": {
+        "type": "akhet_chronomaly:health_percentage",
+        "max": 1.0,
+        "min": 0.5
+      }
+    }
+  ]
+}

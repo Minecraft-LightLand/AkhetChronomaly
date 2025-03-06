@@ -6,15 +6,21 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetConfig;
+import dev.xkmc.akhet_chronomaly.content.core.data.SetEffect;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSet;
 import dev.xkmc.akhet_chronomaly.content.core.item.ArtifactSlot;
 import dev.xkmc.akhet_chronomaly.content.core.item.BaseArtifact;
+import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.akhet_chronomaly.init.registrate.ACTypeRegistry;
+import dev.xkmc.l2core.init.reg.ench.DataGenHolder;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2menustacker.init.L2MSTagGen;
 import dev.xkmc.l2serial.util.Wrappers;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -23,15 +29,23 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+
 import static com.tterrag.registrate.providers.RegistrateLangProvider.toEnglishName;
 
 public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extends AbstractBuilder<ArtifactSet, T, P, SetBuilder<T, I, P>> {
 
+	private ACRegistrate owner;
 	private final NonNullSupplier<T> sup;
+	private final ArrayList<Holder<SetEffect>> effects = new ArrayList<>();
 
 	public SetBuilder(ACRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup) {
 		super(owner, parent, name, callback, ACTypeRegistry.SET.key());
+		this.owner = owner;
 		this.sup = sup;
+		dataMap(ACTypeRegistry.SET_CONFIG.reg(), new SetConfig(effects));
 	}
 
 	public final ItemBuilder<BaseArtifact, SetBuilder<T, I, P>> addSlotImpl(SimpleEntry<ArtifactSlot> slot, String partName) {
@@ -40,7 +54,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		TagKey<Item> curios_tag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "akhet_" + slot_name));
 		TagKey<Item> slot_tag = ItemTags.create(AkhetChronomaly.loc(slot_name));
 		return AkhetChronomaly.REGISTRATE.item(this, getName() + "_" + partName,
-				p -> new BaseArtifact(p, asSupplier()::get, slot))
+						p -> new BaseArtifact(p, asSupplier()::get, slot))
 				.tag(curios_tag, slot_tag, artifact)
 				.lang(toEnglishName(partName) + " of " + toEnglishName(getName()));
 	}
@@ -112,8 +126,17 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		return this.lang(NamedEntry::getDescriptionId, name);
 	}
 
+	public SetBuilder<T, I, P> effect(int count, Supplier<List<IEffectEntry<?>>> data) {
+		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(owner.getModid(), getName() + "_%02d".formatted(count));
+		var key = ResourceKey.create(ACTypeRegistry.SET_EFFECT.key(), id);
+		effects.add(new DataGenHolder<>(key, null));
+		owner.addData(key, () -> new SetEffect(count, data.get()));
+		return this;
+	}
+
 	@Override
 	public SetEntry<T> register() {
 		return Wrappers.cast(super.register());
 	}
+
 }
