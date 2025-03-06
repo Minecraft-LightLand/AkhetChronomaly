@@ -39,8 +39,10 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		String slot_name = slot.key().location().getPath();
 		TagKey<Item> curios_tag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "akhet_" + slot_name));
 		TagKey<Item> slot_tag = ItemTags.create(AkhetChronomaly.loc(slot_name));
-		return AkhetChronomaly.REGISTRATE.item(this, getName() + "_" + partName, p -> new BaseArtifact(p, asSupplier()::get, slot))
-				.tag(curios_tag, slot_tag, artifact).lang(toEnglishName(partName) + " of " + toEnglishName(getName()));
+		return AkhetChronomaly.REGISTRATE.item(this, getName() + "_" + partName,
+				p -> new BaseArtifact(p, asSupplier()::get, slot))
+				.tag(curios_tag, slot_tag, artifact)
+				.lang(toEnglishName(partName) + " of " + toEnglishName(getName()));
 	}
 
 	public final ItemBuilder<BaseArtifact, SetBuilder<T, I, P>> addSlot(SimpleEntry<ArtifactSlot> slot, String partName) {
@@ -62,6 +64,37 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 					.texture("layer0", AkhetChronomaly.loc("item/" + getName() + "/" + partName + "_right"))
 					.override().predicate(AkhetChronomaly.loc("flip"), 0.5f).model(left).end();
 		});
+	}
+
+	public final SetBuilder<T, I, P> addCommonPreset() {
+		addSymmetricSlot(ACTypeRegistry.SLOT_SHOULDER, "pauldron").build();
+		addSymmetricSlot(ACTypeRegistry.SLOT_WRIST, "bracer").build();
+		addSymmetricSlot(ACTypeRegistry.SLOT_HAND, "glove").build();
+		addSlot(ACTypeRegistry.SLOT_NECK, "necklace").build();
+		addSymmetricSlot(ACTypeRegistry.SLOT_RING, "ring").build();
+		return this;
+	}
+
+	public final SetBuilder<T, I, P> addClothPreset() {
+		addSlot(ACTypeRegistry.SLOT_HEAD, "hat").build();
+		addSlot(ACTypeRegistry.SLOT_BODY, "cloth").build();
+		addSlot(ACTypeRegistry.SLOT_CAPE, "cloak").build();
+		addSlot(ACTypeRegistry.SLOT_BELT, "belt").build();
+		addSlot(ACTypeRegistry.SLOT_LEGS, "pants").build();
+		addSlot(ACTypeRegistry.SLOT_FEET, "boots").build();
+		addCommonPreset();
+		return this;
+	}
+
+	public final SetBuilder<T, I, P> addArmorPreset() {
+		addSlot(ACTypeRegistry.SLOT_HEAD, "helmet").build();
+		addSlot(ACTypeRegistry.SLOT_BODY, "armor").build();
+		addSlot(ACTypeRegistry.SLOT_CAPE, "cloak").build();
+		addSlot(ACTypeRegistry.SLOT_BELT, "belt").build();
+		addSlot(ACTypeRegistry.SLOT_LEGS, "pants").build();
+		addSlot(ACTypeRegistry.SLOT_FEET, "boots").build();
+		addCommonPreset();
+		return this;
 	}
 
 	@Override

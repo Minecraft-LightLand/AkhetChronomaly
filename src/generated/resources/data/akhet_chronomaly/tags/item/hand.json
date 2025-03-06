@@ -1,5 +1,8 @@
 {
   "values": [
-    "akhet_chronomaly:count_sanguivore_glove"
+    "akhet_chronomaly:count_sanguivore_glove",
+    "akhet_chronomaly:pale_moon_glove",
+    "akhet_chronomaly:pure_blood_glove",
+    "akhet_chronomaly:draining_sentinel_glove"
   ]
 }

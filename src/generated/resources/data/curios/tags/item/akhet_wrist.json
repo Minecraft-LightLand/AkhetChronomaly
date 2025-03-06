@@ -1,5 +1,8 @@
 {
   "values": [
-    "akhet_chronomaly:count_sanguivore_bracer"
+    "akhet_chronomaly:count_sanguivore_bracer",
+    "akhet_chronomaly:pale_moon_bracer",
+    "akhet_chronomaly:pure_blood_bracer",
+    "akhet_chronomaly:draining_sentinel_bracer"
   ]
 }

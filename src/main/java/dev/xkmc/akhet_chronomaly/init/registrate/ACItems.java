@@ -61,17 +61,19 @@ public class ACItems {
 		}
 		{
 			var set = REGISTRATE.getSetHelper("count_sanguivore");
-			set.regSet("Count Sanguivore")
-					.addSlot(ACTypeRegistry.SLOT_HEAD, "hat").build()
-					.addSlot(ACTypeRegistry.SLOT_BODY, "cloth").build()
-					.addSlot(ACTypeRegistry.SLOT_CAPE, "cloak").build()
-					.addSlot(ACTypeRegistry.SLOT_LEGS, "pants").build()
-					.addSymmetricSlot(ACTypeRegistry.SLOT_SHOULDER, "pauldron").build()
-					.addSymmetricSlot(ACTypeRegistry.SLOT_WRIST, "bracer").build()
-					.addSymmetricSlot(ACTypeRegistry.SLOT_HAND, "glove").build()
-					.addSlot(ACTypeRegistry.SLOT_NECK, "necklace").build()
-					.addSymmetricSlot(ACTypeRegistry.SLOT_RING, "ring").build()
-					.register();
+			set.regSet("Count Sanguivore").addClothPreset().register();
+		}
+		{
+			var set = REGISTRATE.getSetHelper("pale_moon");
+			set.regSet("Pale Moon").addArmorPreset().register();
+		}
+		{
+			var set = REGISTRATE.getSetHelper("pure_blood");
+			set.regSet("Pure Blood").addArmorPreset().register();
+		}
+		{
+			var set = REGISTRATE.getSetHelper("draining_sentinel");
+			set.regSet("Draining Sentinel").addArmorPreset().register();
 		}
 	}
 

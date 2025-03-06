@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "akhet_chronomaly:item/pure_blood/armor"
+  }
+}

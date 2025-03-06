@@ -3,6 +3,18 @@
     "akhet_chronomaly:count_sanguivore_pauldron",
     "akhet_chronomaly:count_sanguivore_bracer",
     "akhet_chronomaly:count_sanguivore_glove",
-    "akhet_chronomaly:count_sanguivore_ring"
+    "akhet_chronomaly:count_sanguivore_ring",
+    "akhet_chronomaly:pale_moon_pauldron",
+    "akhet_chronomaly:pale_moon_bracer",
+    "akhet_chronomaly:pale_moon_glove",
+    "akhet_chronomaly:pale_moon_ring",
+    "akhet_chronomaly:pure_blood_pauldron",
+    "akhet_chronomaly:pure_blood_bracer",
+    "akhet_chronomaly:pure_blood_glove",
+    "akhet_chronomaly:pure_blood_ring",
+    "akhet_chronomaly:draining_sentinel_pauldron",
+    "akhet_chronomaly:draining_sentinel_bracer",
+    "akhet_chronomaly:draining_sentinel_glove",
+    "akhet_chronomaly:draining_sentinel_ring"
   ]
 }

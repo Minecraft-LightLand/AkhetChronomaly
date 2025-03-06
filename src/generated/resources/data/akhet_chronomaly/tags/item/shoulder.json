@@ -1,5 +1,8 @@
 {
   "values": [
-    "akhet_chronomaly:count_sanguivore_pauldron"
+    "akhet_chronomaly:count_sanguivore_pauldron",
+    "akhet_chronomaly:pale_moon_pauldron",
+    "akhet_chronomaly:pure_blood_pauldron",
+    "akhet_chronomaly:draining_sentinel_pauldron"
   ]
 }

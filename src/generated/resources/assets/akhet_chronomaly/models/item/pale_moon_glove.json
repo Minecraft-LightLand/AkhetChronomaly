@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "akhet_chronomaly:item/pale_moon_glove_left",
+      "predicate": {
+        "akhet_chronomaly:flip": 0.5
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "akhet_chronomaly:item/pale_moon/glove_right"
+  }
+}

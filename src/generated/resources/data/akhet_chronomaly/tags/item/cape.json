@@ -1,5 +1,8 @@
 {
   "values": [
-    "akhet_chronomaly:count_sanguivore_cloak"
+    "akhet_chronomaly:count_sanguivore_cloak",
+    "akhet_chronomaly:pale_moon_cloak",
+    "akhet_chronomaly:pure_blood_cloak",
+    "akhet_chronomaly:draining_sentinel_cloak"
   ]
 }

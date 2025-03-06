@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "akhet_chronomaly:item/draining_sentinel_pauldron_left",
+      "predicate": {
+        "akhet_chronomaly:flip": 0.5
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "akhet_chronomaly:item/draining_sentinel/pauldron_right"
+  }
+}
