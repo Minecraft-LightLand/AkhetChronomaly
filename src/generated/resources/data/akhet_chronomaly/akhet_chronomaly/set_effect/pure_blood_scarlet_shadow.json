@@ -13,11 +13,12 @@
     {
       "type": "akhet_chronomaly:trigger",
       "listeners": {
-        "type": "akhet_chronomaly:heal_gain_bonus",
+        "type": "akhet_chronomaly:generic_gain_bonus",
         "amount": 0.2,
         "duration": 100,
         "id": "pure_blood_speed",
-        "operation": "ADD_VALUE"
+        "operation": "ADD_VALUE",
+        "triggerType": "akhet_chronomaly:on_heal"
       }
     }
   ]

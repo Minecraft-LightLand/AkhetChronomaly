@@ -1,6 +1,7 @@
 package dev.xkmc.akhet_chronomaly.engine.core.type;
 
 import dev.xkmc.akhet_chronomaly.engine.core.codec.AutoCodecTypeRegistry;
+import dev.xkmc.akhet_chronomaly.engine.core.codec.CodecHelper;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.WR;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
 import dev.xkmc.akhet_chronomaly.engine.effect.AttributeBonusStatusEffect;
@@ -9,9 +10,7 @@ import dev.xkmc.akhet_chronomaly.engine.effect.BonusStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.effect.MobEffectStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
-import dev.xkmc.akhet_chronomaly.engine.predicate.DirectDamagePredicate;
-import dev.xkmc.akhet_chronomaly.engine.predicate.PlayerLightPredicate;
-import dev.xkmc.akhet_chronomaly.engine.predicate.SelfHealthPredicate;
+import dev.xkmc.akhet_chronomaly.engine.predicate.*;
 import dev.xkmc.akhet_chronomaly.engine.trigger.*;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
@@ -50,9 +49,11 @@ public class AutoReg {
 		REG_ENT.reg("trigger", TriggerEffectEntry.class);
 
 		// predicate
-		REG_PRED.reg("direct_damage", DirectDamagePredicate.class);
-		REG_PRED.reg("player_light", PlayerLightPredicate.class);
 		REG_PRED.reg("health_percentage", SelfHealthPredicate.class);
+		REG_PRED.reg("target_health_percentage", TargetHealthPredicate.class);
+		REG_PRED.reg("direct_damage", DirectDamagePredicate.class);
+		REG_PRED.reg("behind_damage", BehindDamagePredicate.class);
+		REG_PRED.reg("player_light", PlayerLightPredicate.class);
 
 		// status
 		REG_STATUS.reg("attribute", AttributeStatusEffect.class);
@@ -60,7 +61,12 @@ public class AutoReg {
 		REG_STATUS.reg("bonus", BonusStatusEffect.class);
 		REG_STATUS.reg("mob_effect", MobEffectStatusEffect.class);
 
+		// common
+		REG_TRIGGERED.reg("generic_gain_effect", GainEffect.class);
+		REG_TRIGGERED.reg("generic_gain_bonus", GainBonus.class);
+
 		// on hurt target
+		REG_TRIGGERED.reg("hurt_target_factor", HurtTargetFactor.class);
 
 		// after damage target
 		REG_TRIGGERED.reg("hit_apply_effect", HitApplyEffect.class);
@@ -73,11 +79,13 @@ public class AutoReg {
 
 		// on kill target
 		REG_TRIGGERED.reg("heal_on_kill", HealOnKill.class);
-		REG_TRIGGERED.reg("kill_target_gain_effect", KillTargetGainEffect.class);
 
 		// on heal
-		REG_TRIGGERED.reg("heal_gain_effect", HealGainEffect.class);
-		REG_TRIGGERED.reg("heal_gain_bonus", HealGainBonus.class);
+
+
+		// finish
+		CodecHelper.register();
+
 	}
 
 	private static <T> Val<TriggerType<T>> reg(String id, Class<T> cls) {

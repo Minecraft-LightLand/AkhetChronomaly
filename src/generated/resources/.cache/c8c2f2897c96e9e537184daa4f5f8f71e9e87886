@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-06T16:51:04.356962	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+// 1.21.1	2025-03-06T17:37:14.873634	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
 ed9a4b011c5e5bafe08e0259b2949075b6f79319 assets/akhet_chronomaly/lang/en_ud.json
 ef570aac237dd96e3a7b4d42e42829d77df16a50 assets/akhet_chronomaly/lang/en_us.json
 77d087031bbccd052d84cbaff938413800e14233 assets/akhet_chronomaly/models/item/count_sanguivore_belt.json
@@ -76,10 +76,10 @@ f1acc5dd8037f830aa27d578019b1a00a6fb1e47 assets/akhet_chronomaly/models/item/ran
 5da2dd6d19a4f69c923a2f93fb82769fcbc9e36c data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_bloodshed.json
 09b73a632451856eb572bf984680ce32e833ef0c data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_necrovore_festival.json
 1e903fc8dcb59139d5a3a45f02944edd718c5bd2 data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_night_party.json
-4e0057617b3b8f6b03edcc55ba05cba04395183e data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_inherited_spell.json
+8af9b17db03a273c3de5d9373b9e26af9a9d0d84 data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_inherited_spell.json
 b634abded0b772735538ad591b01f56bc371a77a data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_nobel_blood.json
-6ae6b44af23afd58db574ef6c508c345ea4d6b4d data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_primal_strength.json
-499be1f2e4f840fabacafb9baac2881c02a92476 data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_scarlet_shadow.json
+194bf07ddfda68b10dd6980f5acdf0246db9b67d data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_primal_strength.json
+5083e88fc90ca13e6afc14780c04f7304e9f4dfc data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_scarlet_shadow.json
 e835408be30350c7e12023ca077a6706811e0cd2 data/akhet_chronomaly/akhet_chronomaly/stat_type/absorption.json
 e9d8355c9fc38e0ccae36ef31130519bd7570d79 data/akhet_chronomaly/akhet_chronomaly/stat_type/armor_add.json
 e263610ae2dd84ce2517dfc97704c2c85e01be55 data/akhet_chronomaly/akhet_chronomaly/stat_type/armor_mult.json

@@ -6,6 +6,8 @@ import com.mojang.serialization.MapCodec;
 import dev.xkmc.akhet_chronomaly.content.core.bonus.BonusRef;
 import dev.xkmc.akhet_chronomaly.content.core.bonus.Constant;
 import dev.xkmc.akhet_chronomaly.content.core.bonus.NumberValue;
+import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
+import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 import dev.xkmc.l2serial.serialization.custom_handler.Handlers;
 import dev.xkmc.l2serial.serialization.type_cache.RecordCache;
 import dev.xkmc.l2serial.serialization.type_cache.TypeInfo;
@@ -24,7 +26,7 @@ public class CodecHelper {
 	private static final ConcurrentHashMap<Class<?>, Codec<?>> PARAM_CACHE = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<Class<?>, MapCodec<?>> RESULT_CACHE = new ConcurrentHashMap<>();
 
-	static {
+	public static void register() {
 		PARAM_CACHE.put(boolean.class, Codec.BOOL);
 		PARAM_CACHE.put(int.class, Codec.INT);
 		PARAM_CACHE.put(float.class, Codec.FLOAT);
@@ -40,6 +42,7 @@ public class CodecHelper {
 				e -> e instanceof BonusRef ref ? Either.left(ref) : Either.right((Constant) e)
 		);
 		PARAM_CACHE.put(NumberValue.class, numCodec);
+		PARAM_CACHE.put(TriggerType.class, AutoReg.TRIGGER_TYPE.get().byNameCodec());
 	}
 
 	public static <T extends Record> MapCodec<T> getAutoCodec(Class<T> cls) {
@@ -56,18 +59,6 @@ public class CodecHelper {
 
 	private static <T extends Record> MapCodec<T> getEntryCodec(Class<T> cls) throws Exception {
 		var cache = RecordCache.get(cls);
-		if (IComponentCodec.class.isAssignableFrom(cache.getComponents()[0].getType())) {
-			var subType = cache.getComponents()[0].getType();
-			var sub = RecordCache.get(subType);
-			List<MapCodec<?>> list = new ArrayList<>();
-			for (var e : sub.getComponents()) {
-				list.add(getCodec(e));
-			}
-			return Wrappers.cast(sub.getCodec(list).xmap(
-					e -> Wrappers.get(() -> cache.create(new Object[]{e})),
-					e -> Wrappers.get(() -> cache.get(e, 0))
-			));
-		}
 		List<MapCodec<?>> list = new ArrayList<>();
 		for (var e : cache.getComponents()) {
 			list.add(getCodec(e));
@@ -75,8 +66,16 @@ public class CodecHelper {
 		return Wrappers.cast(cache.getCodec(list));
 	}
 
-	private static MapCodec<?> getCodec(RecordComponent comp) {
+	private static MapCodec<?> getCodec(RecordComponent comp) throws Exception {
 		var info = TypeInfo.of(comp);
+		if (IComponentCodec.class.isAssignableFrom(info.getAsClass())) {
+			var sub = RecordCache.get(info.getAsClass());
+			List<MapCodec<?>> list = new ArrayList<>();
+			for (var e : sub.getComponents()) {
+				list.add(getCodec(e));
+			}
+			return sub.getCodec(list);
+		}
 		if (info.getAsClass() == Optional.class) {
 			return getCodec(info.getGenericType(0)).optionalFieldOf(comp.getName());
 		}
