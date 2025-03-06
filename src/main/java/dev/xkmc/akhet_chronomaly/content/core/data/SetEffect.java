@@ -5,7 +5,10 @@ import dev.xkmc.akhet_chronomaly.engine.core.type.IEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
 import dev.xkmc.l2serial.util.Wrappers;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
@@ -52,6 +55,10 @@ public record SetEffect(int count, List<IEffectEntry<?>> effects) {
 			}
 		}
 		return ans;
+	}
+
+	public MutableComponent getName(ResourceLocation id) {
+		return Component.translatable(Util.makeDescriptionId("set_effect", id));
 	}
 
 	public List<MutableComponent> getDetailedDescription() {

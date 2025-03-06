@@ -3,6 +3,7 @@ package dev.xkmc.akhet_chronomaly.init.registrate.entries;
 import com.tterrag.registrate.builders.AbstractBuilder;
 import com.tterrag.registrate.builders.BuilderCallback;
 import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
@@ -126,11 +127,12 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		return this.lang(NamedEntry::getDescriptionId, name);
 	}
 
-	public SetBuilder<T, I, P> effect(int count, Supplier<List<IEffectEntry<?>>> data) {
-		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(owner.getModid(), getName() + "_%02d".formatted(count));
+	public SetBuilder<T, I, P> effect(String name, int count, Supplier<List<IEffectEntry<?>>> data) {
+		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(owner.getModid(), getName() + "_" + name);
 		var key = ResourceKey.create(ACTypeRegistry.SET_EFFECT.key(), id);
 		effects.add(new DataGenHolder<>(key, null));
 		owner.addData(key, () -> new SetEffect(count, data.get()));
+		owner.addLang("set_effect", id, RegistrateLangProvider.toEnglishName(name));
 		return this;
 	}
 

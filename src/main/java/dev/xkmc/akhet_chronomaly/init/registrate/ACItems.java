@@ -80,11 +80,11 @@ public class ACItems {
 			var set = REGISTRATE.getSetHelper("count_sanguivore");
 			var rootBuilder = set.regSet("Count Sanguivore").addClothPreset();
 			if (DatagenModLoader.isRunningDataGen()) {
-				rootBuilder.effect(3, () -> List.of(TriggerEffectEntry.of(
+				rootBuilder.effect("bloodshed", 3, () -> List.of(TriggerEffectEntry.of(
 						new DirectDamagePredicate(true), new HealOnHit(0.05f))));
-				rootBuilder.effect(6, () -> List.of(TriggerEffectEntry.of(new HealOnHit(0.02f))));
-				rootBuilder.effect(9, () -> List.of(TriggerEffectEntry.of(new HealOnKill(0.15f, 4, 0.6f, 0.05f))));
-				rootBuilder.effect(12, () -> List.of(
+				rootBuilder.effect("blood_drain", 6, () -> List.of(TriggerEffectEntry.of(new HealOnHit(0.02f))));
+				rootBuilder.effect("necrovore_festival", 9, () -> List.of(TriggerEffectEntry.of(new HealOnKill(0.15f, 4, 0.6f, 0.05f))));
+				rootBuilder.effect("blood_bath", 12, () -> List.of(
 						StatusEffectEntry.of(
 								new SelfHealthPredicate(0, 0.5),
 								AttributeStatusEffect.total(L2DamageTracker.REDUCTION, -0.2)
@@ -94,29 +94,29 @@ public class ACItems {
 								AttributeStatusEffect.add(L2DamageTracker.CRIT_RATE, 0.2)
 						)
 				));
-				rootBuilder.effect(15, () -> List.of(StatusEffectEntry.of(
+				rootBuilder.effect("night_party", 15, () -> List.of(StatusEffectEntry.of(
 						new PlayerLightPredicate(0, 7, true),
 						AttributeStatusEffect.add(L2DamageTracker.REGEN, 2)
 				)));
 			}
 			var root = rootBuilder.register();
 			{
-				var sub = root.subSet("pale_moon");
-				var builder = sub.regSet("Pale Moon").addArmorPreset();
+				var sub = root.subSet("pure_blood");
+				var builder = sub.regSet("Pure Blood").addArmorPreset();
 				if (DatagenModLoader.isRunningDataGen()) {
-					builder.effect(3, () -> List.of(
+					builder.effect("scarlet_shadow", 3, () -> List.of(
 							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.MOVEMENT_SPEED, "pure_blood_speed")),
 							TriggerEffectEntry.of(new HealGainBonus(BonusRecord.add("pure_blood_speed", 100, 0.2)))
 					));
-					builder.effect(6, () -> List.of(
+					builder.effect("primal_strength", 6, () -> List.of(
 							StatusEffectEntry.of(AttributeBonusStatusEffect.base(Attributes.ATTACK_DAMAGE, "pure_blood_attack")),
 							TriggerEffectEntry.of(new HealGainBonus(BonusRecord.add("pure_blood_attack", 100, 0.3)))
 					));
-					builder.effect(9, () -> List.of(
+					builder.effect("inherited_spell", 9, () -> List.of(
 							StatusEffectEntry.of(AttributeBonusStatusEffect.base(L2DamageTracker.MAGIC_FACTOR, "pure_blood_magic")),
 							TriggerEffectEntry.of(new HealGainBonus(BonusRecord.add("pure_blood_magic", 100, 0.4)))
 					));
-					builder.effect(12, () -> List.of(StatusEffectEntry.of(
+					builder.effect("nobel_blood", 12, () -> List.of(StatusEffectEntry.of(
 							BonusStatusEffect.total("pure_blood_speed", 0.5),
 							BonusStatusEffect.total("pure_blood_attack", 0.5),
 							BonusStatusEffect.total("pure_blood_magic", 0.5)
@@ -125,8 +125,8 @@ public class ACItems {
 				builder.register();
 			}
 			{
-				var sub = root.subSet("pure_blood");
-				sub.regSet("Pure Blood").addArmorPreset().register();
+				var sub = root.subSet("pale_moon");
+				sub.regSet("Pale Moon").addArmorPreset().register();
 			}
 			{
 				var sub = root.subSet("draining_sentinel");
