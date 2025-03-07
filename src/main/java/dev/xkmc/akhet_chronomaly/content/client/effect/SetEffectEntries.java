@@ -22,7 +22,7 @@ public record SetEffectEntries(
 		List<SetEffectEntries> raw = new ArrayList<>();
 		for (var ent : map.entrySet()) {
 			List<Pair<List<FormattedCharSequence>, List<Component>>> ans = new ArrayList<>();
-			var list = ent.getKey().addComponents(ent.getValue().count());
+			var list = ent.getKey().addComponents(player.level().registryAccess(), ent.getValue().count());
 			int size = 0;
 			for (var pair : list) {
 				var lines = TextWrapper.wrapText(Minecraft.getInstance().font, pair.getFirst(), width - 16);

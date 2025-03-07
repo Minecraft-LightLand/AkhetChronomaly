@@ -27,7 +27,8 @@ public class EquipHandler implements IItemHandlerModifiable {
 	protected ArtifactSet set;
 	protected int a, l, r, c, total;
 
-	private boolean doUpdate = false, updating = false, shouldUpdate = false;
+	private boolean doUpdate = false, updating = false;
+	private volatile boolean shouldUpdate = false;
 
 	protected EquipHandler() {
 		List<SlotHolder> list = new ArrayList<>();
@@ -187,7 +188,7 @@ public class EquipHandler implements IItemHandlerModifiable {
 			if (!isEnabled()) return false;
 			ArtifactSet set = parent.set;
 			if (!(stack.getItem() instanceof IArtifact item)) return false;
-			if (set != null && item.getSet() != set.root()) return false;
+			if (set != null && item.getSet().root() != set) return false;
 			if (type.slot != null) {
 				return stack.getItem() instanceof BaseArtifact art && art.slot.get() == type.slot;
 			}

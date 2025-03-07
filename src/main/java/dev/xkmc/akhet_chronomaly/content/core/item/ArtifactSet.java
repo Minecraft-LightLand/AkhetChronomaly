@@ -69,8 +69,25 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		return ans;
 	}
 
-	public List<Pair<List<Component>, List<Component>>> addComponents(int count) {
-		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
+	public List<Pair<List<Component>, List<Component>>> addComponents(RegistryAccess access, int count) {
+		var config = getConfig(access);
+		if (config == null) return List.of();
+		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();
+		ans.add(Pair.of(List.of(ACLang.SET.get(getDesc()).withStyle(ChatFormatting.BLACK)), List.of()));
+		for (var eff : config.list()) {
+			var e = eff.value();
+			var id = eff.unwrapKey().orElseThrow().location();
+			if (count >= e.count()) {
+				var title = ACLang.EFFECT_COUNT.get(e.getName(id), e.count());
+				List<Component> list = new ArrayList<>();
+				var consumer = new TooltipConsumer(list);
+				consumer.push();
+				e.getDetailedDescription(id, consumer);
+				consumer.pop();
+				ans.add(Pair.of(List.of(title.withStyle(ChatFormatting.BLACK)), list));
+			}
+		}
+
 		return ans;
 	}
 

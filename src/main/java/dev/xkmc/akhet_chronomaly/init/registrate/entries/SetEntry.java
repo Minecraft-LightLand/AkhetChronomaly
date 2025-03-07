@@ -15,7 +15,7 @@ public class SetEntry<T extends ArtifactSet> extends RegistryEntry<ArtifactSet, 
 
 
 	public SetRegHelper subSet(String id) {
-		return new SetRegHelper(owner, id);
+		return new SetRegHelper(owner, id, this);
 	}
 
 

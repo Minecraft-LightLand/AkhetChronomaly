@@ -9,10 +9,10 @@ public class TooltipConsumer {
 
 	private static final String[] SPACE = {"· ", "  · "};
 
-	private final List<Component> list;
+	private final List<? super MutableComponent> list;
 	private int count = 0;
 
-	public TooltipConsumer(List<Component> list) {
+	public TooltipConsumer(List<? super MutableComponent> list) {
 		this.list = list;
 	}
 
