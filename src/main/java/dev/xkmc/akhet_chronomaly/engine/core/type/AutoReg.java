@@ -4,14 +4,13 @@ import dev.xkmc.akhet_chronomaly.engine.core.codec.AutoCodecTypeRegistry;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.CodecHelper;
 import dev.xkmc.akhet_chronomaly.engine.core.codec.WR;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.TriggerType;
-import dev.xkmc.akhet_chronomaly.engine.effect.AttributeBonusStatusEffect;
-import dev.xkmc.akhet_chronomaly.engine.effect.AttributeStatusEffect;
-import dev.xkmc.akhet_chronomaly.engine.effect.BonusStatusEffect;
-import dev.xkmc.akhet_chronomaly.engine.effect.MobEffectStatusEffect;
+import dev.xkmc.akhet_chronomaly.engine.effect.*;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.predicate.*;
 import dev.xkmc.akhet_chronomaly.engine.trigger.*;
+import dev.xkmc.akhet_chronomaly.engine.util.CritTest;
+import dev.xkmc.akhet_chronomaly.engine.util.OverhealTest;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.simple.SR;
@@ -37,6 +36,8 @@ public class AutoReg {
 	public static final Val<TriggerType<DamageData.DefenceMax>> AFT_DMG_SELF = reg("after_damage_self", DamageData.DefenceMax.class);
 	public static final Val<TriggerType<LivingDeathEvent>> ON_KILL_TARGET = reg("on_kill_target", LivingDeathEvent.class);
 	public static final Val<TriggerType<LivingHealEvent>> ON_HEAL = reg("on_heal", LivingHealEvent.class);
+	public static final Val<TriggerType<CritTest>> ON_CRIT_TEST = reg("on_crit_test", CritTest.class);
+	public static final Val<TriggerType<OverhealTest>> OVERHEAL = reg("overheal", OverhealTest.class);
 
 	private static final WR<IEffectEntry<?>> REG_ENT = WR.of(AkhetChronomaly.REG, ENTRY);
 	private static final WR<IUserPredicate<?>> REG_PRED = WR.of(AkhetChronomaly.REG, PREDICATE);
@@ -53,11 +54,13 @@ public class AutoReg {
 		REG_PRED.reg("target_health_percentage", TargetHealthPredicate.class);
 		REG_PRED.reg("direct_damage", DirectDamagePredicate.class);
 		REG_PRED.reg("behind_damage", BehindDamagePredicate.class);
+		REG_PRED.reg("crit_damage", CritDamagePredicate.class);
 		REG_PRED.reg("player_light", PlayerLightPredicate.class);
 
 		// status
 		REG_STATUS.reg("attribute", AttributeStatusEffect.class);
 		REG_STATUS.reg("attribute_from_bonus", AttributeBonusStatusEffect.class);
+		REG_STATUS.reg("attribute_transfer", AttributeTransferStatusEffect.class);
 		REG_STATUS.reg("bonus", BonusStatusEffect.class);
 		REG_STATUS.reg("mob_effect", MobEffectStatusEffect.class);
 
@@ -67,6 +70,7 @@ public class AutoReg {
 
 		// on hurt target
 		REG_TRIGGERED.reg("hurt_target_factor", HurtTargetFactor.class);
+		REG_TRIGGERED.reg("convert_absorption_to_damage", ConvertAbsorptionToDamage.class);
 
 		// after damage target
 		REG_TRIGGERED.reg("hit_apply_effect", HitApplyEffect.class);
@@ -80,8 +84,9 @@ public class AutoReg {
 		// on kill target
 		REG_TRIGGERED.reg("heal_on_kill", HealOnKill.class);
 
-		// on heal
-
+		// special
+		REG_TRIGGERED.reg("set_crit", SetCritEffect.class);
+		REG_TRIGGERED.reg("overheal", OverhealEffect.class);
 
 		// finish
 		CodecHelper.register();

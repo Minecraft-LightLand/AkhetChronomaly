@@ -1,0 +1,15 @@
+{
+  "count": 3,
+  "desc": "set_effect.akhet_chronomaly.pale_moon_moon_shadow.desc",
+  "effects": {
+    "type": "akhet_chronomaly:trigger",
+    "listeners": {
+      "type": "akhet_chronomaly:set_crit"
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:target_health_percentage",
+      "max": 1.0,
+      "min": 0.99
+    }
+  }
+}

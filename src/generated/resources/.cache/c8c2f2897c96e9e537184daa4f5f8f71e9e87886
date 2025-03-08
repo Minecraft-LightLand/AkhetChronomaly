@@ -1,6 +1,6 @@
-// 1.21.1	2025-03-06T22:00:22.181183	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
-40d636bb24b49c536d17d309912b73642e9eaa68 assets/akhet_chronomaly/lang/en_ud.json
-dc08053f417763832064cd6c9f6e8c781c6f698b assets/akhet_chronomaly/lang/en_us.json
+// 1.21.1	2025-03-07T23:58:13.403068	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+094bacc2a3005455efe0a60e5c7edc9dc26d5afd assets/akhet_chronomaly/lang/en_ud.json
+7f115f6437a23dfd5273bf2e475a5de9f599c007 assets/akhet_chronomaly/lang/en_us.json
 77d087031bbccd052d84cbaff938413800e14233 assets/akhet_chronomaly/models/item/count_sanguivore_belt.json
 b15e9c3313d531bc1b64f7255aecfe3d0d878251 assets/akhet_chronomaly/models/item/count_sanguivore_boots.json
 29253a76e833c23a8bdd5b258d656c17341343e5 assets/akhet_chronomaly/models/item/count_sanguivore_bracer.json
@@ -76,6 +76,14 @@ f1acc5dd8037f830aa27d578019b1a00a6fb1e47 assets/akhet_chronomaly/models/item/ran
 9dc4093536e3a4476b56269a55bed97ae4a1c09e data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_bloodshed.json
 5c12a5ea7028f0a65b83013235fc149ce1aa82c4 data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_necrovore_festival.json
 90ab6ade53e0f35b9212c88ca8b03c16c5093418 data/akhet_chronomaly/akhet_chronomaly/set_effect/count_sanguivore_night_party.json
+07fa4508b253423c3f824a506c572a685c9890c0 data/akhet_chronomaly/akhet_chronomaly/set_effect/draining_sentinel_blood_core.json
+935a842914d656398080990242d30e8bf62ae9a8 data/akhet_chronomaly/akhet_chronomaly/set_effect/draining_sentinel_blood_pool.json
+b95ab31c30acba9f915e69615a24ca2e6d944c02 data/akhet_chronomaly/akhet_chronomaly/set_effect/draining_sentinel_flesh_burse.json
+99c63be6b0af9882e17d952be24e6673ded437c6 data/akhet_chronomaly/akhet_chronomaly/set_effect/draining_sentinel_scarlet_infusion.json
+041dd079342d48410687554ccb05f95a81d51009 data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_lunar_blade.json
+4858af2107443c92380845fbd12b6d920d78bd4d data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_moon_shadow.json
+5852fe3ffd9127ff3ef5fcd81753f299b02edcf9 data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_night_predator.json
+f41e5b276e50d15b6307ed44ce26750f0239699a data/akhet_chronomaly/akhet_chronomaly/set_effect/pale_moon_pale_claw.json
 801f61c69224a99a295a1e767d283f550fca2a16 data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_inherited_spell.json
 c7659f82e3299d5c685379795167f9983ccc67ac data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_nobel_blood.json
 9a4f311d8e2de6a91cd48c30d65fa64bae675647 data/akhet_chronomaly/akhet_chronomaly/set_effect/pure_blood_primal_strength.json
@@ -99,7 +107,7 @@ f195bd91b10d9dc0650a65ba29226746e5a0303a data/akhet_chronomaly/akhet_chronomaly/
 616cd4f6b8dfec76785098da2c0d1a6a02c81b73 data/akhet_chronomaly/akhet_chronomaly/stat_type/regeneration_rate.json
 62edf430726f4e6694f8005bbfc9d62a3d3ef7d2 data/akhet_chronomaly/akhet_chronomaly/stat_type/speed_mult.json
 07c4fb2e97e0b1b8455b42d343ecfae0c5559b29 data/akhet_chronomaly/akhet_chronomaly/stat_type/tough_add.json
-1b2cc9daf506f229037967b7d4dbc35367b01258 data/akhet_chronomaly/data_maps/akhet_chronomaly/set/set_config.json
+3df0ff4ae2179a3ab5fbd8811a9193874b6c0a31 data/akhet_chronomaly/data_maps/akhet_chronomaly/set/set_config.json
 74ae37f1444ad5459f994f7eb611bf9943ab1162 data/akhet_chronomaly/data_maps/akhet_chronomaly/slot/stat_map.json
 49a9bc27e8174f84a2dc86bdc94142a0ebd391f2 data/akhet_chronomaly/tags/item/artifact.json
 e18185a54c4496e2c3b1dcf1e44b56f0fb35cda3 data/akhet_chronomaly/tags/item/belt.json

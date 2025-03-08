@@ -1,0 +1,15 @@
+{
+  "count": 12,
+  "desc": "set_effect.akhet_chronomaly.draining_sentinel_flesh_burse.desc",
+  "effects": {
+    "type": "akhet_chronomaly:trigger",
+    "listeners": {
+      "type": "akhet_chronomaly:convert_absorption_to_damage",
+      "factor": 0.5
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:direct_damage",
+      "checkStrength": true
+    }
+  }
+}

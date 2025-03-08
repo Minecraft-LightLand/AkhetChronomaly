@@ -1,0 +1,19 @@
+{
+  "count": 12,
+  "desc": "set_effect.akhet_chronomaly.pale_moon_lunar_blade.desc",
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": {
+      "type": "akhet_chronomaly:attribute",
+      "attribute": "l2damagetracker:crit_damage",
+      "operation": "ADD_VALUE",
+      "value": 1.0
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:player_light",
+      "max": 7,
+      "min": 0,
+      "skyOnly": true
+    }
+  }
+}

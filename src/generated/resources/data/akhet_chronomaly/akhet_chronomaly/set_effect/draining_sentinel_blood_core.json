@@ -1,0 +1,22 @@
+{
+  "count": 6,
+  "desc": "set_effect.akhet_chronomaly.draining_sentinel_blood_core.desc",
+  "effects": [
+    {
+      "type": "akhet_chronomaly:status",
+      "listeners": {
+        "type": "akhet_chronomaly:attribute_transfer",
+        "attribute": "minecraft:generic.max_absorption",
+        "factor": 0.5,
+        "operation": "ADD_VALUE",
+        "source": "MAX_HEALTH"
+      }
+    },
+    {
+      "type": "akhet_chronomaly:trigger",
+      "listeners": {
+        "type": "akhet_chronomaly:overheal"
+      }
+    }
+  ]
+}

@@ -18,5 +18,20 @@
 	"set_effect.akhet_chronomaly.pure_blood_nobel_blood": "高贵血脉",
 	"set_effect.akhet_chronomaly.pure_blood_nobel_blood.desc": "本套装词条上升%s/%s/%s",
 	"set.akhet_chronomaly.pale_moon": "苍白月夜",
-	"set.akhet_chronomaly.draining_sentinel": "抑血守卫"
+	"set_effect.akhet_chronomaly.pale_moon_moon_shadow": "月下阴影",
+	"set_effect.akhet_chronomaly.pale_moon_moon_shadow.desc": "对满血敌人必定暴击",
+	"set_effect.akhet_chronomaly.pale_moon_pale_claw": "血腥追猎",
+	"set_effect.akhet_chronomaly.pale_moon_pale_claw.desc": "暴击时%s",
+	"set_effect.akhet_chronomaly.pale_moon_night_predator": "月影猎手",
+	"set_effect.akhet_chronomaly.pale_moon_night_predator.desc": "当你不在阳光下时: %s",
+	"set_effect.akhet_chronomaly.pale_moon_lunar_blade": "怖惧狂袭",
+	"set_effect.akhet_chronomaly.pale_moon_lunar_blade.desc": "当你不在阳光下时: %s",
+	"set.akhet_chronomaly.draining_sentinel": "抑血守卫",
+	"set_effect.akhet_chronomaly.draining_sentinel_blood_pool": "积蓄",
+	"set_effect.akhet_chronomaly.draining_sentinel_blood_core": "凝结",
+	"set_effect.akhet_chronomaly.draining_sentinel_blood_core.desc": "回复溢出转化为伤害吸收，上限%s最大血量",
+	"set_effect.akhet_chronomaly.draining_sentinel_scarlet_infusion": "熵光血界",
+	"set_effect.akhet_chronomaly.draining_sentinel_scarlet_infusion.desc": "攻击伤害上升当前血量的%s",
+	"set_effect.akhet_chronomaly.draining_sentinel_flesh_burse": "血祭",
+	"set_effect.akhet_chronomaly.draining_sentinel_flesh_burse.desc": "直接攻击时，转化%s的伤害吸收为额外伤害"
 }

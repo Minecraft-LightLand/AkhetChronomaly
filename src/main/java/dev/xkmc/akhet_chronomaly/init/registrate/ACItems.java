@@ -9,15 +9,12 @@ import dev.xkmc.akhet_chronomaly.content.misc.SetGroup;
 import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 import dev.xkmc.akhet_chronomaly.engine.effect.AttributeBonusStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.effect.AttributeStatusEffect;
+import dev.xkmc.akhet_chronomaly.engine.effect.AttributeTransferStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.effect.BonusStatusEffect;
 import dev.xkmc.akhet_chronomaly.engine.entry.StatusEffectEntry;
 import dev.xkmc.akhet_chronomaly.engine.entry.TriggerEffectEntry;
-import dev.xkmc.akhet_chronomaly.engine.predicate.DirectDamagePredicate;
-import dev.xkmc.akhet_chronomaly.engine.predicate.PlayerLightPredicate;
-import dev.xkmc.akhet_chronomaly.engine.predicate.SelfHealthPredicate;
-import dev.xkmc.akhet_chronomaly.engine.trigger.GainBonus;
-import dev.xkmc.akhet_chronomaly.engine.trigger.HealOnHit;
-import dev.xkmc.akhet_chronomaly.engine.trigger.HealOnKill;
+import dev.xkmc.akhet_chronomaly.engine.predicate.*;
+import dev.xkmc.akhet_chronomaly.engine.trigger.*;
 import dev.xkmc.akhet_chronomaly.engine.util.BonusRecord;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import dev.xkmc.l2core.init.reg.simple.DCReg;
@@ -131,11 +128,48 @@ public class ACItems {
 			}
 			{
 				var sub = root.subSet("pale_moon");
-				sub.regSet("Pale Moon").addArmorPreset().register();
+				var builder = sub.regSet("Pale Moon").addArmorPreset();
+				if (DatagenModLoader.isRunningDataGen()) {
+					builder.effect("moon_shadow", 3, () -> List.of(
+							TriggerEffectEntry.of(new TargetHealthPredicate(0.99, 1), new SetCritEffect())
+					), "Critical hit when target is at full health");
+					builder.effect("pale_claw", 6, () -> List.of(
+							TriggerEffectEntry.of(new CritDamagePredicate(), new HealOnHit(0.3f))
+					), "%s on critical hit");
+					builder.effect("night_predator", 9, () -> List.of(StatusEffectEntry.of(
+							new PlayerLightPredicate(0, 7, true),
+							AttributeStatusEffect.add(L2DamageTracker.CRIT_RATE, 0.5)
+					)), "When you are not under sunlight: %s");
+					builder.effect("lunar_blade", 12, () -> List.of(StatusEffectEntry.of(
+							new PlayerLightPredicate(0, 7, true),
+							AttributeStatusEffect.add(L2DamageTracker.CRIT_DMG, 1)
+					)), "When you are not under sunlight: %s");
+				}
+				builder.register();
 			}
 			{
 				var sub = root.subSet("draining_sentinel");
-				sub.regSet("Draining Sentinel").addArmorPreset().register();
+				var builder = sub.regSet("Draining Sentinel").addArmorPreset();
+				if (DatagenModLoader.isRunningDataGen()) {
+					builder.effect("blood_pool", 3, () -> List.of(
+							StatusEffectEntry.of(AttributeStatusEffect.add(
+									Attributes.MAX_HEALTH, 0.3))
+					));
+					builder.effect("blood_core", 6, () -> List.of(
+							StatusEffectEntry.of(AttributeTransferStatusEffect.Type.MAX_HEALTH.add(
+									Attributes.MAX_ABSORPTION, 0.5)),
+							TriggerEffectEntry.of(new OverhealEffect())
+					), "Convert overheal to absorption, up to %s of max health");
+					builder.effect("scarlet_infusion", 9, () -> List.of(
+							StatusEffectEntry.of(AttributeTransferStatusEffect.Type.MAX_HEALTH.add(
+									Attributes.ATTACK_DAMAGE, 0.2))
+					), "Increase attack damage by %s of current health");
+					builder.effect("flesh_burse", 12, () -> List.of(
+							TriggerEffectEntry.of(new DirectDamagePredicate(true),
+									new ConvertAbsorptionToDamage(0.5f))
+					), "On direct attack, convert %s of absorption to damage");
+				}
+				builder.register();
 			}
 		}
 	}

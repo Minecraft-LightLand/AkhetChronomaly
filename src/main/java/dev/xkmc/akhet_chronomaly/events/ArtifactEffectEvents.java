@@ -3,6 +3,7 @@ package dev.xkmc.akhet_chronomaly.events;
 import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
@@ -21,6 +22,17 @@ public class ArtifactEffectEvents {
 	public static void onHealEvent(LivingHealEvent event) {
 		if (event.getEntity() instanceof LivingEntity player)
 			AutoReg.ON_HEAL.get().trigger(player, event);
+	}
+
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public static void onConsumeHealEvent(LivingHealEvent event) {
+		if (event.getEntity() instanceof LivingEntity player) {
+			float amount = event.getAmount();
+			if (player.getHealth() + amount > player.getMaxHealth()) {
+				float overheal = player.getHealth() + amount - player.getMaxHealth();
+				AutoReg.ON_HEAL.get().trigger(player, event);
+			}
+		}
 	}
 
 

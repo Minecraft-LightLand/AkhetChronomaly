@@ -1,0 +1,14 @@
+{
+  "count": 9,
+  "desc": "set_effect.akhet_chronomaly.draining_sentinel_scarlet_infusion.desc",
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": {
+      "type": "akhet_chronomaly:attribute_transfer",
+      "attribute": "minecraft:generic.attack_damage",
+      "factor": 0.2,
+      "operation": "ADD_VALUE",
+      "source": "MAX_HEALTH"
+    }
+  }
+}

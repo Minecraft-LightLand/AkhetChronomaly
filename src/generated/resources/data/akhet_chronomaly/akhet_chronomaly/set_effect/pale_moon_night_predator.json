@@ -1,0 +1,19 @@
+{
+  "count": 9,
+  "desc": "set_effect.akhet_chronomaly.pale_moon_night_predator.desc",
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": {
+      "type": "akhet_chronomaly:attribute",
+      "attribute": "l2damagetracker:crit_rate",
+      "operation": "ADD_VALUE",
+      "value": 0.5
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:player_light",
+      "max": 7,
+      "min": 0,
+      "skyOnly": true
+    }
+  }
+}

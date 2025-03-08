@@ -1,0 +1,14 @@
+{
+  "count": 6,
+  "desc": "set_effect.akhet_chronomaly.pale_moon_pale_claw.desc",
+  "effects": {
+    "type": "akhet_chronomaly:trigger",
+    "listeners": {
+      "type": "akhet_chronomaly:heal_on_hit",
+      "healFactor": 0.3
+    },
+    "predicate": {
+      "type": "akhet_chronomaly:crit_damage"
+    }
+  }
+}

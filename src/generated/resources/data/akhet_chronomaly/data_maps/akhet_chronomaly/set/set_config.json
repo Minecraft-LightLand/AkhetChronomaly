@@ -10,10 +10,20 @@
       ]
     },
     "akhet_chronomaly:draining_sentinel": {
-      "list": []
+      "list": [
+        "akhet_chronomaly:draining_sentinel_blood_pool",
+        "akhet_chronomaly:draining_sentinel_blood_core",
+        "akhet_chronomaly:draining_sentinel_scarlet_infusion",
+        "akhet_chronomaly:draining_sentinel_flesh_burse"
+      ]
     },
     "akhet_chronomaly:pale_moon": {
-      "list": []
+      "list": [
+        "akhet_chronomaly:pale_moon_moon_shadow",
+        "akhet_chronomaly:pale_moon_pale_claw",
+        "akhet_chronomaly:pale_moon_night_predator",
+        "akhet_chronomaly:pale_moon_lunar_blade"
+      ]
     },
     "akhet_chronomaly:pure_blood": {
       "list": [

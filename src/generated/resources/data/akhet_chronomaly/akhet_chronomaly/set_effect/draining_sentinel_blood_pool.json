@@ -1,0 +1,12 @@
+{
+  "count": 3,
+  "effects": {
+    "type": "akhet_chronomaly:status",
+    "listeners": {
+      "type": "akhet_chronomaly:attribute",
+      "attribute": "minecraft:generic.max_health",
+      "operation": "ADD_VALUE",
+      "value": 0.3
+    }
+  }
+}
