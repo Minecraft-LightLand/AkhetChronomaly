@@ -38,7 +38,7 @@ public class ACItems {
 	public static final String[] RANK_NAME = {" [Worn]", " -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	static {
-		REGISTRATE.buildL2CreativeTab("artifacts", "Akhet Chronomaly", b -> b
+		REGISTRATE.buildL2CreativeTab("akhet_chronomaly", "Akhet Chronomaly", b -> b
 				.icon(ACItems.RANDOM[0]::asStack));
 	}
 

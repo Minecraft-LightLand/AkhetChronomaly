@@ -186,5 +186,15 @@
   "stat_type.akhet_chronomaly.speed_mult": "+%%速度",
   "stat_type.akhet_chronomaly.tough_add": "+盔甲韧性",
   "stat_type.akhet_chronomaly.explosion_add": "+%%爆炸伤害",
-  "stat_type.akhet_chronomaly.magic_add": "+%%魔法伤害"
+  "stat_type.akhet_chronomaly.magic_add": "+%%魔法伤害",
+  "curios.identifier.akhet_charm": "Akhet - Charm",
+  "curios.modifiers.akhet_charm": "When equipped as Akhet - Charm:",
+  "itemGroup.l2core.akhet_artifacts": "Akhet Chronomaly",
+  "stat_type.akhet_chronomaly.absorption": "Damage Absorption",
+  "stat_type.akhet_chronomaly.armor_mult": "Armor +%%",
+  "stat_type.akhet_chronomaly.attack_range_add": "Attack Range +",
+  "stat_type.akhet_chronomaly.health_mult": "Health +%%",
+  "stat_type.akhet_chronomaly.mining_range_add": "Mining Range +",
+  "stat_type.akhet_chronomaly.reduction": "Damage Reduction",
+  "stat_type.akhet_chronomaly.regeneration_rate": "Regen Rate +%%"
 }

@@ -1,6 +1,6 @@
-// 1.21.1	2025-03-07T23:58:13.403068	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
-094bacc2a3005455efe0a60e5c7edc9dc26d5afd assets/akhet_chronomaly/lang/en_ud.json
-7f115f6437a23dfd5273bf2e475a5de9f599c007 assets/akhet_chronomaly/lang/en_us.json
+// 1.21.1	2025-03-11T15:17:58.300992	Registrate Provider for akhet_chronomaly [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+a1545962e63bfbf299bfbaef285a12c86695b0fd assets/akhet_chronomaly/lang/en_ud.json
+e1e499f2219d0967c8fdcf38820f2a904f1e25ba assets/akhet_chronomaly/lang/en_us.json
 77d087031bbccd052d84cbaff938413800e14233 assets/akhet_chronomaly/models/item/count_sanguivore_belt.json
 b15e9c3313d531bc1b64f7255aecfe3d0d878251 assets/akhet_chronomaly/models/item/count_sanguivore_boots.json
 29253a76e833c23a8bdd5b258d656c17341343e5 assets/akhet_chronomaly/models/item/count_sanguivore_bracer.json

@@ -1,7 +1,9 @@
 package dev.xkmc.akhet_chronomaly.engine.trigger;
 
 import dev.xkmc.akhet_chronomaly.content.core.data.SetEffectContext;
+import dev.xkmc.akhet_chronomaly.engine.core.tooltip.DescElementCollector;
 import dev.xkmc.akhet_chronomaly.engine.core.trigger.OnTargetKillEffect;
+import dev.xkmc.akhet_chronomaly.init.data.ACLang;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 public record HealOnKill(
@@ -27,6 +29,11 @@ public record HealOnKill(
 				ctx.player().heal(overflowFactor * overflow * ctx.player().getMaxHealth());
 			}
 		}
+	}
+
+	@Override
+	public void getDescElements(DescElementCollector list) {
+		list.add(ACLang.perc(healFactor));
 	}
 
 }

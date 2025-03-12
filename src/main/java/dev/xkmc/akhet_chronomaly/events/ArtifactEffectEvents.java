@@ -1,6 +1,7 @@
 package dev.xkmc.akhet_chronomaly.events;
 
 import dev.xkmc.akhet_chronomaly.engine.core.type.AutoReg;
+import dev.xkmc.akhet_chronomaly.engine.util.OverhealTest;
 import dev.xkmc.akhet_chronomaly.init.AkhetChronomaly;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.EventPriority;
@@ -30,7 +31,7 @@ public class ArtifactEffectEvents {
 			float amount = event.getAmount();
 			if (player.getHealth() + amount > player.getMaxHealth()) {
 				float overheal = player.getHealth() + amount - player.getMaxHealth();
-				AutoReg.ON_HEAL.get().trigger(player, event);
+				AutoReg.OVERHEAL.get().trigger(player, new OverhealTest(overheal));
 			}
 		}
 	}

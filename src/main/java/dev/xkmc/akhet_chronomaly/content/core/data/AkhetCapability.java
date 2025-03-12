@@ -47,7 +47,7 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 				var holder = list.get(i);
 				var id = holder.unwrapKey().orElseThrow().location();
 				SetEffectContext ctx = new SetEffectContext(player, holder, this, id, Optional.empty());
-				data.flags[i] = holder.value().tick(ctx, data.flags[i], holder.value().count() >= newStat.count());
+				data.flags[i] = holder.value().tick(ctx, data.flags[i], holder.value().count() <= newStat.count());
 			}
 			if (!setMap.containsKey(set)) {
 				dataMap.remove(set);
@@ -63,6 +63,7 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 			var effects = ent.getKey().getConfig(player.level().registryAccess());
 			List<Holder<SetEffect>> list = effects == null ? List.of() : effects.list();
 			for (Holder<SetEffect> holder : list) {
+				if (ent.getValue().count < holder.value().count()) continue;
 				var id = holder.unwrapKey().orElseThrow().location();
 				SetEffectContext ctx = new SetEffectContext(player, holder, this, id, Optional.of(event));
 				holder.value().trigger(ctx, type, event);
@@ -71,9 +72,9 @@ public class AkhetCapability extends PlayerCapabilityTemplate<AkhetCapability> {
 	}
 
 	private void updateSet(Player player) {
+		setMap.clear();
 		var curio = CuriosApi.getCuriosInventory(player);
 		if (curio.isEmpty()) {
-			setMap.clear();
 			return;
 		}
 		List<GenericItemStack<BaseArtifact>> list = new ArrayList<>();
